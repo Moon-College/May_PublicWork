@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Logcat</string>
+    <string name="click">收集warn/error信息</string>
+    <string name="clear">清空信息</string>
+    <string name="noInfo">暂时无信息</string>
+</resources>
