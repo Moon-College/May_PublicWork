@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, TaskOneActivity!</string>
+    <string name="app_name">TaskOne</string>
+    <string name="btn_get_log">获取日志信息</string>
+
+</resources>
