@@ -1,4 +1,4 @@
-package com.myandroid.namespace;
+﻿package com.myandroid.namespace;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -25,7 +25,7 @@ public class MainActivity extends Activity {
     public void seachUI(){
     	//创建一个线性布局容器
     	LinearLayout ll=new LinearLayout(MainActivity.this);
-    	//设置线性布局容器的 宽和高
+    	 //设置线性布局容器的 宽和高
     	LayoutParams layoutparams=new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
     	//应用到线性布局容器
     	ll.setLayoutParams(layoutparams);
