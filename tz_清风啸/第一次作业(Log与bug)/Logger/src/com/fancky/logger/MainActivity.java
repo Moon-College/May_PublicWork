@@ -84,7 +84,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		ArrayList<String> cmdLine = new ArrayList<String>();
 		cmdLine.add("logcat");
 		cmdLine.add("-d");//收集一次日志停止
-		cmdLine.add("-s");//过滤
+//		cmdLine.add("-s");//过滤
 		cmdLine.add("*:W");
 		Runtime runtime = Runtime.getRuntime();
 		String[] ary = new String[cmdLine.size()];
