@@ -45,7 +45,7 @@ public class TaskOneActivity extends Activity {
 		cmdLine.add("logcat");
 		cmdLine.add("-d");//只取一次log
 		cmdLine.add("-s");//过滤
-		cmdLine.add(selector);
+		cmdLine.add("*:"+selector);
 		try {
 			Process exec=Runtime.getRuntime().exec(cmdLine.toArray(new String[cmdLine.size()]));
 			InputStream in=exec.getInputStream();
