@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">tz_linearlayout</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="input">请输入搜索内容</string>
+    <string name="search">搜索</string>
+
+</resources>
