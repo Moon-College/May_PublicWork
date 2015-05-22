@@ -15,12 +15,13 @@ import android.widget.TextView;
 import android.widget.RelativeLayout.LayoutParams;
 /**
  * 动态添加view
+ * 动态设置id是不能为0，否则会没效果，猜测应该是与系统的某个控件的id冲突
  * @author szm
  *
  */
 public class DynamicAddViewActivity extends Activity implements OnClickListener {
 
-	private static final int TOP = 0;
+	private static final int TOP = 23;
 	private static final int BTN = 1;
 	private static final int ET = 2;
 	/**最外层容器*/
@@ -70,16 +71,18 @@ public class DynamicAddViewActivity extends Activity implements OnClickListener 
         lay_top.addView(et, 0);
         lay_top.addView(btn, 1);
         
+        //实例化下面的容器
         lay_bottom = new LinearLayout(this);
         lay_bottom.setOrientation(LinearLayout.VERTICAL);
-        LayoutParams params_img=new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
-        params_img.addRule(RelativeLayout.BELOW,TOP);
-        lay_bottom.setLayoutParams(params_img);
+        LayoutParams params_bottom=new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
+        params_bottom.addRule(RelativeLayout.BELOW,TOP);
+        lay_bottom.setLayoutParams(params_bottom);//方式1  --设置相对兄弟控件
         
         //将上面容器加到最外层容器
         lay_out.addView(lay_top, 0);
         //imageView加到最外层容器
         lay_out.addView(lay_bottom, 1);
+//        lay_out.addView(lay_bottom, 1,params_bottom);////方式2  --设置相对兄弟控件
         //设置布局
         setContentView(lay_out);
         btn.setOnClickListener(this);
