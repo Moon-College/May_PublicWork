@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:gravity="center"
+              android:layout_height="fill_parent"
+              android:background="@android:color/black"
+        >
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:id="@+id/tv_1"
+              android:background="@android:color/white"
+              android:gravity="center"
+              android:layout_marginBottom="10dp"
+              android:onClick="onClick"
+              android:textSize="20sp"
+              android:textColor="@android:color/black"
+              android:clickable="true"
+              android:text="作业1"/>
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:id="@+id/tv_2"
+              android:background="@android:color/white"
+              android:gravity="center"
+              android:layout_marginBottom="10dp"
+              android:onClick="onClick"
+              android:clickable="true"
+              android:textSize="20sp"
+              android:textColor="@android:color/black"
+              android:text="作业2"/>
+
+
+</LinearLayout>
+
