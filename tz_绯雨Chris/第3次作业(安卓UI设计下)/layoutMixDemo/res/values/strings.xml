@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">layoutMixDemo</string>
+    <string name="textSearch">Input the URL!</string>
+    <string name="textCreate">Input the number!</string>
+    <string name="btnSearch">Search</string>
+    <string name="btnCreate">Add</string>
+    <string name="btnClear">Clean</string>
+    <string name="action_settings">Settings</string>
+
+</resources>
