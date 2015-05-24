@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    <Button 
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content" 
+        android:layout_gravity="center_horizontal"
+        android:text="重置" android:textSize="18sp" android:id="@+id/reset_btn"/>
+    <!-- 用来显示神仙列表的listview，注意要写成 fill_parent，这样背景颜色才会才会充满每一个item-->
+    <ListView android:id="@+id/lv" 
+        android:layout_width="fill_parent" 
+        android:layout_height="fill_parent">
+    </ListView>
+
+</LinearLayout>
