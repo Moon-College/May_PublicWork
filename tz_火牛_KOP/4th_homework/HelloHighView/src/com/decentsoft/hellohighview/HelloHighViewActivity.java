@@ -86,7 +86,12 @@ public class HelloHighViewActivity extends Activity implements OnItemLongClickLi
 						}
 		            })
 		    .show();
-		return false;
+		
+     /**
+		 * 返回true表示，已经处理完了
+		 *true if the callback consumed the long click, false otherwise
+		 */
+		return true;
 	}
 
 	public void onClick(View arg0)
