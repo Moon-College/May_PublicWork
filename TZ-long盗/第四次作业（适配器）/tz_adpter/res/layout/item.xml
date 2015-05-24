@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+
+    <RelativeLayout 
+        android:id="@+id/item_rlayout"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        
+        >
+
+        <ImageView
+            android:id="@+id/item_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:src="@drawable/f4" 
+            android:layout_alignParentLeft="true"
+            
+            />
+
+        <TextView
+            android:id="@+id/item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/item_icon"
+            android:layout_alignTop="@+id/item_icon"
+            android:textColor="#ffffff"
+            android:layout_marginLeft="10dp"
+            android:padding="5dp"
+            android:text="美女" />
+
+        <TextView
+            android:id="@+id/item_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             android:layout_toRightOf="@+id/item_name"
+              android:layout_alignTop="@+id/item_icon"
+             android:textColor="#ffffff"
+             android:layout_marginLeft="10dp"
+             android:padding="5dp"
+            android:text="女" />
+
+        <TextView
+            android:id="@+id/item_colorValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/item_name"
+              android:layout_below="@+id/item_name"
+               android:padding="5dp"
+             android:textColor="#ffffff"
+            android:text="颜值爆棚" />
+
+        <TextView
+            android:id="@+id/item_interest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             android:layout_toRightOf="@+id/item_colorValue"
+              android:layout_alignTop="@+id/item_colorValue"
+               android:padding="5dp"
+             android:textColor="#ffffff"
+            android:text="langqiu" />
+        
+    </RelativeLayout>
+</LinearLayout>
