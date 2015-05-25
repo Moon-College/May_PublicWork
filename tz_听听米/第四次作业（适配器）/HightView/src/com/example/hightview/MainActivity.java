@@ -78,7 +78,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
     		23,
     		69,
     		88,
-    		70,
+    		70
     };
     
     String [] hobbys = new String[]{
