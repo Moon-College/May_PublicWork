@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+	
+    <!-- 上面用线性布局实现 -->
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <!-- 输入框 -->
+        <EditText 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入网址"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            />
+       
+        <!-- 搜索按钮 -->
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="搜索"
+            android:textSize="30sp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_gravity="center_horizontal"
+            />
+    </LinearLayout>
+
+	<!-- 中间用相对布局 -->
+	<ImageView 
+	    android:layout_width="wrap_content"	
+	    android:layout_height="wrap_content"
+	    android:src="@drawable/movie"
+	    android:layout_centerInParent="true"
+	    />
+	<ImageView
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:src="@drawable/play"
+	    android:layout_centerInParent="true"
+	    
+	    />
+</RelativeLayout>
