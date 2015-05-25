@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/text_padding" >
+
+    <ImageView
+        android:id="@+id/customadapter_avatar"
+        android:layout_width="@dimen/avatar_size"
+        android:layout_height="@dimen/avatar_size"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="@dimen/text_padding"
+        android:scaleType="centerCrop"
+        android:src="@drawable/avatar1" />
+
+    <LinearLayout
+        android:id="@+id/customadapter_info_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/customadapter_avatar"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/customadapter_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/text_padding"
+            android:text="@dimen/text_size"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/customadapter_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/text_padding"
+            android:text="@dimen/text_size"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/customadapter_hobbies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/text_padding"
+            android:text="@dimen/text_size"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/customadapter_facescore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/text_padding"
+            android:text="@dimen/text_size"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+</RelativeLayout>
