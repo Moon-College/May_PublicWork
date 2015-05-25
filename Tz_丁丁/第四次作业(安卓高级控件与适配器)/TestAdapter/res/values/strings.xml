@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">UTestAdapter</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    
+    <string-array name = "names">
+        <item >"一一"</item>
+        <item >"二二"</item>
+        <item >"三三"</item>
+        <item >"四四"</item>
+        <item >"五五"</item>
+        <item >"六六"</item>
+        <item >"七七"</item>
+        <item >"八八"</item>
+        <item >"九九"</item>
+        <item >"十十"</item>
+    </string-array>
+    
+    <string-array name = "phoneNum">
+        <item >"1512"</item>
+        <item >"1513"</item>
+        <item >"1514"</item>
+        <item >"1515"</item>
+        <item >"1516"</item>
+        <item >"1517"</item>
+        <item >"1518"</item>
+        <item >"1519"</item>
+        <item >"1520"</item>
+        <item >"1521"</item>
+    </string-array>
+    
+    <string-array name = "sex">
+        <item >"男"</item>
+        <item >"男"</item>
+        <item >"女"</item>
+        <item >"男"</item>
+        <item >"男"</item>
+        <item >"男"</item>
+        <item >"女"</item>
+        <item >"女"</item>
+        <item >"男"</item>
+        <item >"男"</item>
+    </string-array>
+
+</resources>
