@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">UserDefineAdapter</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    
+    <string-array name = "names">
+        <item >"路飞"</item>
+        <item >"索隆"</item>
+        <item >"娜美"</item>
+        <item >"桑吉"</item>
+        <item >"乌索普"</item>
+        <item >"乔巴"</item>
+        <item >"罗宾"</item>
+        <item >"艾斯"</item>
+        <item >"香克斯"</item>
+        <item >"斯摩格"</item>
+    </string-array>
+    
+    <string-array name = "phoneNum">
+        <item >"1512"</item>
+        <item >"1513"</item>
+        <item >"1514"</item>
+        <item >"1515"</item>
+        <item >"1516"</item>
+        <item >"1517"</item>
+        <item >"1518"</item>
+        <item >"1519"</item>
+        <item >"1520"</item>
+        <item >"1521"</item>
+    </string-array>
+    
+    <string-array name = "sex">
+        <item >"男"</item>
+        <item >"男"</item>
+        <item >"女"</item>
+        <item >"男"</item>
+        <item >"男"</item>
+        <item >"男"</item>
+        <item >"不明"</item>
+        <item >"女"</item>
+        <item >"男"</item>
+        <item >"男"</item>
+    </string-array>
+
+</resources>
