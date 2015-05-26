@@ -5,6 +5,9 @@ import java.util.List;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.wrz.customadapter.adapter.PeopleAdapter;
@@ -14,6 +17,7 @@ public class MainActivity extends Activity {
 	
 	ListView lv; 
 	List<People> data;
+	PeopleAdapter paAdapter ;
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,8 +30,15 @@ public class MainActivity extends Activity {
 		// 获取ListView
 		lv = (ListView) findViewById(R.id.lv);
 		getData();
-		PeopleAdapter paAdapter = new PeopleAdapter(this, data);
+		paAdapter = new PeopleAdapter(this, data);
 		lv.setAdapter(paAdapter);
+		lv.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				data.remove(position);
+				paAdapter.notifyDataSetChanged();
+			}
+		});
 	}
 	
 	public List<People> getData(){

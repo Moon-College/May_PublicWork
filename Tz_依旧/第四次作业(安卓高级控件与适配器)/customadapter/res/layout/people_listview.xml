@@ -11,7 +11,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_weight="1"
         >
         <!-- 头像img -->
         <ImageView 
@@ -48,7 +47,6 @@
 	    android:orientation="vertical"
 	    android:layout_gravity="center_vertical"
 	    android:layout_marginLeft="5dp"
-	    android:layout_weight="1"
 	    >
 	    <!-- 颜值 -->
 	    <TextView
@@ -63,11 +61,4 @@
 	        android:id="@+id/r_like"
 	        />
 	</LinearLayout>
-	<Button 
-	    android:layout_width="38dp"
-	    android:layout_height="38dp"	
-	    android:text="删除"
-	    android:layout_weight="1"
-	    android:layout_gravity="center_vertical"
-	    />
 </LinearLayout>
