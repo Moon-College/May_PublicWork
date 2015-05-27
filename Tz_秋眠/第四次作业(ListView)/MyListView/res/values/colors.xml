@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="C_BLUE">#0066CC</color>
+    <color name="D_BLUE">#0033CC</color>
+    <color name="C_RED">#FF3366</color>
+    <color name="D_RED">#FF66CC</color>
+
+</resources>
