@@ -76,9 +76,10 @@ public class MyAdapter extends BaseAdapter {
 				// 是图片
 				holder.face.setBackground(new BitmapDrawable(
 						context.getResources(), card.getBitmap()));
+				if(!card.isDownLoad()){
 				MyTask task = new MyTask();
 				task.execute(card.getFile().getAbsolutePath(), position + "");
-				
+				}
 		} else {
 			// 不是图片
 			holder.face.setBackground(new BitmapDrawable(
@@ -99,6 +100,7 @@ public class MyAdapter extends BaseAdapter {
 			Log.i("info", "我们的路径" + params[0] + "我们的位置:" + params[1]);
 			SDCard sdCard = list.get(Integer.valueOf(params[1]));
 			sdCard.setBitmap(bitmap);
+			sdCard.setDownLoad(true);
 			return null;
 		}
 
