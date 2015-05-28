@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">tz_custom_adapter</string>
+    <string name="hello_world">Hello world!</string>
+    <color name="red">#ff0000</color>
+    <color name="blue">#0000ff</color>
+
+</resources>

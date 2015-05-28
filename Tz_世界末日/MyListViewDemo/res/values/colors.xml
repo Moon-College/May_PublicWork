@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="listview_item_blue">#0000FF</color>
+    <color name="listview_item_red">#FF0000</color>
+
+    
+</resources>

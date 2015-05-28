@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rl_listItem_container"
+    android:padding="10dp" >
+
+    <ImageView
+        android:id="@+id/iv_listItem_photo"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/photo1" />
+
+    <TextView
+        android:id="@+id/tv_listItem_nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/iv_listItem_photo"
+        android:layout_toRightOf="@+id/iv_listItem_photo"
+        android:layout_marginLeft="10dp"
+        android:textSize="16sp"
+        android:text="昵称" />
+
+    <TextView
+        android:id="@+id/tv_listItem_sex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tv_listItem_nickname"
+        android:layout_toRightOf="@+id/tv_listItem_nickname"
+        android:layout_marginLeft="20dp"
+        android:textColor="#888888"
+        android:text="女" />
+
+    <LinearLayout
+        android:id="@+id/ll_listItem_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iv_listItem_photo"
+        android:layout_alignLeft="@+id/tv_listItem_nickname"
+        android:background="#eaf1e4"
+        android:padding="5dp" >
+        
+        <TextView 
+            android:id="@+id/tv_listItem_facevalue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="颜值：88"/>
+        
+        <TextView 
+            android:id="@+id/tv_listItem_hobby"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="爱好：唱歌" />
+       
+    </LinearLayout>
+
+</RelativeLayout>
