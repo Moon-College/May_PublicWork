@@ -1,11 +1,13 @@
 package com.itskylin.android.filemanager;
 
 import java.io.File;
+import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
@@ -45,7 +47,7 @@ public class MainActivity extends Activity {
 		mListView = (ListView) findViewById(R.id.lv_files);
 		sp = getSharedPreferences("config", MODE_PRIVATE);
 		String path = sp.getString("path", MyConstacts.ROOT);
-		initData(path);
+		initData(MyConstacts.ROOT);
 
 		mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -54,6 +56,9 @@ public class MainActivity extends Activity {
 					int position, long id) {
 				if (data.get(position).isDir()) {
 					initData(data.get(position).getFile().getAbsolutePath());
+				} else {
+					Intent intent = new Intent(Intent.ACTION_VIEW);
+					startActivity(intent);
 				}
 			}
 		});
@@ -69,29 +74,31 @@ public class MainActivity extends Activity {
 		data.clear();
 		Log.i(TAG, "initData -root PARENT PATH:"
 				+ file.getParentFile().getAbsolutePath());
-		safePath = file.getParent();
+		if (file.isDirectory()) {
+			safePath = file.getAbsolutePath();
+		} else {
+			safePath = file.getParent();
+		}
 		SdFile backSdFile = null;
 		if (MyConstacts.ROOT.equals("") || MyConstacts.ROOT == null) {
 			Toast.makeText(this, "未检测到SD卡", Toast.LENGTH_SHORT).show();
 		} else {
 			backSdFile = new SdFile("返回", file.getParentFile(),
 					BitmapFactory.decodeResource(getResources(),
-							R.drawable.ic_launcher), true);
+							R.drawable.ic_launcher), true, false);
 
 			File[] files = file.listFiles();
 			for (File f : files) {
 				SdFile sdFile2 = null;
 				String name = f.getName();
+				boolean isPic = false;
 				String path = f.getAbsolutePath().toLowerCase();
 				Bitmap bitmap = null;
 				if (f.isDirectory()) {
 					bitmap = BitmapFactory.decodeResource(getResources(),
 							R.drawable.ic_launcher);
 				} else {
-					if (path.endsWith(".png") || path.endsWith(".jpg")
-							|| path.endsWith(".jpeg")) {
-						bitmap = BitmapFactory.decodeFile(path);
-					} else if (path.endsWith(".txt")) {
+					if (path.endsWith(".txt")) {
 						bitmap = BitmapFactory.decodeResource(getResources(),
 								R.drawable.txt);
 					} else if (path.endsWith(".pdf")) {
@@ -120,13 +127,18 @@ public class MainActivity extends Activity {
 							|| path.endsWith("m4a")) {
 						bitmap = BitmapFactory.decodeResource(getResources(),
 								R.drawable.mp3);
+					} else if ((path.endsWith(".png") || path.endsWith(".jpg") || path
+							.endsWith(".jpeg"))) {
+						isPic = true;
 					} else {
-
 						bitmap = BitmapFactory.decodeResource(getResources(),
 								R.drawable.file);
 					}
 				}
-				sdFile2 = new SdFile(name, f, bitmap, f.isDirectory());
+				sdFile2 = new SdFile(name, f, bitmap, f.isDirectory(), isPic);
+				if (isPic) {
+					sdFile2.setSoftBitmap(new SoftReference<Bitmap>(null));
+				}
 				data.add(sdFile2);
 			}
 		}
