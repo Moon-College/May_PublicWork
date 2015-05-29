@@ -126,7 +126,7 @@ public class DecentFileExplorerActivity extends Activity implements
 					else if (ConstraintTool.isPicFileName(subFile.getName()))
 					{
 						//如果是图片，暂时设置显示mLoadingIcon，真正加载图片的事情放到adapter里面异步加载
-						sdf.setIcon(mLoadingIcon);
+						sdf.setIcon(null);
 					}
 					else
 					{
