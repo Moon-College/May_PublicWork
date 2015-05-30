@@ -1,0 +1,12 @@
+package com.junwen.observer;
+
+public class RealObserver implements MyObserver{
+	/**
+	 * ¸üÐÂ
+	 */
+	@Override
+	public void onUpdate(int num) {
+		
+	}
+
+}
