@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <EditText 
+        android:id="@+id/edit_num"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入正确的数字"
+        />
+    
+    <Button 
+        android:id="@+id/btn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="确认"
+        android:inputType="number"
+        />
+
+</LinearLayout>

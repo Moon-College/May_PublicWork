@@ -1,5 +1,7 @@
 package com.decentsoft.bean;
 
+import java.lang.ref.SoftReference;
+
 import android.graphics.Bitmap;
 
 public class SdcardFile
@@ -8,6 +10,15 @@ public class SdcardFile
     private String path;
     private String property;
     private Bitmap icon;
+	private SoftReference<Bitmap> cachedIcon;
+	public SoftReference<Bitmap> getCachedIcon()
+	{
+		return cachedIcon;
+	}
+	public void setCachedIcon(SoftReference<Bitmap> cachedIcon)
+	{
+		this.cachedIcon = cachedIcon;
+	}
 	public String getName()
 	{
 		return name;

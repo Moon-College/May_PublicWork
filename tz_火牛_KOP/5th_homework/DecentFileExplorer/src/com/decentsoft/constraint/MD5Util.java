@@ -3,6 +3,8 @@ package com.decentsoft.constraint;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import android.util.Log;
+
 public class MD5Util
 {
 	private final static String[] hexDigits =
@@ -33,6 +35,7 @@ public class MD5Util
 			e.printStackTrace();
 		} 
 
+		Log.d("MD5Util","ori="+ori+",get MD5Str="+MD5Str);
 		return MD5Str;
 
 	}

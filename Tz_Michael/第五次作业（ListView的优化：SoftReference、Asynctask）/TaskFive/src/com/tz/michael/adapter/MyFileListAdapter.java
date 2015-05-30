@@ -17,6 +17,9 @@ import com.tz.michael.utils.ViewHolder;
 
 public class MyFileListAdapter extends MyCustomAdapter<FileBean>{
 
+	private final int WIDTH_LIMIT=70;
+	private final int HEIGHT_LIMIT=70;
+	
 	public MyFileListAdapter(Context mContext, List<FileBean> list, int layoutId) {
 		super(mContext, list, layoutId);
 	}
@@ -46,7 +49,8 @@ public class MyFileListAdapter extends MyCustomAdapter<FileBean>{
 //			//长宽各缩小1/2
 //			options.inSampleSize=2;
 //			Bitmap bitmap=BitmapFactory.decodeFile(params[0],options);
-			Bitmap bitmap=fitSizeImg(params[0]);
+//			Bitmap bitmap=fitSizeImg(params[0]);
+			Bitmap bitmap=scaleImage(params[0]);
 			int position=Integer.valueOf(params[1]);
 			MyFileListAdapter.this.list.get(position).setBitmap(new SoftReference<Bitmap>(bitmap));
 			return bitmap;
@@ -62,6 +66,32 @@ public class MyFileListAdapter extends MyCustomAdapter<FileBean>{
 		}
 
 	}
+	
+	/**
+	 * 图片的缩放
+	 * @param path
+	 * @return
+	 */
+	private Bitmap scaleImage(String path){
+		Bitmap bitmap=null;
+		BitmapFactory.Options options=new Options();
+		options.inJustDecodeBounds=true;
+		bitmap=BitmapFactory.decodeFile(path,options);
+		int width=options.outWidth;
+		int height=options.outHeight;
+		int scale_width=1,scale_height=1;
+		if(width>WIDTH_LIMIT){
+			scale_width=width/WIDTH_LIMIT;
+		}
+		if(height>HEIGHT_LIMIT){
+			scale_height=height/HEIGHT_LIMIT;
+		}
+		options.inSampleSize=scale_width>scale_height?scale_height:scale_width;
+		options.inJustDecodeBounds=false;
+		bitmap=BitmapFactory.decodeFile(path, options);
+		return bitmap;
+	}
+	
 	
 	/**
 	 * 返回适合尺寸的图片

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="file">文件</string>
+    <string name="dir">文件夹</string>
+    
+    <string name="hello">Hello World, FileUiActivity!</string>
+    <string name="app_name">FileUi</string>
+    <string name="item_fileback">粘贴</string>
+    <string name="item_newfile">新建</string>
+    <string name="rename">重命名</string>
+    <string name="copy">复制</string>
+    <string name="delete">删除</string>
+
+</resources>
