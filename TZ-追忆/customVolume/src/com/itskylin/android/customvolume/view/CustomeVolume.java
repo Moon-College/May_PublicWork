@@ -22,19 +22,19 @@ public class CustomeVolume extends View {
 	// 声音类别
 	private int volumeType = AudioManager.STREAM_MUSIC;
 	// 音量块宽度
-	private int widthRect;
+	private float widthRect;
 	// 未激活音量块
-	private int grayRect;
+	private float grayRect;
 	// 激活音量块
-	private int greenRect;
+	private float greenRect;
 	// 最大音量
 	private int maxVolume;
 	// 当前音量
 	private int currentVolume;
 	// 记录按下屏幕X坐标
-	private int touchX;
+	private float touchX;
 	// 记录按下屏幕Y坐标
-	private int touchY;
+	private float touchY;
 
 	public CustomeVolume(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -86,34 +86,30 @@ public class CustomeVolume extends View {
 		currentVolume = am.getStreamVolume(volumeType);
 		if (currentVolume == maxVolume) {
 			Toast.makeText(getContext(), "已经是最大音量", Toast.LENGTH_SHORT).show();
+			return;
 		}
 		am.adjustStreamVolume(volumeType, AudioManager.ADJUST_RAISE,
 				AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
 		currentVolume = am.getStreamVolume(volumeType);
-		Log.i("setVolumeUp:", currentVolume + "");
 		invalidate();
-		requestLayout();
 	}
 
 	public void setVolumeDown() {
 		currentVolume = am.getStreamVolume(volumeType);
 		if (currentVolume == 0) {
 			Toast.makeText(getContext(), "已经是最小音量", Toast.LENGTH_SHORT).show();
+			return;
 		}
 		am.adjustStreamVolume(volumeType, AudioManager.ADJUST_LOWER,
 				AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
-		Log.i("setVolumeDown:", currentVolume + "");
 		invalidate();
-		requestLayout();
 	}
 
 	public void setVolume(int nowVolume) {
 		currentVolume = am.getStreamVolume(volumeType);
 		am.setStreamVolume(volumeType, nowVolume,
 				AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
-		Log.i("setVolumeDown:", "当前音量：" + currentVolume);
 		invalidate();
-		requestLayout();
 	}
 
 	@Override
@@ -122,29 +118,30 @@ public class CustomeVolume extends View {
 		int widthMode = MeasureSpec.getMode(widthMeasureSpec);
 		int height = MeasureSpec.getSize(heightMeasureSpec);
 		int heightMode = MeasureSpec.getMode(heightMeasureSpec);
-		int wrapWidth = widthRect + this.getPaddingLeft()
+		float wrapWidth = widthRect + this.getPaddingLeft()
 				+ this.getPaddingRight();
-		int measuredWidth = widthMode == MeasureSpec.EXACTLY ? width
+		float measuredWidth = widthMode == MeasureSpec.EXACTLY ? width
 				: wrapWidth;
-		int wrapHeight = (2 * maxVolume - 1) * grayRect
+		float wrapHeight = (2 * maxVolume - 1) * grayRect
 				+ this.getPaddingBottom() + this.getPaddingTop();
-		int measuredHeight = heightMode == MeasureSpec.EXACTLY ? height
+		float measuredHeight = heightMode == MeasureSpec.EXACTLY ? height
 				: wrapHeight;
-		// 得到音量块宽度
+		// 得到音量块宽度x
 		widthRect = measuredWidth - this.getPaddingRight();
-		int viewHeight = measuredHeight - this.getPaddingTop();
+		float viewHeight = measuredHeight - this.getPaddingTop()
+				- this.getPaddingBottom();
 		// 得到未激活音量块高度
-		grayRect = viewHeight / (2 * maxVolume - 1);
+		grayRect = viewHeight * 1.0f / (2 * maxVolume - 1);
 		// 得到激活音量块高度
-		greenRect = viewHeight / (2 * maxVolume - 1);
-		setMeasuredDimension(measuredWidth, measuredHeight);
+		greenRect = viewHeight * 1.0f / (2 * maxVolume - 1);
+		setMeasuredDimension((int) measuredWidth, (int) measuredHeight);
 	}
 
 	@Override
 	protected void onDraw(Canvas canvas) {
 
-		int left = this.getPaddingLeft();
-		int top = this.getPaddingTop();
+		float left = this.getPaddingLeft();
+		float top = this.getPaddingTop();
 
 		for (int i = 0; i < maxVolume; i++) {
 			if (i < maxVolume - currentVolume) {
@@ -166,10 +163,10 @@ public class CustomeVolume extends View {
 	public boolean onTouchEvent(MotionEvent event) {
 		switch (event.getAction()) {
 		case MotionEvent.ACTION_DOWN:
-			touchX = (int) event.getX();
-			touchY = (int) event.getY();
-			int currentLoc = (touchY - this.getPaddingTop()) / grayRect;
-			int current = maxVolume - currentLoc;
+			touchX = event.getRawX();
+			touchY = event.getRawY();
+			float currentLoc = (touchY - this.getPaddingTop()) / grayRect;
+			int current = (int) (maxVolume - currentLoc);
 			// 设置当前音量
 			this.setVolume(current);
 			Log.i("OnTouch", "maxVolume:" + maxVolume);
