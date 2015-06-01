@@ -22,55 +22,13 @@ public class MyVolumeView extends View implements OnClickListener{
 	public AudioManager mAudioManager;
 	private int mMaxVolume=0;
 	private int mCurrentVolume=0;
-	/**
-	 * 获取默认图片
-	 * @return
-	 */
-	public Bitmap getmDefaultBitmap() {
-		return mDefaultBitmap;
-	}
-	/**
-	 * 设置默认图片
-	 * @return
-	 */
-	public void setmDefaultBitmap(Bitmap mDefaultBitmap) {
-		this.mDefaultBitmap = mDefaultBitmap;
-	}
-
-	/**
-	 * 获取发生图片
-	 * @return
-	 */
-	public Bitmap getmCurrentBitmao() {
-		return mCurrentBitmao;
-	}
-	/**
-	 * 设置发生图片
-	 * @return
-	 */
-	public void setmCurrentBitmao(Bitmap mCurrentBitmao) {
-		this.mCurrentBitmao = mCurrentBitmao;
-	}
-
+	private OnClickListener ocl;
 	private Bitmap mDefaultBitmap;
 	private Bitmap mCurrentBitmao;
-	/**
-	 * 获取当前声音
-	 * @return
-	 */
-	public int getmCurrentVolume() {
-		return mCurrentVolume;
-	}
-
-	/**
-	 * 设置当前声音
-	 * @param mCurrentVolume
-	 */
-	public void setmCurrentVolume(int mCurrentVolume) {
-		this.mCurrentVolume = mCurrentVolume;
-	}
-
-View v;
+	private View v;
+	private int upY;
+	private int height=0;
+	private int count=0;
 	public MyVolumeView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		mDefaultBitmap=BitmapFactory.decodeResource(context.getResources(),R.drawable.gray);
@@ -138,9 +96,6 @@ View v;
 		}		
 	}
 	
-	private int upY;
-	private int height=0;
-	private int count=0;
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		switch (event.getAction()) {
@@ -178,9 +133,66 @@ View v;
 		 */
 		mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mCurrentVolume,  AudioManager.FLAG_PLAY_SOUND);
 	}
+	
 	@Override
 	public void onClick(View v) {
-		
+		if(ocl!=null)
+		{
+			ocl.onClick(v);
+		}
 	}
+	
+	
+	public OnClickListener getOcl() {
+		return ocl;
+	}
+	public void setOcl(OnClickListener ocl) {
+		this.ocl = ocl;
+	}
+	/**
+	 * 获取默认图片
+	 * @return
+	 */
+	public Bitmap getmDefaultBitmap() {
+		return mDefaultBitmap;
+	}
+	/**
+	 * 设置默认图片
+	 * @return
+	 */
+	public void setmDefaultBitmap(Bitmap mDefaultBitmap) {
+		this.mDefaultBitmap = mDefaultBitmap;
+	}
+
+	/**
+	 * 获取发生图片
+	 * @return
+	 */
+	public Bitmap getmCurrentBitmao() {
+		return mCurrentBitmao;
+	}
+	/**
+	 * 设置发生图片
+	 * @return
+	 */
+	public void setmCurrentBitmao(Bitmap mCurrentBitmao) {
+		this.mCurrentBitmao = mCurrentBitmao;
+	}
+	/**
+	 * 获取当前声音
+	 * @return
+	 */
+	public int getmCurrentVolume() {
+		return mCurrentVolume;
+	}
+
+	/**
+	 * 设置当前声音
+	 * @param mCurrentVolume
+	 */
+	public void setmCurrentVolume(int mCurrentVolume) {
+		this.mCurrentVolume = mCurrentVolume;
+	}
+
 	
 }
