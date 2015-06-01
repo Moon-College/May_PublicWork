@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.media.AudioManager;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 /**
  * 自定义的音量控件
@@ -34,6 +36,12 @@ public class SoundView extends View {
 	private float hScaleValue;
 	/**宽度缩放比例*/
 	private float wScaleValue;
+	/**手指按下y坐标*/
+	private float pointY;
+	/**滑动多少距离增加一个音量格*/
+	private int PERVALUE=40;
+	/**点击事件的范围*/
+	private int CLICKSCOPE=30;
 	
 	/**
 	 * 返回当前点亮值颜色
@@ -82,6 +90,12 @@ public class SoundView extends View {
 	 * @param curVol
 	 */
 	public void setCurVol(int curVol) {
+		if(curVol<0){
+			curVol=0;
+		}
+		if(curVol>maxVol){
+			curVol=maxVol;
+		}
 		this.curVol = curVol;
 		invalidate();
 	}
@@ -168,6 +182,46 @@ public class SoundView extends View {
 		int measuredHeight=heightMode==MeasureSpec.EXACTLY?height:wrapHeight;
 		hScaleValue=(float)(measuredHeight)/wrapHeight;
 		setMeasuredDimension(measuredWidth, measuredHeight);
+	}
+	
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		switch (event.getAction()) {
+		case MotionEvent.ACTION_DOWN:
+			pointY=event.getY();
+			break;
+		case MotionEvent.ACTION_MOVE:
+			float cur=event.getY();
+			float detaY=Math.abs(cur-pointY);
+			if(detaY<CLICKSCOPE){
+				//点击事件
+				float toTop=cur-this.getPaddingTop();
+				if((int)toTop%this.getRect_height()==1){
+					//确保点击的不是音量块间隙
+					int curIndex=maxVol-(int)toTop/this.getRect_height()/2;
+					setCurVol(curIndex);
+				}else{
+					Log.i("ccc", "间隙");
+				}
+			}else{
+				if(cur-pointY<0){
+					//增加音量
+					curVol+=(int)(detaY/PERVALUE);
+					setCurVol(curVol);
+				}else{
+					//减小音量
+					curVol-=(int)(detaY/PERVALUE);
+					setCurVol(curVol);
+				}
+			}
+			break;
+		case MotionEvent.ACTION_UP:
+			
+			break;
+		default:
+			break;
+		}
+		return true;
 	}
 	
 }

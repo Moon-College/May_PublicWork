@@ -1,0 +1,12 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000" >
+
+    <com.itskylin.android.customvolume.view.CustomeVolume
+        android:id="@+id/customeVolume"
+        android:layout_width="30dp"
+        android:layout_height="100dp"
+        android:background="#333" />
+
+</RelativeLayout>
