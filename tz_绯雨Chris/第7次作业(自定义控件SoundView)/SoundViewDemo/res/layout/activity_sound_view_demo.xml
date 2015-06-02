@@ -1,0 +1,21 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.chris.soundviewdemo.SoundViewDemoActivity" >
+
+    <com.chris.soundviewdemo.SoundView 
+        android:id="@+id/sv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="20dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="30dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginLeft="25dp"
+        android:background="@android:color/holo_purple"
+        />
+    
+</LinearLayout>
