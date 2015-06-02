@@ -83,25 +83,24 @@ public class CustomeVolume extends View {
 	}
 
 	public void setVolumeUp() {
+		am.adjustStreamVolume(volumeType, AudioManager.ADJUST_RAISE,
+				AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
 		currentVolume = am.getStreamVolume(volumeType);
 		if (currentVolume == maxVolume) {
 			Toast.makeText(getContext(), "已经是最大音量", Toast.LENGTH_SHORT).show();
 			return;
 		}
-		am.adjustStreamVolume(volumeType, AudioManager.ADJUST_RAISE,
-				AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
-		currentVolume = am.getStreamVolume(volumeType);
 		invalidate();
 	}
 
 	public void setVolumeDown() {
+		am.adjustStreamVolume(volumeType, AudioManager.ADJUST_LOWER,
+				AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
 		currentVolume = am.getStreamVolume(volumeType);
 		if (currentVolume == 0) {
 			Toast.makeText(getContext(), "已经是最小音量", Toast.LENGTH_SHORT).show();
 			return;
 		}
-		am.adjustStreamVolume(volumeType, AudioManager.ADJUST_LOWER,
-				AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
 		invalidate();
 	}
 
