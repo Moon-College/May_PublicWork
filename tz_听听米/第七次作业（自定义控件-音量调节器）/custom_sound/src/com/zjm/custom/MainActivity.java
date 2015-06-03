@@ -8,6 +8,9 @@ import android.view.KeyEvent;
 
 import com.zjm.custom.view.SoundView;
 
+/**
+*
+*/
 public class MainActivity extends Activity {
 
 //	AudioManager am;

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <!-- SD卡文件或者文件夹的图片 -->
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="15dp" />
+    <!-- SD卡文件或文件夹的相关信息 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="15dp"
+        android:orientation="vertical" >
+
+        <!-- SD卡文件或文件夹的名字 -->
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:textSize="22sp" />
+
+        <!-- SD卡中文件夹中包含的文件个数或文件的大小 -->
+
+        <TextView
+            android:id="@+id/tv_number"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+</LinearLayout>

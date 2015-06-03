@@ -1,12 +1,14 @@
 package com.xigua.filebrowser;
 
 import java.io.File;
+import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
@@ -73,7 +75,8 @@ public class MainActivity extends Activity {
 				if(f.isDirectory()){
 					cFile.setBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.dirs));
 				}else if(f.getName().toLowerCase().endsWith(".png")||f.getName().toLowerCase().endsWith(".jpg")){
-					cFile.setBitmap(null);
+					cFile.setSoftBitmap(new SoftReference<Bitmap>(null));
+					cFile.setPic(true);
 				}else{
 					cFile.setBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.file));
 				}
