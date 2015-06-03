@@ -73,7 +73,7 @@ public class CameraActivity extends Activity implements OnClickListener
 	}
 	
 	/**
-	 * get Bitmap
+	 * 获取Bitmap并进行压缩
 	 * @param uri
 	 * @return
 	 */
