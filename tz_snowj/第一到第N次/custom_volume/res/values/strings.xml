@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">custom_volume</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="btn1">搜索</string>
+    <string name="btn2">收集日志</string>
+    <string name="btn3">ListView</string>
+    <string name="btn4">文件浏览器</string>
+    <string name="search_key">请输入搜索关键字</string>
+    <string name="name">姓名:</string>
+    <string name="gender">性别:</string>
+    <string name="iterest">兴趣:</string>
+    <string name="color">颜值:</string>
+    <string name="color_boy">屌炸天</string>
+    <string name="color_girl">爆表</string>
+
+</resources>
