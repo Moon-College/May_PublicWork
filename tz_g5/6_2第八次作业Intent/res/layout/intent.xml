@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:gravity="center"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+        >
+    <EditText
+            android:id="@+id/et"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@android:drawable/editbox_background"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:inputType="text"/>
+    <Button
+            android:id="@+id/btn"
+            android:onClick="onClick"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="换名字"
+            android:layout_width="100dp" android:layout_height="100dp"/>
+</LinearLayout>
+
