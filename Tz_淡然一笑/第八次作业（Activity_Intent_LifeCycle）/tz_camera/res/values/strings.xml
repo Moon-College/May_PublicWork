@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">tz_camera</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="camera">拍照</string>
+    <string name="localPic">本地图库</string>
+
+</resources>
