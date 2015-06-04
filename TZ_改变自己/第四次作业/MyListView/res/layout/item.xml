@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp" >
+    <ImageView
+        android:id="@+id/img_photo"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:src="@drawable/img_1"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="4dp"
+        />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_toRightOf="@id/img_photo"
+        android:layout_alignTop="@id/img_photo"
+        android:layout_alignBottom="@id/img_photo"
+        android:layout_marginLeft="5dp"
+        >
+        <TextView
+            android:id="@+id/tv_online"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentTop="true"
+	        android:textColor="@android:color/white"
+        />
+        
+        <TextView
+            android:id="@+id/tv_sex"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_centerVertical="true"
+	        android:textColor="@android:color/white"
+        />
+        
+        <TextView
+            android:id="@+id/tv_hobby"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentBottom="true"
+	        android:textColor="@android:color/white"
+        />
+        
+        </RelativeLayout>
+    
+    <TextView
+        android:id="@+id/tv_beauty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="5dp"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        />
+
+</RelativeLayout>

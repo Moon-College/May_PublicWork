@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blue_bg_normal">#0000ff</color>
+    <color name="blue_bg_pressed">#5555ff</color>
+    <color name="red_bg_nomal">#ff0000</color>
+    <color name="red_bg_pressed">#ff5555</color>
+</resources>

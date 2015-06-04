@@ -1,6 +1,7 @@
 package com.xigua.filebrowser;
 
 import java.io.File;
+import java.lang.ref.SoftReference;
 
 import android.graphics.Bitmap;
 
@@ -10,6 +11,14 @@ public class cFile {
 	private File file;
 	private Bitmap bitmap;
 	private boolean isPic;
+	private SoftReference<Bitmap> softBitmap;
+	
+	public SoftReference<Bitmap> getSoftBitmap() {
+		return softBitmap;
+	}
+	public void setSoftBitmap(SoftReference<Bitmap> softBitmap) {
+		this.softBitmap = softBitmap;
+	}
 	public String getName() {
 		return name;
 	}
