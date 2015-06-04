@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, IntentDemoActivity!</string>
+    <string name="app_name">IntentDemo</string>
+    <string name="onename">this is one Activity</string>
+    <string name="twoname">this is two Activity</string>
+
+</resources>
