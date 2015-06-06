@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tv_one"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="测试1" />
+    <TextView
+        android:id="@+id/tv_two"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="测试2" />
+    <TextView
+        android:id="@+id/tv_three"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="测试3" />
+     <TextView
+        android:id="@+id/tv_four"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="测试3" />
+      <TextView
+        android:id="@+id/tv_five"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="测试3" />
+       <TextView
+        android:id="@+id/tv_six"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="测试6" />
+        <EditText
+        android:id="@+id/tv_seven"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="测试3" />
+    <Button
+        android:id="@+id/btn_test"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="测试"
+        android:onClick="show" />
+
+</LinearLayout>

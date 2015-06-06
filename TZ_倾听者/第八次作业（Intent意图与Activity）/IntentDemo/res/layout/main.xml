@@ -1,0 +1,41 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/btn_takePhoto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onItemClick"
+        android:text="拍照" />
+
+    <Button
+        android:id="@+id/btn_takePhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onItemClick"
+        android:text="打电话" />
+
+    <Button
+        android:id="@+id/btn_takeSms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onItemClick"
+        android:text="发短信" />
+
+    <Button
+        android:id="@+id/btn_takeEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onItemClick"
+        android:text="发Email" />
+    <Button
+        android:id="@+id/btn_inflater"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onItemClick"
+        android:text="隐式启动" />
+
+</LinearLayout>
