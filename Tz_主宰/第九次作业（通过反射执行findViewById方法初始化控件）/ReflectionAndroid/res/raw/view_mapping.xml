@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mapping>
+
+    <view
+        name="testInputEditText"
+        mapping_id="test_edit_text" />
+    <view
+        name="showButton"
+        mapping_id="show_button" />
+
+</mapping>

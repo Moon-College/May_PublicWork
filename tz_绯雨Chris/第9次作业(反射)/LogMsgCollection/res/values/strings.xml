@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">LogMsgCollection</string>
+    <string name="log2toast">Log2Toast</string>
+    <string name="log2text">Log2Text</string>
+     <string name="clearmsg">Clear Log</string>
+    <string name="hint_nolog">No Log Message</string>
+
+</resources>
