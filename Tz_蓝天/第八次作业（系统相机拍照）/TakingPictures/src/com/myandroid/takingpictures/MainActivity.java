@@ -1,4 +1,4 @@
-package com.myandroid.takingpictures;
+﻿package com.myandroid.takingpictures;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -66,8 +66,9 @@ public class MainActivity extends Activity implements OnClickListener {
 		try {
 			InputStream inputIamge = getContentResolver().openInputStream(uri);
 			Bitmap bitmap = BitmapFactory.decodeStream(inputIamge);
+			inputImage.close();
 			return bitmap;
-		} catch (FileNotFoundException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
