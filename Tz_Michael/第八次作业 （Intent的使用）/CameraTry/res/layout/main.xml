@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/btn_image"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="myClick"
+        android:text="拍照" />
+    <Button
+        android:id="@+id/btn_vedio"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="myClick"
+        android:text="录像" />
+    <Button
+        android:id="@+id/btn_jump"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="myClick"
+        android:text="跳转" />
+
+    <ImageView 
+        android:id="@+id/img"
+        android:layout_width="30dp"
+        android:layout_height="30dp"/>
+    
+    <VideoView 
+        android:id="@+id/vedio"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:onClick="myClick"
+        />
+    
+</LinearLayout>

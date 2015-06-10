@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">tz_single_instance</string>
+    <string name="single_instance">SingleInstance Activity</string>
+     <string name="start_app">启动应用tz_launch_mode的第二个界面</string>
+    
+</resources>

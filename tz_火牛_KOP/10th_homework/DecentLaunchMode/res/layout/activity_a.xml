@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/activityA"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp" />
+
+    <Button
+        android:id="@+id/gotoSelfA"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:text="启动A自己(standard)" />
+
+    <Button
+        android:id="@+id/gotoB"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:text="启动B" />
+
+    <Button
+        android:id="@+id/fromAGotoC"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:text="启动C" />
+
+</LinearLayout>
