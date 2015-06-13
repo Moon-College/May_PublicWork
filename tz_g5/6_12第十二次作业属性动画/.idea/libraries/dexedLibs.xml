@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="dexedLibs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/tz-weixin-f42b6e5a1a43de37c927c6edf3c5fb9f.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/annotations-dfcec0b858f1c7a7e4665eed7a460ed9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/nineoldandroids-2.4.0-350ca3526a5a664c962fef95b417c7ae.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/android-support-v4-53f81a39389a7c3c4f62c6d4d4157e58.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
