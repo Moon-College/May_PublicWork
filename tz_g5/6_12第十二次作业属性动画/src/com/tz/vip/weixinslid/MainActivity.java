@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -49,6 +50,7 @@ public class MainActivity extends Activity implements OnTouchListener {
         final int windowBottom = getWindow().getDecorView().getBottom();
         boolean top = mChat.getY() <= mCamera.getTop();
         boolean bottom = mChat.getY() >= mCamera.getBottom();
+        if (VALUE_ANIMATOR!=null&&VALUE_ANIMATOR.isRunning()) return super.onTouchEvent(event);
         switch (event.getAction()) {
             //获取手指按下时的坐标
             case MotionEvent.ACTION_DOWN:
@@ -60,15 +62,20 @@ public class MainActivity extends Activity implements OnTouchListener {
                 fingerRoll = event.getY() - downY;
                 //手指网上滑动，或者没有滑动距离
                 if (fingerRoll <= 0 && top) {
+                    mChat.setY(mCamera.getTop());
                     break;
                 }
 
-                if (fingerRoll >= 0 && bottom) break;
-                viewRoll = fingerRoll * 0.6f;
+                if (fingerRoll >= 0 && bottom) {
+                    mChat.setY(windowBottom);
+                    break;
+                }
+                viewRoll = fingerRoll * 0.8f;
                 if (v.getId() == R.id.rl2) {
                     ViewHelper.setTranslationY(mChat, viewRoll);
                 } else {
-                    ViewHelper.setTranslationY(mChat,  viewRoll);
+                    float translationY = windowBottom + viewRoll;
+                    ViewHelper.setTranslationY(mChat, translationY);
                 }
                 break;
             case MotionEvent.ACTION_OUTSIDE:
@@ -76,7 +83,7 @@ public class MainActivity extends Activity implements OnTouchListener {
             case MotionEvent.ACTION_UP:
 
                 fingerRoll = event.getY() - downY;
-                viewRoll = fingerRoll * 0.6f;
+                viewRoll = fingerRoll * 0.8f;
 
                 if (top) {
                     mChat.setY(mCamera.getTop());
@@ -94,7 +101,10 @@ public class MainActivity extends Activity implements OnTouchListener {
                 if (VALUE_ANIMATOR != null) VALUE_ANIMATOR.cancel();
                 VALUE_ANIMATOR = ValueAnimator.ofFloat(0, 500f).setDuration((long) Math.abs(viewRoll));
                 VALUE_ANIMATOR.start();
-                if (viewRoll < limit) {
+                final boolean isChat=v.getId() == R.id.rl2;
+                boolean flag = viewRoll < limit;
+//                if (!isChat) flag = !flag;
+                if (flag) {
                     //消息列表滑动的距离小于限定值，滑回去
                     //否则，直接滑到底部（作业）
                     //花了500毫秒完成了，0到500的过程
@@ -111,7 +121,15 @@ public class MainActivity extends Activity implements OnTouchListener {
                             //消息列表的y坐标=松开手指时消息列表的Y坐标+(动画进度*消息列表滑动的总距离)
                             //2.2 解决setY
                             //往上滑动，Y坐标变小
-                            float y = mChatOriginY - (rate * viewRoll);
+                            float y = 0;
+                            if (isChat) {
+                                y = mChatOriginY - (rate * viewRoll);
+                            } else {
+                                y =  mChatOriginY - rate * ( mChatOriginY);
+                            }
+                            if (y<mCamera.getTop()) {
+                                y = mCamera.getTop();
+                            }
                             mChat.setY(y);
 
                         }
@@ -125,7 +143,6 @@ public class MainActivity extends Activity implements OnTouchListener {
                         @Override
                         public void onAnimationEnd(Animator animator) {
                             mChat.setY(mCamera.getTop());
-                            mChat.setTop(mCamera.getTop());
                         }
 
                         @Override
@@ -153,8 +170,14 @@ public class MainActivity extends Activity implements OnTouchListener {
                             //消息列表的y坐标=松开手指时消息列表的Y坐标+(动画进度*消息列表滑动的总距离)
                             //2.2 解决setY
                             //往上滑动，Y坐标变小
+                            float y = 0;
+                            if (isChat) {
+                                y = mChatOriginY + (rate * (windowBottom - viewRoll));
+                            } else {
 
-                            float y = mChatOriginY + (rate * (windowBottom - viewRoll));
+                            }
+
+
                             mChat.setY(y);
 
                         }
@@ -162,17 +185,13 @@ public class MainActivity extends Activity implements OnTouchListener {
                     VALUE_ANIMATOR.addListener(new Animator.AnimatorListener() {
                         @Override
                         public void onAnimationStart(Animator animator) {
-
+                            mChat.setOnTouchListener(null);
                         }
 
                         @Override
                         public void onAnimationEnd(Animator animator) {
-
-//                            mChat.setY(windowBottom);
-                            mChat.setTop(windowBottom);
-                            Log.v("top", mChat.getTop()+"");
-                            Log.v("y", mChat.getY() + "");
-                            Log.v("windowBottom", windowBottom + "");
+                            mChat.setOnTouchListener(MainActivity.this);
+                            mChat.setY(windowBottom);
                         }
 
                         @Override
@@ -206,4 +225,9 @@ public class MainActivity extends Activity implements OnTouchListener {
         }
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        event.startTracking();
+        return true;
+    }
 }
