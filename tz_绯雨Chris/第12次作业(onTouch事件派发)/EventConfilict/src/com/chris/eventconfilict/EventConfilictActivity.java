@@ -1,9 +1,7 @@
 package com.chris.eventconfilict;
 
-import java.security.acl.LastOwnerException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
@@ -25,8 +23,10 @@ public class EventConfilictActivity extends Activity
 	private TextView tv_above, tv_below;
 	private ListView listview;
 	private ScrollView sv;
-	private boolean topFlag, bottomFlag;
-	private float lastY= 0;
+	private boolean firstItemTopFlag;
+	private boolean lastItemBottomFlag;
+	private float lastY = 0;
+	private float curY = 0;
 	private ArrayList<Map<String, String>> data;
 
 	@Override
@@ -34,23 +34,24 @@ public class EventConfilictActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_event_confilict);
-		topFlag = true;	//是否滑倒顶部
-		bottomFlag = false;	//是否滑倒底部
+		firstItemTopFlag = true; //是否滑倒顶部
+		lastItemBottomFlag = false; //是否滑倒底部
 		//初始化相关控件
 		initView();
 	}
-	
+
 	private void initView()
 	{
 		tv_above = (TextView) findViewById(R.id.tv_above);
 		tv_below = (TextView) findViewById(R.id.tv_below);
 		listview = (ListView) findViewById(R.id.listview);
 		sv = (ScrollView) findViewById(R.id.sv);
-		
+
 		//初始化listview并设置相关Listenner
 		initListView();
 		//初始化sv并设置相关Listenner
 		initScrollView();
+
 	}
 
 	private void initScrollView()
@@ -95,7 +96,7 @@ public class EventConfilictActivity extends Activity
 		{ R.id.listtext });
 
 		listview.setAdapter(adapter);
-		
+
 		//给ListView setOnTouchListener
 		listview.setOnTouchListener(new OnTouchListener()
 		{
@@ -103,28 +104,23 @@ public class EventConfilictActivity extends Activity
 			@Override
 			public boolean onTouch(View v, MotionEvent event)
 			{
-
 				switch (event.getAction())
 				{
 				case MotionEvent.ACTION_DOWN:
 					Log.i(tag, "listview down");
 					listview.requestDisallowInterceptTouchEvent(true);
+					lastY = curY = event.getY();
 					break;
 				case MotionEvent.ACTION_MOVE:
 					Log.i(tag, "listview move");
-					boolean tF = topFlag;
-					boolean bF = bottomFlag;
-					float curY = event.getY();
+					boolean tF = firstItemTopFlag;
+					boolean bF = lastItemBottomFlag;
+					curY = event.getY();
 					//到底部并且继续向下滑动
-					if((curY-lastY>0 && true == tF)
-							||curY-lastY<0 && true == bF)
+					if ((curY - lastY > 0 && tF) || (curY - lastY < 0 && bF))
 					{
 						listview.requestDisallowInterceptTouchEvent(false);
-					}
-					else
-					{
-						listview.requestDisallowInterceptTouchEvent(true);
-					}
+					} 
 					lastY = curY;
 					break;
 				case MotionEvent.ACTION_UP:
@@ -137,46 +133,25 @@ public class EventConfilictActivity extends Activity
 				return false;
 			}
 		});
-		
+
 		//setOnScrollListener判断滑动到顶部还是底部
 		listview.setOnScrollListener(new OnScrollListener()
 		{
-
 			@Override
 			public void onScrollStateChanged(AbsListView view, int scrollState)
 			{
-				Log.d(tag,"onScrollStateChanged");
+				Log.d(tag, "onScrollStateChanged");
 				switch (scrollState)
 				{
 				// 当不滚动时
 				case OnScrollListener.SCROLL_STATE_IDLE:
-					Log.d(tag,"SCROLL_STATE_IDLE");
-					// 判断滚动到顶部
-					if (view.getFirstVisiblePosition() == 0)
-					{
-						Log.e("log", "1 滑到顶部");
-						topFlag = true;
-					}
-					else
-					{
-						topFlag = false;
-					}
-					// 判断滚动到底部
-					if (view.getLastVisiblePosition() == (view.getCount() - 1))
-					{
-						Log.e("log", "2 滑到底部");
-						bottomFlag = true;
-					}
-					else
-					{
-						bottomFlag = false;
-					}
+					Log.d(tag, "SCROLL_STATE_IDLE");
 					break;
 				case OnScrollListener.SCROLL_STATE_FLING:
-					Log.d(tag,"SCROLL_STATE_FLING");
+					Log.d(tag, "SCROLL_STATE_FLING");
 					break;
 				case OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:
-					Log.d(tag,"SCROLL_STATE_TOUCH_SCROLL");
+					Log.d(tag, "SCROLL_STATE_TOUCH_SCROLL");
 					break;
 				}
 			}
@@ -184,7 +159,61 @@ public class EventConfilictActivity extends Activity
 			@Override
 			public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount)
 			{
-				Log.d(tag,"onScroll");
+				Log.d(tag, "onScroll");
+				Log.d(tag, "visibleItemCount = " + visibleItemCount + " totalItemCount = " + totalItemCount + " firstVisibleItem = " + firstVisibleItem);
+
+				int first_index = view.getFirstVisiblePosition();
+				int last_index = view.getLastVisiblePosition();
+				Log.d(tag, "the first item index = " + first_index);
+				Log.d(tag, "the last item index = " + last_index);
+
+				int[] location = new int[2];
+				view.getLocationOnScreen(location);//获取在整个屏幕内的绝对坐标
+				int y = location[1];
+				int x = location[0];
+				Log.d(tag, "location x = " + x + " location y = " + y);
+				
+				Log.d(tag, "ListView height = "+view.getHeight());
+				
+				if(0 == view.getFirstVisiblePosition())	//说明滑动到了顶部的list item
+				{
+					View first_list_item = view.getChildAt(0);	//获取可见的第一个list item
+					if (first_list_item != null)
+					{
+						if(first_list_item.getTop() >= -1)
+						{
+							firstItemTopFlag = true;
+							Log.d(tag, "change firstItemTopFlag to ture.!");
+						}
+						else
+						{
+							firstItemTopFlag = false;
+							Log.d(tag, "change firstItemTopFlag to false.!");
+						}
+					}
+				}
+				
+				if(view.getCount()-1 == view.getLastVisiblePosition())	//说明滑动到了最底部的list item
+				{
+					View last_list_item = view.getChildAt(visibleItemCount - 1);	//获取可见的最后一个list item
+
+					if(last_list_item != null)
+					{
+						Log.d(tag, "last item top = " + last_list_item.getTop());
+						Log.d(tag, "last item height = " + last_list_item.getHeight());
+						Log.d(tag, "ListView height = "+view.getHeight());
+						if(last_list_item.getTop()+last_list_item.getHeight() - view.getHeight() <= 1)
+						{
+							lastItemBottomFlag = true;
+							Log.d(tag, "change lastItemBottomFlag to true.!");
+						}
+						else
+						{
+							lastItemBottomFlag = false;
+							Log.d(tag, "change lastItemBottomFlag to false.!");
+						}
+					}
+				}
 			}
 		});
 	}
