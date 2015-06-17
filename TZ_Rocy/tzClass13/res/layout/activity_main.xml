@@ -1,0 +1,39 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+  <ScrollView
+      android:id="@+id/sv" 
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      >
+      <LinearLayout 
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical">
+     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:text="@string/hello_world" />
+ 	<Button
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:text="点击跳转到下一页图片滚动"
+        android:textSize="14sp"
+        android:onClick="goNext" />
+ 	<ListView
+ 	    android:id="@+id/lv" 
+ 	    android:layout_width="match_parent"
+ 	    android:layout_height="wrap_content">
+ 	    
+ 	</ListView>
+	<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="900dp"
+        android:text="@string/hello_world" />
+          
+      </LinearLayout>
+  </ScrollView>
+    
+</RelativeLayout>
