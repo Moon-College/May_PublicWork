@@ -75,7 +75,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         @Override
         protected void onProgressUpdate(Integer... values) {
-            Integer value = values[0];
+            Integer value = values[0]; 
             pregressbar.setProgress(pregressbar.getProgress() + value);
             super.onProgressUpdate(values);
         }
@@ -106,7 +106,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 int len = 0;
                 while ((len = bis.read(bytes)) != -1) {
                     fos.write(bytes, 0, len);
-                    this.onProgressUpdate(len);
+                    this.publishProgress(len);
                 }
 
                 fos.close();

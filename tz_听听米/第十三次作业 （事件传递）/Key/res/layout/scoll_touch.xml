@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:id="@+id/sv"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="300dp"
+                android:background="#FF5588" />
+
+            <GridView
+                android:id="@+id/gv"
+                android:layout_width="fill_parent"
+                android:layout_height="200dp" 
+                android:numColumns="3">
+            </GridView>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="300dp"
+                android:background="#665588" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
