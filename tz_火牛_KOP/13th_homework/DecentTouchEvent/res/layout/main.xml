@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sl"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/gray"
+    android:scrollbars="vertical" >
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/orange50"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="200dp"
+            android:gravity="center"
+            android:text="上面的TextView"
+            android:textColor="@android:color/black" />
+
+        <ListView
+            android:id="@+id/lv"
+            android:layout_width="fill_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="30dp"
+            android:scrollbars="vertical" >
+        </ListView>
+
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="fill_parent"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:background="@color/orange"
+            android:gravity="center"
+            android:text="@string/hello"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+</ScrollView>
