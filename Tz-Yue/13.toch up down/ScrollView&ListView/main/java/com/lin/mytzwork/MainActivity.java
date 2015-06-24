@@ -82,16 +82,19 @@ public class MainActivity extends Activity implements ViewGroup.OnTouchListener 
                 if (v.getId() == R.id.lv) {
                     y = event.getY();
                 }
+                //按下就先让父容器放行
+                sv.requestDisallowInterceptTouchEvent(true);
                 break;
             case MotionEvent.ACTION_MOVE:
                 L.i("info", "SV_ACTION_MOVE");
 
-                if (v.getId() == R.id.lv) {
-
+                if (v.getId() == R.id.lv) { //当前是listView时
+                    //向下滑动 且 listview 是0下标     或者     向上滑动 且 listView 是 最后一个下标
+                    //就放过让scrllView 拦截 事件 自己 滑动
                     if (event.getY() - y > 0 && scro == -1 || event.getY() - y < 0 && scro == 1) {
                         sv.requestDisallowInterceptTouchEvent(false);
                         L.i("info", "sv滑动");
-                    } else {
+                    } else { //否则 就 scrollView 就先放行  让listView 滑动
                         sv.requestDisallowInterceptTouchEvent(true);
                         L.i("info", "lv滑动");
                     }
