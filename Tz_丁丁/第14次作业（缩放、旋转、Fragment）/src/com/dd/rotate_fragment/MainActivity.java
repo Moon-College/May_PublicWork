@@ -19,12 +19,12 @@ public class MainActivity extends Activity implements OnTouchListener {
 	private float oldDis,newDis; 	
 	private float scale;
 	private PointF pointMid;
+	private float fromDegree;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		iv = (ImageView) findViewById(R.id.iv);
-		iv.setImageResource(R.drawable.asdsad23213213213);
 		iv.setOnTouchListener(this);
 		matrix = new Matrix();
 
@@ -34,22 +34,30 @@ public class MainActivity extends Activity implements OnTouchListener {
 	public boolean onTouch(View v, MotionEvent event) {
 		int action = event.getAction();
 		int pointerCount = event.getPointerCount();
+		int width = iv.getWidth();
+		int height = iv.getHeight();
 		if (pointerCount == 1) {
 			switch (action) {
 			case MotionEvent.ACTION_DOWN:
-				startX = event.getX(0);
-				startY = event.getY(0);
+				startX = event.getX();
+				startY = event.getY();
+				float dx = startX - width/2;
+				float dy = height/2 - startY;
+				float atan2 = (float)Math.atan2(dy,dx);
+//				matrix.setRotate((float) (atan2*180/Math.PI));
+				fromDegree = (float) (atan2*180/Math.PI);
 				break;
 			case MotionEvent.ACTION_MOVE:
-				float oldX = event.getX(0);
-				float oldY = event.getY(0);
-				matrix.setTranslate(0, 0);
-				float atan2 = (float)Math.atan2(oldY-startY,oldX-startX);
-				matrix.setRotate((float) (atan2*180/Math.PI));
+				float oldX = event.getX();
+				float oldY = event.getY();
+				float dx1 = oldX - width/2;
+				float dy1 = height/2 - oldY;
+				float atan = (float)Math.atan2(dy1,dx1);
+				float toDegree = (float) (atan*180/Math.PI);
+				matrix.postRotate(fromDegree-toDegree,  width/2, height/2);
 //				matrix.postTranslate(oldX - startX, oldY - startY);
 				iv.setImageMatrix(matrix);
-				startX = oldX;
-				startY = oldY;
+				fromDegree=toDegree;
 				break;
 
 			default:

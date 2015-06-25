@@ -93,12 +93,11 @@ public class MyActivity extends Activity implements View.OnTouchListener,AbsList
                     int top = mListView.getTop();
                     if (childTop+tv_top.getHeight() == top) {
                         isOverScroll = false;
-
                     }
                 }
                 if (!isOverScroll) {
                     if (delay < 100) {
-                        delay+=10;
+                        delay+=30;
 
                         isOverScroll = true;
                         Log.v("delay","delay" );
