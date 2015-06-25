@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+     >
+
+    <EditText
+        android:id="@+id/et_regist_username"
+        android:layout_width="fill_parent"
+        android:layout_height="45.0dip"
+        android:drawablePadding="8.0dip"
+        android:hint="账号"
+        android:inputType="number"
+        android:maxLength="11"
+        android:padding="10.0dip"
+        android:singleLine="true"
+        android:textColor="#ff333333"
+        android:textColorHint="#ff989898"
+        android:textSize="18.0sp" />
+	
+    
+    <EditText
+        android:layout_marginTop="30dp"
+        android:id="@+id/et_regist_password"
+        android:layout_width="fill_parent"
+        android:layout_height="45.0dip"
+        android:drawablePadding="8.0dip"
+        android:hint="密码"
+        android:inputType="textPassword"
+        android:maxLength="11"
+        android:padding="10.0dip"
+        android:singleLine="true"
+        android:textColor="#ff333333"
+        android:textColorHint="#ff989898"
+        android:textSize="18.0sp" />
+</LinearLayout>

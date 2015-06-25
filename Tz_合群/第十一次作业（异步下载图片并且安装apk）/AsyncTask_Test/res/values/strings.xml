@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, MainActivity!</string>
+    <string name="app_name">AsyncTask_Test</string>
+	<string name="et">请输入图片的uri地址</string>
+	<string name="bt">下载</string>
+	
+</resources>

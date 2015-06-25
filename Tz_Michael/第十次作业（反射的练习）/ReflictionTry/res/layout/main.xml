@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <com.tz.refl.custom.MyTextView
+        android:id="@+id/tv_one"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hello" />
+    <com.tz.refl.custom.MyTextView
+        android:id="@+id/tv_two"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hello" />
+    <com.tz.refl.custom.MyTextView
+        android:id="@+id/tv_three"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hello" />
+    <com.tz.refl.custom.MyTextView
+        android:id="@+id/tv_four"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hello" />
+	<com.tz.refl.custom.MyButton
+        android:id="@+id/btn_one"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="myOnclick"
+        android:text="点我" />
+</LinearLayout>

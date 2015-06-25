@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello1">Hello World, MainActivity1!</string>
+    <string name="hello2">Hello World, MainActivity2!</string>
+    <string name="hello3">Hello World, MainActivity3!</string>
+    <string name="hello4">Hello World, MainActivity4!</string>
+    <string name="hello5">Hello World, MainActivity5!</string>
+    <string name="hello6">Hello World, MainActivity6!</string>
+    <string name="hello7">Hello World, MainActivity7!</string>
+    <string name="app_name">MyReflectionForViewId</string>
+
+</resources>

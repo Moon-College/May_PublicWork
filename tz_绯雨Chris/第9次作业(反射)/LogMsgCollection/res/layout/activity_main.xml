@@ -1,0 +1,53 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <Button
+        android:id="@+id/log2toast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/log2toast" />
+
+    <Button
+        android:id="@+id/log2text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/log2toast"
+        android:text="@string/log2text" />
+
+    <Button
+        android:id="@+id/clearMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/log2text"
+        android:layout_alignBottom="@id/log2text"
+        android:layout_centerHorizontal="true"
+        android:text="@string/clearmsg" />
+
+    <TextView
+        android:id="@+id/msgText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/clearMsg"
+        android:layout_centerHorizontal="true"
+        android:hint="@string/hint_nolog" />
+
+    <Button
+        android:id="@+id/methods"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="Methods" />
+
+    <Button
+        android:id="@+id/constructors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/methods"
+        android:text="Constructors" />
+
+</RelativeLayout>

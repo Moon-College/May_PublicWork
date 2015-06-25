@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="app_name">cameraDemo</string>
+
+ 	<string name="do_camera">do camera</string>
+ 	<string name="start_activity">start activity</string>
+ 	<string name="second_activity">It is second activity</string>
+</resources>

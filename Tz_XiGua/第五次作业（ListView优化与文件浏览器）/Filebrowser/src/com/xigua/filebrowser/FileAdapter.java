@@ -1,6 +1,7 @@
 package com.xigua.filebrowser;
 
 import java.io.File;
+import java.lang.ref.SoftReference;
 import java.util.List;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -16,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class FileAdapter extends BaseAdapter{
+	final int LIMIT_WIDTH = 120;
 	private Context context;
 	private List<cFile> data;
 	private LayoutInflater inflater;
@@ -51,11 +53,16 @@ public class FileAdapter extends BaseAdapter{
 			holder = (ViewHolder) convertView.getTag();
 		}
 		cFile cFile = data.get(position);
-		if(cFile.getBitmap() == null&&!cFile.getName().equals("返回")){
+		if(cFile.isPic()){
+		if(cFile.getSoftBitmap().get() == null&&!cFile.getName().equals("返回")){
 			holder.file_img.setImageResource(android.R.color.darker_gray);
 			MyTask task = new MyTask();
 			task.execute(cFile.getFilePath(),String.valueOf(position));
 		}else{
+			holder.file_img.setImageBitmap(cFile.getSoftBitmap().get());
+		}
+		}
+		else{
 			holder.file_img.setImageBitmap(cFile.getBitmap());
 		}
 		holder.file_name.setText(cFile.getName());
@@ -67,23 +74,51 @@ public class FileAdapter extends BaseAdapter{
 		TextView file_name;
 	}
 	
-	private class MyTask extends AsyncTask<String, Void, Bitmap>{
+	private class MyTask extends AsyncTask<String, Void, SoftReference<Bitmap>>{
 		
 		@Override
-		protected Bitmap doInBackground(String... params) {
+		protected SoftReference<Bitmap> doInBackground(String... params) {
 			String path = params[0];
 			int position = Integer.valueOf(params[1]);
-			BitmapFactory.Options options = new Options();
-			options.inSampleSize = 2;
-			Bitmap bitmap = BitmapFactory.decodeFile(path,options);
-			data.get(position).setBitmap(bitmap);
-			return bitmap;
+//			BitmapFactory.Options options = new Options();
+//			options.inSampleSize = 2;
+//			Bitmap bitmap = BitmapFactory.decodeFile(path,options);
+			SoftReference<Bitmap> softBitmap = new SoftReference<Bitmap>(scaleBitmap(path));
+			data.get(position).setSoftBitmap(softBitmap);
+			return softBitmap;
 		}
 		
 		@Override
-		protected void onPostExecute(Bitmap result) {
+		protected void onPostExecute(SoftReference<Bitmap> result) {
 			FileAdapter.this.notifyDataSetChanged();
 			super.onPostExecute(result);
+		}
+		
+		/**
+		 * 根据图片尺寸来缩放图片
+		 * @param path
+		 * @return
+		 */
+		public Bitmap scaleBitmap(String path){
+			Bitmap bitmap = null;
+			BitmapFactory.Options options = new Options();
+			options.inJustDecodeBounds = true;//
+//			options.inSampleSize = 2;
+			bitmap = BitmapFactory.decodeFile(path,options);
+			int width = options.outWidth;
+			int height = options.outHeight;
+			Log.i("zzzzzzzzzzzzzzzzzyf", width+"");
+			Log.i("zzzzzzzzzzzzzzzzzyf", height+"");
+			if(width>LIMIT_WIDTH){
+					options.inSampleSize = (width/LIMIT_WIDTH + height/(height/(width/LIMIT_WIDTH)))/2;
+			}
+			else{
+				options.inSampleSize = 1;
+			}
+			Log.i("zzzzzzzzzzzzzzzzzyf", options.inSampleSize+"");
+			options.inJustDecodeBounds = false;
+			bitmap = BitmapFactory.decodeFile(path,options);
+			return bitmap;
 		}
 	}
 }

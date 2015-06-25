@@ -1,0 +1,14 @@
+<com.zjm.key.view.MyLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layout"
+    android:background="#ff00ff">
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:background="#00ffff"/>
+
+</com.zjm.key.view.MyLinearLayout>

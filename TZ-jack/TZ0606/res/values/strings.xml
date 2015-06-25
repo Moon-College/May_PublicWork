@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TZ0606</string>
+    <string name="hello">Hello World, TZ0606Activity!</string>
+    <string name="buttononename">singletopone</string>
+
+</resources>

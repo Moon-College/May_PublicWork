@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tz.michael.activity"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk android:minSdkVersion="8" />
+    <!-- 声明相机权限 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- Storage Permission -->
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- Audio Recording Permission -->
+	<uses-permission android:name="android.permission.RECORD_AUDIO" />
+	<!-- Location Permission - If your application tags images with GPS location information, you must request location permission: -->
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	
+    <!-- declare use of camera features 作用：Adding camera features to your manifest causes Google Play to prevent your application from being installed to devices that do not include a camera or do not support the camera features you specify.If your application can use a camera or camera feature for proper operation, but does not require it, you should specify this in the manifest by including the android:required attribute, and setting it to false: -->
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name" >
+        <activity
+            android:label="@string/app_name"
+            android:name=".CameraTryActivity" >
+            <intent-filter >
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".SecondActivity">
+            <intent-filter >
+                <action android:name="com.tz.michael.second"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="10086"/>
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
