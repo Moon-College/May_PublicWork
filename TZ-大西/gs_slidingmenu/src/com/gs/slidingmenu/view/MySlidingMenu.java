@@ -3,10 +3,13 @@ package com.gs.slidingmenu.view;
 import com.nineoldandroids.view.ViewHelper;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.text.style.LineHeightSpan.WithDensity;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.HorizontalScrollView;
@@ -15,10 +18,17 @@ import android.widget.LinearLayout;
 public class MySlidingMenu extends HorizontalScrollView {
     private int widthPixls;
 	private int mMenuWidth;
-	//private int mContentWidth;
 	private ViewGroup mMenu;
 	private ViewGroup mContent;
     private final float mMenuWidthOut = 0.2f;
+    
+    //消息队列
+    Handler headler = new Handler(){
+		public void handleMessage(android.os.Message msg) {
+			int sc = (Integer) msg.obj;
+			smoothScrollBy(sc, 0);
+		}
+	};
 	
 	public MySlidingMenu(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -83,6 +93,35 @@ public class MySlidingMenu extends HorizontalScrollView {
 		super.onScrollChanged(l, t, oldl, oldt);
 	}
 	
-	 
+	@Override
+	public boolean onTouchEvent(MotionEvent ev) {
+		// TODO Auto-generated method stub
+		
+		switch(ev.getAction()){
+		case MotionEvent.ACTION_DOWN:  //按下
+			
+			break;
+		case MotionEvent.ACTION_MOVE:
+			
+			break;
+		case MotionEvent.ACTION_UP:
+			int scrollX = this.getScrollX();
+			int scrollDeltX = 0;
+			if(scrollX<0.3*mMenuWidth ){
+				scrollDeltX = -mMenuWidth;
+			}else {
+				scrollDeltX = mMenuWidth;
+			}
+			Log.i("INFO", String.valueOf(scrollDeltX));
+			
+			Message msg = headler.obtainMessage();
+			msg.obj = scrollDeltX;
+			msg.sendToTarget();
+			break;
+		default:
+			break;
+		}
+		return super.onTouchEvent(ev);
+	}
 
 }
