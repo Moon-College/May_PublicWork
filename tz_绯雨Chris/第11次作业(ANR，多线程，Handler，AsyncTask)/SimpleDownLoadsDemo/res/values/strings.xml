@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SimpleDownLoadsDemo</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="pic_download_address">http://e.hiphotos.baidu.com/image/pic/item/8435e5dde71190ef723123f4cc1b9d16fcfa60d6.jpg</string>
+</resources>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Standared(默认模式)"
+        android:id="@+id/standared_btn"/>
+    
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="SingleTop(栈顶模式)"
+        android:id="@+id/singletop_btn"/>
+    
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="SingleTask(任务模式)"
+        android:id="@+id/singletask_btn"/>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="SingleInstance(单例模式)"
+        android:id="@+id/singleinstance_btn"/>
+    
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="查看Activity栈信息"
+        android:layout_gravity="bottom"
+        android:id="@+id/look_btn"/>
+</LinearLayout>

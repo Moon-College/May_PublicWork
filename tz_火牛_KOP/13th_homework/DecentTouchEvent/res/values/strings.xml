@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">"事件传递模型"</string>
+    <string name="app_name">DecentTouchEvent</string>
+
+</resources>

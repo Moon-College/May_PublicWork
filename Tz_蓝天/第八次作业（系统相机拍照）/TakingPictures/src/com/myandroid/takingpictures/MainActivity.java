@@ -1,10 +1,12 @@
-package com.myandroid.takingpictures;
+﻿package com.myandroid.takingpictures;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import com.myandroid.takingpictures.util.ReflectionUtil;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -26,21 +28,15 @@ public class MainActivity extends Activity implements OnClickListener {
 	private Uri fileUri;
 
 	private Button bnt;
-	private ImageView iv;
+	private ImageView img;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		init();
-
-	}
-
-	//初始化控件
-	private void init() {
-		bnt = (Button) findViewById(R.id.bnt);
-		iv = (ImageView) findViewById(R.id.img);
+		ReflectionUtil.initViews(this);
 		bnt.setOnClickListener(this);
+
 	}
 
 	// 调用系统相机进行拍照
@@ -70,8 +66,9 @@ public class MainActivity extends Activity implements OnClickListener {
 		try {
 			InputStream inputIamge = getContentResolver().openInputStream(uri);
 			Bitmap bitmap = BitmapFactory.decodeStream(inputIamge);
+			inputImage.close();
 			return bitmap;
-		} catch (FileNotFoundException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -86,7 +83,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		if (requestCode == CAMEAR_ACTIVITY_REQUEST_CODE) {
 			if (resultCode == Activity.RESULT_OK) {
 				Bitmap picBitmap = getImage(fileUri);
-				iv.setImageBitmap(picBitmap);
+				img.setImageBitmap(picBitmap);
 			}
 		}
 

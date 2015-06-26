@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">tz_launch_mode</string>
+    <string name="jump_to_second">跳转到第二个界面</string>
+    <string name="jump_to_self">再次启动自己</string>
+    <string name="jump_to_third">跳转到第三个界面</string>
+    <string name="jump_to_backone">返回第一个界面</string>
+    <string name="recount">计数</string>
+    
+    <string name="first_activity">First Activity</string>
+    <string name="second_activity">Second Activity</string>
+    <string name="third_activity">Third Activity</string>
+
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- radioButton的背景填充色 -->
+    <color name="rb_bg_shap_fill">#ffffff</color>
+    <!-- radioButton的背景边框色  -->
+    <color name="re_bg_shap_stroke">#FCD209</color>
+    <!-- radioButton的字体颜色 -->
+    <color name="rb_tv_color">#000000</color>
+    <!-- 指示条的颜色 -->
+    <color name="item_tab_bg">#0000ff</color>
+    
+    <!-- fragment的各个背景色 -->
+    <color name="fg1_bg">#E0FFBD</color>
+    <color name="fg2_bg">#BDFFEE</color>
+    <color name="fg3_bg">#FEC8BE</color>
+    <color name="fg4_bg">#FAF2C1</color>
+    <color name="fg5_bg">#E7D8D5</color>
+    <color name="fg6_bg">#F9C3F5</color>
+    <color name="fg7_bg">#E7D5E1</color>
+</resources>

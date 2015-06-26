@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.yl.qq.view.MyScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:background="@drawable/menu_bg"
+    android:scrollbars="none"
+    android:fadingEdge="none"
+    android:id="@+id/qqmenu"
+    >
+	<LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:orientation="horizontal" 
+	    >
+		<!-- 菜单布局 -->
+	    <include layout="@layout/menu"/>
+	    <!-- 主页面布局 -->
+	    <LinearLayout 
+	        android:id="@+id/cont"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:background="@drawable/qq"
+	        >
+	    </LinearLayout>
+	
+	</LinearLayout>
+
+</com.yl.qq.view.MyScrollView>

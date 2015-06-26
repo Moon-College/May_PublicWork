@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+        >
+    <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent" android:layout_height="300dp">
+
+    </FrameLayout>
+    <TextView
+            android:id="@+id/tv_info"
+            android:gravity="center"
+            android:textSize="17sp"
+            android:textColor="@android:color/holo_blue_dark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+        <Button
+                android:id="@+id/btn_left"
+                android:onClick="onClick"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textSize="17sp"
+                android:textColor="@android:color/white"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+        <Button
+                android:id="@+id/btn_right"
+                android:onClick="onClick"
+                android:layout_marginRight="10dp"
+                android:textSize="17sp"
+                android:textColor="@android:color/white"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+    </LinearLayout>
+]</LinearLayout>
+

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <drawable name="fg1_drawable">#E0FFBD</drawable>
+    <drawable name="fg2_drawable">#BDFFEE</drawable>
+    <drawable name="fg3_drawable">#FEC8BE</drawable>
+    <drawable name="fg4_drawable">#FAF2C1</drawable>
+    <drawable name="fg5_drawable">#E7D8D5</drawable>
+    <drawable name="fg6_drawable">#F9C3F5</drawable>
+    <drawable name="fg7_drawable">#E7D5E1</drawable>
+    
+</resources>
