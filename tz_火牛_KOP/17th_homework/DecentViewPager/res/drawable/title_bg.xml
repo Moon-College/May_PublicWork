@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- 填充 -->
+    <solid android:color="@color/gold"></solid>
+    <!-- 边框 -->
+    <stroke android:color="@color/blue" android:width="2dp"></stroke>
+    <!-- 圆角，这次没有 -->
+    <!-- <corners></corners> -->
+    <!-- 渐变，这次没有 -->
+    <!-- <gradient></gradient> -->
+</shape>
