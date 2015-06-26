@@ -4,6 +4,7 @@ import com.nineoldandroids.view.ViewHelper;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -20,14 +21,21 @@ public class MySlidingMenu extends HorizontalScrollView {
 	private ViewGroup mMenu;
 	private ViewGroup mContent;
 	private final float mMenuWidthOut = 0.2f;
-
-	public int getmMenuWidth() {
-		return mMenuWidth;
-	}
-
-	public void setmMenuWidth(int mMenuWidth) {
-		this.mMenuWidth = mMenuWidth;
-	}
+	private Handler handler = new Handler();
+	private float sc;
+	
+	//功能应该在控件里组合好，方便他人使用
+	private Runnable run = new Runnable() {
+		
+		@Override
+		public void run() {
+			if (sc > mMenuWidth*0.5) {
+				MySlidingMenu.this.smoothScrollTo(mMenuWidth, 0);
+			}else {
+				MySlidingMenu.this.smoothScrollTo(0, 0);
+			}
+		}
+	};
 
 	public MySlidingMenu(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -59,6 +67,8 @@ public class MySlidingMenu extends HorizontalScrollView {
 
 	@Override
 	protected void onScrollChanged(int left, int t, int oldl, int oldt) {
+		sc = left;
+		Log.v("bb", "ledt="+left);
 		//left的变化是0-mMenuWidth，scale的变化是0-1
 		float scale = (float)left/mMenuWidth;
 		//leftScale的变化是1-0.7
@@ -77,5 +87,18 @@ public class MySlidingMenu extends HorizontalScrollView {
 		ViewHelper.setScaleY(mContent, rigetScale);
 		Log.v("home", left+"--mMenu"+mMenuWidth);
 		super.onScrollChanged(left, t, oldl, oldt);
+	}
+	
+	@Override
+	public boolean onTouchEvent(MotionEvent ev) {
+		switch (ev.getAction()) {
+		case MotionEvent.ACTION_UP:
+			handler.post(run);
+			break;
+
+		default:
+			break;
+		}
+		return super.onTouchEvent(ev);
 	}
 }

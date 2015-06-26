@@ -10,7 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 
-public class MainActivity extends Activity implements OnTouchListener{
+public class MainActivity extends Activity{
 	private MySlidingMenu msm;
 	Handler handler = new Handler(){
 
@@ -27,29 +27,29 @@ public class MainActivity extends Activity implements OnTouchListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		msm =(MySlidingMenu) findViewById(R.id.slidingmenu);
-		msm.setOnTouchListener(this);
+//		msm.setOnTouchListener(this);
 	}
-	@Override
-	public boolean onTouch(View v, MotionEvent event) {
-		msm.onTouchEvent(event);
-		switch (event.getAction()) {
-		case MotionEvent.ACTION_DOWN:
-			break;
-		case MotionEvent.ACTION_MOVE:
-			break;
-		case MotionEvent.ACTION_UP:
-			int nowScrollX = msm.getScrollX();
-			int i=0;
-			if (msm.getmMenuWidth() > nowScrollX
-					&& nowScrollX > msm.getmMenuWidth() / 2) {
-				i=msm.getmMenuWidth();
-			}
-			Message obtainMessage = handler.obtainMessage(0, i);
-			handler.sendMessage(obtainMessage);
-			break;
-		default:
-			break;
-		}
-		return true;
-	}
+//	@Override
+//	public boolean onTouch(View v, MotionEvent event) {
+//		msm.onTouchEvent(event);
+//		switch (event.getAction()) {
+//		case MotionEvent.ACTION_DOWN:
+//			break;
+//		case MotionEvent.ACTION_MOVE:
+//			break;
+//		case MotionEvent.ACTION_UP:
+//			int nowScrollX = msm.getScrollX();
+//			int i=0;
+//			if (msm.getmMenuWidth() > nowScrollX
+//					&& nowScrollX > msm.getmMenuWidth() / 2) {
+//				i=msm.getmMenuWidth();
+//			}
+//			Message obtainMessage = handler.obtainMessage(0, i);
+//			handler.sendMessage(obtainMessage);
+//			break;
+//		default:
+//			break;
+//		}
+//		return true;
+//	}
 }

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <HorizontalScrollView
+        android:id="@+id/hsv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none" >
+
+        <RadioGroup
+            android:id="@+id/rg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/china"
+                style="@style/rb_style"
+                android:text="中国" />
+
+            <RadioButton
+                android:id="@+id/korea"
+                style="@style/rb_style"
+                android:text="韩国" />
+
+            <RadioButton
+                android:id="@+id/nkorea"
+                style="@style/rb_style"
+                android:text="朝鲜" />
+
+            <RadioButton
+                android:id="@+id/japan"
+                style="@style/rb_style"
+                android:text="日本" />
+
+            <RadioButton
+                android:id="@+id/america"
+                style="@style/rb_style"
+                android:text="美国" />
+
+            <RadioButton
+                android:id="@+id/india"
+                style="@style/rb_style"
+                android:text="印度" />
+
+            <RadioButton
+                android:id="@+id/tail"
+                style="@style/rb_style"
+                android:text="泰国" />
+        </RadioGroup>
+    </HorizontalScrollView>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="2dp" >
+
+        <TextView
+            android:id="@+id/tvline"
+            android:layout_width="100dp"
+            android:layout_height="2dp"
+            android:layout_marginBottom="1dp"
+            android:layout_marginTop="1dp"
+            android:background="#00ffff" />
+    </FrameLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+    </android.support.v4.view.ViewPager>
+
+</LinearLayout>
