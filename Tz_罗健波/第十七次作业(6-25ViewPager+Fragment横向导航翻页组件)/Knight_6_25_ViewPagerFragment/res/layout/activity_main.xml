@@ -1,0 +1,73 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:layout_marginTop="1dp" >
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="100dp"
+            android:layout_height="3dp"
+            android:background="#50ff00" />
+    </FrameLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/hsv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#0f0f0f"
+        android:fadingEdge="none"
+        android:scrollbars="none" >
+
+        <RadioGroup
+            android:id="@+id/rad_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#FFD39B"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/landscape"
+                style="@style/radio_style"
+                android:text="风景" />
+
+            <RadioButton
+                android:id="@+id/goose"
+                style="@style/radio_style"
+                android:text="家禽" />
+
+            <RadioButton
+                android:id="@+id/craft"
+                style="@style/radio_style"
+                android:text="艺术" />
+
+            <RadioButton
+                android:id="@+id/panda"
+                style="@style/radio_style"
+                android:text="熊猫" />
+
+            <RadioButton
+                android:id="@+id/golaming"
+                style="@style/radio_style"
+                android:text="黄昏" />
+
+            <RadioButton
+                android:id="@+id/boxster"
+                style="@style/radio_style"
+                android:text="名车" />
+        </RadioGroup>
+    </HorizontalScrollView>
+
+</LinearLayout>
