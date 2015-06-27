@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+
+        >
+    <HorizontalScrollView
+            android:id="@+id/hsv"
+            android:layout_width="match_parent"
+            android:scrollbars="@null"
+            android:layout_height="wrap_content">
+        <RadioGroup
+                android:id="@+id/rg"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+        </RadioGroup>
+    </HorizontalScrollView>
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            >
+        <TextView
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:layout_width="100dp"
+                android:layout_height="2dp"
+                android:background="#0000ff"
+
+                android:id="@+id/tvline"
+                />
+    </FrameLayout>
+    <android.support.v4.view.ViewPager
+            android:id="@+id/vp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            ></android.support.v4.view.ViewPager>
+</LinearLayout>
+

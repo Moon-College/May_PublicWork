@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+   <HorizontalScrollView 
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/hsv"
+       android:scrollbars="none"
+       >
+       <RadioGroup 
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:background="#ffffff"
+           android:id="@+id/rg"
+           >
+           <RadioButton 
+               style="@style/rb_style"
+               android:text="夺命妖"
+               android:id="@+id/duomingyao"
+               />
+           
+           <RadioButton 
+               style="@style/rb_style"
+               android:text="飞燕女"
+               android:id="@+id/feiyannv"
+               />
+           <RadioButton 
+               style="@style/rb_style"
+               android:text="骨精灵"
+               android:id="@+id/gujinling"
+               />
+           
+           <RadioButton 
+               style="@style/rb_style"
+               android:text="狐美人"
+               android:id="@+id/humeiren"
+               />
+           <RadioButton 
+               style="@style/rb_style"
+               android:text="剑侠客"
+               android:id="@+id/jianxiake"
+               />
+           <RadioButton 
+               style="@style/rb_style"
+               android:text="巨魔王"
+               android:id="@+id/jumowang"
+               />
+           <RadioButton 
+               style="@style/rb_style"
+               android:text="龙战将"
+               android:id="@+id/longzhanjiang"
+               />
+           <RadioButton 
+               style="@style/rb_style"
+               android:text="猛壮士"
+               android:id="@+id/mengzhuangshi"
+               />
+           <RadioButton 
+               style="@style/rb_style"
+               android:text="神天兵"
+               android:id="@+id/shentianbing"
+               />
+           <RadioButton 
+               style="@style/rb_style"
+               android:text="小蛮妖"
+               android:id="@+id/xiaomanyao"
+               />
+       </RadioGroup>
+       
+   </HorizontalScrollView>
+	<FrameLayout 
+	    android:layout_width="fill_parent"
+	    android:layout_height="2dp"
+	    >
+	    <TextView 
+	        android:layout_marginTop="1dp"
+	        android:layout_marginBottom="1dp"
+	        android:layout_width="100dp"
+	        android:layout_height="2dp"
+	        android:background="#0000ff"
+	        android:id="@+id/tvline"
+	        />
+	</FrameLayout>
+	
+	
+	<android.support.v4.view.ViewPager
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:id="@+id/viewpager"
+	    ></android.support.v4.view.ViewPager>
+</LinearLayout>

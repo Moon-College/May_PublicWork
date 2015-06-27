@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/et_regist_name"
+        android:layout_width="fill_parent"
+        android:layout_height="45.0dip"
+        android:background="@drawable/shape_white"
+        android:drawableLeft="@drawable/iconfont_shouji"
+        android:drawablePadding="8.0dip"
+        android:hint="真实姓名"
+        android:maxLength="11"
+        android:padding="10.0dip"
+        android:singleLine="true"
+        android:textColor="#ff333333"
+        android:textColorHint="#ff989898"
+        android:textSize="18.0sp" />
+
+    <EditText
+        android:id="@+id/et_regist_addr"
+        android:layout_width="fill_parent"
+        android:layout_height="45.0dip"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/shape_white"
+        android:drawableLeft="@drawable/iconfont_shouji"
+        android:drawablePadding="8.0dip"
+        android:hint="地址"
+        android:maxLength="11"
+        android:padding="10.0dip"
+        android:singleLine="true"
+        android:textColor="#ff333333"
+        android:textColorHint="#ff989898"
+        android:textSize="18.0sp" />
+
+</LinearLayout>

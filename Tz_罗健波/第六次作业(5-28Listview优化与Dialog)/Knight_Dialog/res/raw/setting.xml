@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mapping>
+    <view name="dialog_one" id="btn_dialog1"/>
+    <view name="dialog_two" id="btn_dialog2"/>
+    <view name="dialog_three" id="btn_dialog3"/>
+</mapping>

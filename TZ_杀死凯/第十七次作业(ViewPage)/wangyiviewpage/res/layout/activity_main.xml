@@ -1,0 +1,83 @@
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+<HorizontalScrollView 
+    android:id="@+id/hsv"
+     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fadingEdge="none"
+    android:scrollbars="none"
+    >
+    <RadioGroup 
+        android:id="@+id/rg"
+        android:layout_width="wrap_content"
+ 	   android:layout_height="wrap_content"
+ 	   android:orientation="horizontal"
+        >
+        <RadioButton 
+            android:id="@+id/headline"
+ 	   android:text="头条"
+ 	     style="@style/style_rb"
+            />
+           <RadioButton 
+               android:id="@+id/recreation"
+           style="@style/style_rb"
+ 		   android:text="娱乐"
+            />
+             <RadioButton 
+                 android:id="@+id/hot"
+           style="@style/style_rb"
+ 		   android:text="热点"
+            />
+               <RadioButton 
+                   android:id="@+id/sports"
+           style="@style/style_rb"
+ 		   android:text="体育"
+            />
+                <RadioButton 
+                    android:id="@+id/finance"
+           style="@style/style_rb"
+ 		   android:text="财经"
+            />
+                     <RadioButton 
+                         android:id="@+id/science"
+           style="@style/style_rb"
+ 		   android:text="科技"
+            />
+                       <RadioButton 
+                           android:id="@+id/picture"
+           style="@style/style_rb"
+ 		   android:text="图片"
+            />
+                       <RadioButton 
+                           android:id="@+id/car"
+           style="@style/style_rb"
+ 		   android:text="汽车"
+            />
+                       <RadioButton 
+                           android:id="@+id/war"
+           style="@style/style_rb"
+ 		   android:text="军事"
+            />
+    </RadioGroup>
+</HorizontalScrollView>
+<FrameLayout 
+      android:layout_width="fill_parent"
+      android:layout_height="2dp"
+    >
+ 	 <View 
+	        android:layout_width="100dp"
+	        android:layout_height="2dp"
+	        android:background="#ff0000"
+	        android:id="@+id/v"
+	        />
+</FrameLayout>
+<android.support.v4.view.ViewPager
+     android:layout_width="fill_parent"
+	 android:layout_height="fill_parent"
+	 android:id="@+id/vp"
+    />
+</LinearLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+    <cn.ysh.callback.myview.MyView
+        android:id="@+id/telnumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:background="@drawable/shape"
+        android:hint="手机号"
+        android:padding="5dp"
+        android:layout_marginTop="10dp"/>
+    
+    <EditText 
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberPassword"
+        android:hint="密码"
+        android:layout_below="@id/telnumber"
+        android:background="@drawable/shape"
+        android:layout_marginTop="40dp"
+        android:padding="5dp"/>
+    
+
+</RelativeLayout>

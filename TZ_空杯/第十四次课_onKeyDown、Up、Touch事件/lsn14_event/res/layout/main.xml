@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sv"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tv_top"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="#ff0000" />
+
+        <ListView
+            android:id="@+id/lv"
+            android:layout_width="match_parent"
+            android:layout_height="300dp" >
+        </ListView>
+
+        <TextView
+            android:id="@+id/tv_buttom"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="#00ff00" />
+    </LinearLayout>
+
+</ScrollView>
