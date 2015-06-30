@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 自定义命名控件，将末尾的android改成自己的主包名 -->
+<com.example.lzqlayout.view.LzqAbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:lzz="http://schemas.android.com/apk/res/com.example.lzqlayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#00ffff" >
+
+   <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#ff0000"
+        android:text="fuck you"
+        lzz:lzqAbsoluteLayout_px="0.5"
+        lzz:lzqAbsoluteLayout_py="0.5" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#ff0000"
+        android:text="fuck you too"
+        lzz:lzqAbsoluteLayout_px="0.2"
+        lzz:lzqAbsoluteLayout_py="0.8" />
+
+</com.example.lzqlayout.view.LzqAbsoluteLayout>
