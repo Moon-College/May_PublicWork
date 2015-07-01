@@ -1,0 +1,101 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <HorizontalScrollView
+            android:id="@+id/hscroll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fadingEdge="none"
+            android:scrollbars="none" >
+
+            <RadioGroup
+                android:id="@+id/rg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/aries"
+                    style="@style/rb_style"
+                    android:text="白羊座" />
+
+                <RadioButton
+                    android:id="@+id/taurus"
+                    style="@style/rb_style"
+                    android:text="金牛座" />
+
+                <RadioButton
+                    android:id="@+id/gemini"
+                    style="@style/rb_style"
+                    android:text="双子座" />
+
+                <RadioButton
+                    android:id="@+id/cancer"
+                    style="@style/rb_style"
+                    android:text="巨蟹座" />
+
+                <RadioButton
+                    android:id="@+id/leo"
+                    style="@style/rb_style"
+                    android:text="狮子座" />
+
+                <RadioButton
+                    android:id="@+id/virgo"
+                    style="@style/rb_style"
+                    android:text="处女座" />
+
+                <RadioButton
+                    android:id="@+id/libra"
+                    style="@style/rb_style"
+                    android:text="天秤座" />
+
+                <RadioButton
+                    android:id="@+id/scorpio"
+                    style="@style/rb_style"
+                    android:text="天蝎座" />
+
+                <RadioButton
+                    android:id="@+id/sagittarius"
+                    style="@style/rb_style"
+                    android:text="射手座" />
+
+                <RadioButton
+                    android:id="@+id/capricorn"
+                    style="@style/rb_style"
+                    android:text="魔羯座" />
+
+                <RadioButton
+                    android:id="@+id/aquarius"
+                    style="@style/rb_style"
+                    android:text="水平座" />
+
+                <RadioButton
+                    android:id="@+id/pisces"
+                    style="@style/rb_style"
+                    android:text="双鱼座" />
+            </RadioGroup>
+        </HorizontalScrollView>
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="100dp"
+            android:layout_height="2dp"
+            android:layout_gravity="bottom"
+            android:background="#0000ff" />
+    </FrameLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+    </android.support.v4.view.ViewPager>
+
+</LinearLayout>
