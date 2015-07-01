@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#fff"
+    android:orientation="vertical" >
+
+    <HorizontalScrollView 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:id="@+id/hsv">
+        <RadioGroup 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rg"
+            android:orientation="horizontal">
+           <!--  <RadioButton 
+                android:id="@+id/rb1"
+                style="@style/rb_style"
+                android:text="条目一"/>
+            <RadioButton 
+                android:id="@+id/rb2"
+                style="@style/rb_style"
+                android:text="条目二"/>
+            <RadioButton 
+                android:id="@+id/rb3"
+                style="@style/rb_style"
+                android:text="条目三"/>
+            <RadioButton 
+                android:id="@+id/rb4"
+                style="@style/rb_style"
+                android:text="条目四"/>
+            <RadioButton 
+                android:id="@+id/rb5"
+                style="@style/rb_style"
+                android:text="条目五"/>
+            <RadioButton 
+                android:id="@+id/rb6"
+                style="@style/rb_style"
+                android:text="条目六"/>
+            <RadioButton 
+                android:id="@+id/rb7"
+                style="@style/rb_style"
+                android:text="条目七"/> -->
+        </RadioGroup>
+    </HorizontalScrollView>
+
+    <FrameLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_item" 
+            android:layout_width="100dp"
+            android:layout_height="1dp"
+            android:background="@color/item_tab_bg"/>
+    </FrameLayout>
+    
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
+    </android.support.v4.view.ViewPager>
+        
+</LinearLayout>

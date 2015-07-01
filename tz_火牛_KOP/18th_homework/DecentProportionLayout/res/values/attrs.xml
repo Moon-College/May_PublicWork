@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ProportionAttr">
+        <attr format="float" name="px"></attr>
+        <attr format="float" name="py"></attr>
+        <attr format="boolean" name="baseonhalf"></attr>
+    </declare-styleable>
+
+</resources>

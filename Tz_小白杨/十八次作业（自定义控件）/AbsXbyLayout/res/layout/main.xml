@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.yl.absxbylayout.layout.AbsXbyLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xby="http://schemas.android.com/apk/res/com.yl.layout.absxbylayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+    android:padding="50dp"
+    >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:text="21312313123" 
+        android:background="#00ff00"
+        xby:px="0.5"
+        xby:py="0.5"
+        />
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2222222" 
+        android:background="#00ff00"
+        xby:px="0.8"
+        xby:py="0.2"
+        />
+
+</com.yl.absxbylayout.layout.AbsXbyLayout>

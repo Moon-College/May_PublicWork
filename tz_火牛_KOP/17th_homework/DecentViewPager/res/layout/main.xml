@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <!-- 上面的标题栏 -->
+
+    <HorizontalScrollView
+        android:id="@+id/hsv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none" >
+
+        <RadioGroup
+            android:id="@+id/rg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                style="@style/radiobtn_style"
+                android:text="铁拐李" android:id="@+id/rb_tieguaili"/>
+
+            <RadioButton
+                style="@style/radiobtn_style"
+                android:text="汉钟离" android:id="@+id/rb_hanzhongli"/>
+
+            <RadioButton
+                style="@style/radiobtn_style"
+                android:text="张果老" android:id="@+id/rb_zhangguolao"/>
+
+            <RadioButton
+                style="@style/radiobtn_style"
+                android:text="吕洞宾" android:id="@+id/rb_lvdongbin"/>
+
+            <RadioButton
+                style="@style/radiobtn_style"
+                android:text="何仙姑" android:id="@+id/rb_hexiangu"/>
+
+            <RadioButton
+                style="@style/radiobtn_style"
+                android:text="蓝采和" android:id="@+id/rb_lancaihe"/>
+
+            <RadioButton
+                style="@style/radiobtn_style"
+                android:text="韩湘子" android:id="@+id/rb_hanxiangzi"/>
+
+            <RadioButton
+                style="@style/radiobtn_style"
+                android:text="曹国舅" android:id="@+id/rb_caoguojiu"/>
+        </RadioGroup>
+    </HorizontalScrollView>
+
+    <!-- 下面的粗横线 -->
+
+    <FrameLayout
+        android:id="@+id/fl"
+        android:layout_width="fill_parent"
+        android:layout_height="3dp" >
+
+        <TextView
+            android:layout_width="@dimen/title_size"
+            android:layout_height="3dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"
+            android:background="@color/red" 
+            android:id="@+id/titleSelected"/>
+    </FrameLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+    </android.support.v4.view.ViewPager>
+
+</LinearLayout>

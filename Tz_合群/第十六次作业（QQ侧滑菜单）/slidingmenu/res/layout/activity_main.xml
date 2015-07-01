@@ -1,0 +1,23 @@
+<com.cn.slidingmenu.view.SlidingMenu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:background="@drawable/menu_bg"
+    android:scrollbars="none">
+
+    <LinearLayout 
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        
+        <include layout="@layout/menu"/>
+        
+        <LinearLayout 
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/qq">
+        </LinearLayout>
+        
+    </LinearLayout>
+
+</com.cn.slidingmenu.view.SlidingMenu>

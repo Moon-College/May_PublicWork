@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 自定义命名控件，开始的android自己命名,末尾的android改成自己的主包名 -->
+<com.tz.greatlayout.layout.AbsGreatLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:great="http://schemas.android.com/apk/res/com.tz.greatlayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+     <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/mm"
+        great:px="0.5"
+        great:py="0.1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#A2A7A2"
+        android:text="TextView"
+        great:px="0.1"
+        great:py="0.45" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#1AA51C"
+        android:text="Button"
+        great:px="0.9"
+        great:py="0.9" />
+
+</com.tz.greatlayout.layout.AbsGreatLayout>

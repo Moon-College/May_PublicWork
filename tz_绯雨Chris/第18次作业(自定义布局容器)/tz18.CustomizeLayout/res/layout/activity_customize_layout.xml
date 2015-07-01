@@ -1,0 +1,30 @@
+<com.chris.customizelayout.layout.CustomizeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:chris="http://schemas.android.com/apk/res/com.chris.customizelayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_world" 
+        android:background="#ff0000"
+        chris:px="0.2"
+        chris:py="0.6"
+        />
+    
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_world" 
+        android:background="#ff00ff"
+        chris:px="0.6"
+        chris:py="0.2"
+        />
+
+</com.chris.customizelayout.layout.CustomizeLayout>

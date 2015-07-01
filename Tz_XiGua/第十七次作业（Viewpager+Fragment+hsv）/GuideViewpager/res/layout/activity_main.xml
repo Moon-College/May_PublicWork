@@ -1,0 +1,64 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    
+    <HorizontalScrollView 
+        android:id="@+id/hsv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+        
+        <RadioGroup android:id="@+id/rgroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            
+            <RadioButton android:id="@+id/naruto"
+                style="@style/rb_style"
+                android:text="火影忍者"/>
+            <RadioButton android:id="@+id/onepiece"
+                style="@style/rb_style"
+                android:text="海贼王"/>
+            <RadioButton android:id="@+id/tennis"
+                style="@style/rb_style"
+                android:text="网球王子"/>
+            <RadioButton android:id="@+id/basketball"
+                style="@style/rb_style"
+                android:text="灌篮高手"/>
+            <RadioButton android:id="@+id/bakuman"
+                style="@style/rb_style"
+                android:text="食梦者"/>
+            <RadioButton android:id="@+id/dragonball"
+                style="@style/rb_style"
+                android:text="七龙珠"/>
+            
+        </RadioGroup>
+        
+    </HorizontalScrollView>
+    
+    <FrameLayout 
+	    android:layout_width="fill_parent"
+	    android:layout_height="5dp"
+	    >
+	    <TextView 
+	        android:layout_marginTop="1dp"
+	        android:layout_marginBottom="1dp"
+	        android:layout_width="100dp"
+	        android:layout_height="5dp"
+	        android:background="#000"
+	        android:id="@+id/tvline"
+	        />
+	</FrameLayout>
+	
+	
+	<android.support.v4.view.ViewPager
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:id="@+id/viewpager"
+	    ></android.support.v4.view.ViewPager>
+    
+</LinearLayout>
+

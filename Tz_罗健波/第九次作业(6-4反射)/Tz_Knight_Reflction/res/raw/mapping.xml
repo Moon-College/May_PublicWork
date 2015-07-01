@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mapping>
+    <view name = "editText" id = "edt_one"/>
+</mapping>

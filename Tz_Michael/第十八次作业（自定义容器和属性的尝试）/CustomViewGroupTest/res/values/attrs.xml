@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<declare-styleable name="proportionlayout">
+	    <attr name="px" format="float"></attr>
+	    <attr name="py" format="float"></attr>
+	</declare-styleable>
+    
+</resources>
