@@ -1,0 +1,16 @@
+<resources>
+
+<!-- Base application theme. -->
+<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <!-- Customize your theme here. -->
+</style>
+
+<style name="rd_style">
+    <item name="android:textColor">#b4666568</item>
+    <item name="android:textSize">16dp</item>
+    <item name="android:layout_width">80dp</item>
+    <item name="android:layout_height">match_parent</item>
+    <item name="android:gravity">center</item>
+    <item name="android:button">@null</item>
+</style>
+</resources>
