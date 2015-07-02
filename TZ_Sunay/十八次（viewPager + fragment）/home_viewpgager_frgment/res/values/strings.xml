@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">home_viewpgager_frgment</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="china">中国</string>
+    <string name="japan">日本</string>
+    <string name="han">韩国</string>
+    <string name="cao">朝鲜</string>
+     <string name="amrica">美国</string>
+     <string name="india">印度</string>
+    <string name="tai">泰国</string>
+    <string name="ying">英国</string>
+    
+</resources>
