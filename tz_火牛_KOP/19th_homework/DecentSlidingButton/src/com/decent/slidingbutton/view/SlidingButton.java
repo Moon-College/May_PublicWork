@@ -76,6 +76,8 @@ public class SlidingButton extends View {
 		 * 控件大小和父亲控件的不一致的情况
 		 */
 		int measuredHeight = (heightMode == MeasureSpec.EXACTLY)?heightSize:picHeight;
+		//需要选择measuredHeight和heightSize之间的最小值
+		measuredHeight = Math.min(measuredHeight,heightSize);
 		int measuredWidth = 2*measuredHeight/3;
 		
 		setMeasuredDimension(measuredWidth, measuredHeight);
