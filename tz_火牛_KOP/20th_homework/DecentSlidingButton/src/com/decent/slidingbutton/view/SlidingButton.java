@@ -152,6 +152,10 @@ public class SlidingButton extends View {
 	 * DOWNBAL_TOUCHED---使用下面大球
 	 */
 	private static final Integer DOWNBALL_TOUCHED = 2;
+	/**
+	 * NOT_USED----没有被使用
+	 */
+	private static final Integer NOT_USED = 0;
 	
 	/**
 	 * 用于存储价格信息的SharedPreferences的名字
@@ -166,10 +170,6 @@ public class SlidingButton extends View {
 	 * SharedPreferences里面存储下面价格的标签
 	 */	
 	private static final String PRICE_TAG_DOWN = "PRICE_TAG_DOWN";
-	/**
-	 * NOT_USED----没有被使用
-	 */
-	private static final Integer NOT_USED = 0;
 
 	public SlidingButton(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
