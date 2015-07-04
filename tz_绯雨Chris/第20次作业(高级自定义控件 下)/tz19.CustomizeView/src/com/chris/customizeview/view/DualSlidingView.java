@@ -9,33 +9,32 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.NinePatch;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.Point;
-import android.graphics.PointF;
 import android.graphics.Rect;
-import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.MeasureSpec;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 public class DualSlidingView extends View
 {
 	private static final String tag = "DualSlidingView";
 	private static final String FIRST_STAGE = "100";
+	private static final float MOL_STEP1 = 10;	//第1阶段的跳动阶数
 	private static final String SECOND_STAGE = "500";
+	private static final float MOL_STEP2 = 50;	//第2阶段的跳动阶数
 	private static final String THIRD_STAGE = "2000";
+	private static final float MOL_STEP3 = 100;	//第3阶段的跳动阶数
 	private static final String FOURTH_STAGE = "5000";
+	private static final float MOL_STEP4 = 500;	//第4阶段的跳动阶数
 	private static final String FIFTH_STAGE = "10000";
-	private static final float STAGE_TEXT_PADDING = 6;
-	private static final float RULER_TEXT_SIZE = 25;
-	private static final float POINTER_TEXT_SIZE = 25;
-	private static final float DUMMY_BUF_SIZE = 50;
-	private static final int DEF_VAL_LEFT = 300;
-	private static final int DEF_VAL_RIGHT = 8000;
+	
+	private static final float RULER_TEXT_PADDING = 6;	//控件最上面的坐标尺字体内边距
+	private static final float RULER_TEXT_SIZE = 25;	//控件最上面的坐标尺字体大小
+	private static final float POINTER_TEXT_SIZE = 35;	//指针图片中数值的文本大小
+	private static final float BOTTOM_DUMMY_SIZE = 10;	//控件最下方空出来的预定距离
+	private static final int DEF_VAL_LEFT = 300;	//初始默认左边大饼的数值
+	private static final int DEF_VAL_RIGHT = 8000;	//初始默认右边大饼的数值
 
 	private Bitmap axis_background, axis_foreground, bg_pointer, node_background, node_foreground, pan, dialog_background;
 	private Paint paintRuler, paintPointer;
@@ -105,6 +104,11 @@ public class DualSlidingView extends View
 		mNinePatch = new NinePatch(dialog_background, dialog_background.getNinePatchChunk(), null);
 	}
 
+	/**
+	 * 通过id创建Bitmap图片
+	 * @param id
+	 * @return
+	 */
 	private Bitmap decodeBitmapFromResource(int id)
 	{
 		Bitmap bitmap;
@@ -126,18 +130,19 @@ public class DualSlidingView extends View
 		scaleRate = (widthSize > heightSize) ? (float) widthSize / (float) bodyWidth : (float) heightSize / (float) bodyHeight;
 		Log.d(tag, "scaleRate=" + scaleRate);
 
+		//坐标尺画笔设置
 		paintRuler.setTextSize(RULER_TEXT_SIZE / scaleRate);
 		paintRuler.setColor(Color.BLACK);
 		paintRuler.setAntiAlias(true);
 		paintRuler.setDither(true);
-
+		//指针数值文本画笔设置
 		paintPointer.setTextSize(POINTER_TEXT_SIZE / scaleRate);
 		paintPointer.setColor(Color.WHITE);
 		paintPointer.setAntiAlias(true);
 		paintPointer.setDither(true);
 
 		//增加文字框高度后，重新测量控件高度
-		bodyHeight += DUMMY_BUF_SIZE / scaleRate + (paintRuler.descent() - paintRuler.ascent()) + 2 * (STAGE_TEXT_PADDING / scaleRate);
+		bodyHeight += BOTTOM_DUMMY_SIZE / scaleRate + (paintRuler.descent() - paintRuler.ascent()) + 2 * (RULER_TEXT_PADDING / scaleRate);
 		heightSize = resolveAdjustedSize(bodyHeight, heightMeasureSpec, 0);
 
 		setMeasuredDimension(widthSize, heightSize);
@@ -179,6 +184,7 @@ public class DualSlidingView extends View
 			int x = (int) (event.getX()/scaleRate);
 			int y = (int) (event.getY()/scaleRate);
 			Log.d(tag, "down x ="+x+" down y ="+y);
+			//判断触摸点在哪个大饼上
 			if( (x>=leftPanPoint.x && (x<=leftPanPoint.x+pan.getWidth())) && (y>=leftPanPoint.y && y<(leftPanPoint.y+pan.getHeight())) )
 			{
 				isLeftTouched = true;
@@ -189,17 +195,37 @@ public class DualSlidingView extends View
 				isLeftTouched = false;
 				isRightTouched = true;
 			}
-
+			
 			break;
 		case MotionEvent.ACTION_MOVE:
 			if(isLeftTouched)
 			{
 				valueLeft = getValueByXLocation((int) (event.getX()/scaleRate) - pan.getWidth()/2);
+				if(valueLeft > valueRight)
+				{
+					valueLeft = valueRight;
+					//如果两个大饼重合在最左边，需要更改为右边大饼可滑动
+					if(firstStageValue == valueLeft)
+					{
+						isLeftTouched = false;
+						isRightTouched = true;
+					}
+				}
 				Log.d(tag, "valueLeft = "+valueLeft);
 			}
 			if(isRightTouched)
 			{
 				valueRight = getValueByXLocation((int) (event.getX()/scaleRate) - pan.getWidth()/2);
+				if(valueRight < valueLeft)
+				{
+					valueRight = valueLeft;
+					//如果两个大饼重合在最右边，需要更改为左边大饼可滑动
+					if(fifthStageValue == valueRight)
+					{
+						isLeftTouched = true;
+						isRightTouched = false;
+					}
+				}
 				Log.d(tag, "valueRight = "+valueRight);
 			}
 			this.invalidate();
@@ -249,9 +275,33 @@ public class DualSlidingView extends View
 		super.onDraw(canvas);
 	}
 
+	/**
+	 * 绘制指针图
+	 * @param canvas
+	 * @param panPoint
+	 * @return 返回指针图当前位置左上角的Point
+	 */
+	private Point drawPointer(Canvas canvas, Point panPoint)
+	{
+		int pointerX = panPoint.x + pan.getWidth() / 2 - bg_pointer.getWidth() / 2;
+		int pointerY = panPoint.y + pan.getHeight();
+		int bottom = (int) ((this.getHeight() - BOTTOM_DUMMY_SIZE) / scaleRate) - pBottom;
+		canvas.drawBitmap(bg_pointer, null, new Rect(pointerX, pointerY, pointerX + bg_pointer.getWidth(), bottom), null);
+		Point point = new Point(pointerX, pointerY);
+		return point;
+	}
+
+	/**
+	 * 绘制指针图上面的刻度数值，显示对应当前大饼位置的数值
+	 * @param canvas
+	 * @param point
+	 * @param value
+	 * @param paint
+	 * @return 返回文本baseline的Point
+	 */
 	private Point drawText(Canvas canvas, Point point, int value, Paint paint)
 	{
-		int bottom = (int) ((this.getHeight() - DUMMY_BUF_SIZE) / scaleRate) - pBottom;
+		int bottom = (int) ((this.getHeight() - BOTTOM_DUMMY_SIZE) / scaleRate) - pBottom;
 		int px = (int) (point.x + bg_pointer.getWidth() / 2 - paint.descent());
 		int py = (int) (point.y + (bottom - point.y) * 1 / 2);
 		canvas.rotate(90, px, py);
@@ -260,7 +310,119 @@ public class DualSlidingView extends View
 		Point pointResult = new Point(px, py);
 		return pointResult;
 	}
+	
+	/**
+	 * 绘制大饼
+	 * @author ChrisLiu
+	 * @param canvas
+	 * @param value
+	 * @param axisLeft
+	 * @param axisTop
+	 * @return 返回大饼图片当前位置的左上角Point
+	 */
+	private Point drawPan(Canvas canvas, int value, int axisLeft, int axisTop)
+	{
+		int panX = getXLocationgFromValue(value);
+		int panY = axisTop + node_background.getHeight() / 2 - pan.getHeight() / 2;
+		canvas.drawBitmap(pan, panX, panY, null);
 
+		Point point = new Point(panX, panY);
+		return point;
+	}
+
+	/**
+	 * 绘制最上方的坐标刻度标尺
+	 * @author ChrisLiu
+	 * @param canvas
+	 * @param axisLeft
+	 * @param axisTop
+	 */
+	private void drawRulerLine(Canvas canvas, int axisLeft, int axisTop)
+	{
+		int textPadding = (int) (RULER_TEXT_PADDING / scaleRate);
+
+		for (int i = 0; i < stage.length; i++)
+		{
+			//1. 计算出包过字符串的宽度
+			float strWidth = paintRuler.measureText(stage[i]);
+			Log.d(tag, "strWidth = " + strWidth);
+
+			//Rect bounds = new Rect();
+			//mPaint.getTextBounds(stage[i], 0, stage[i].length(), bounds);
+			//Log.d(tag, "x="+x+" y="+y);
+			//Log.d(tag, "bounds.left="+bounds.left+" bounds.top="+bounds.top+" bounds.right="+bounds.right+" bounds.bottom="+bounds.bottom);
+
+			//2. 画出字符串背景图，留好四周余量
+			int picLeft = (int) (axisLeft + node_background.getWidth() / 2 + i * locationIncreaseStep - strWidth / 2 - textPadding);
+			int picTop = (int) (axisTop * 3 / 4 - (paintRuler.descent() - paintRuler.ascent()) - textPadding - BOTTOM_DUMMY_SIZE / scaleRate);
+			int picRight = (int) (picLeft + textPadding + strWidth + textPadding);
+			int picBottom = (int) (picTop + textPadding + (paintRuler.descent() - paintRuler.ascent()) + textPadding);
+			Log.d(tag, "picLeft=" + picLeft + " picTop=" + picTop + " picRight=" + picRight + " picBottom=" + picBottom);
+
+			mRect = new Rect(picLeft, picTop, picRight, picBottom);
+			mNinePatch.draw(canvas, mRect);
+
+			//3. 水平绘制文字字符串
+			float x = picLeft + textPadding;
+			float y = picTop - paintRuler.ascent() + textPadding;
+			canvas.drawText(stage[i], x, y, paintRuler);
+			Log.d(tag, "descent=" + paintRuler.descent() + " ascent=" + paintRuler.ascent());
+		}
+	}
+
+	/**
+	 * 通过数值判断当前对应中轴上面的x坐标，主要用于更新数值之后的大饼、指针位置重绘
+	 * @author ChrisLiu
+	 * @param value
+	 * @return 返回int型的x坐标值
+	 */
+	private int getXLocationgFromValue(int value)
+	{
+		int x;
+		int result;
+		//		Log.i(tag, "firstStageValue=" + firstStageValue + " secondStageValue=" + secondStageValue + " thirdStageValeu=" + thirdStageValeu + " fourthStageValue=" + fourthStageValue + " fifthStageValue=" + fifthStageValue);
+		//		Log.d(tag, "locationIncreaseStep="+locationIncreaseStep);
+		if (value < firstStageValue)
+		{
+			x = 0 + pLeft;
+		}
+		if (value > fifthStageValue)
+		{
+			x = fifthStageValue;
+		}
+
+		if (value <= fifthStageValue && value > fourthStageValue)
+		{
+			x = (int) (((float) (value - fourthStageValue) / (float) (fifthStageValue - fourthStageValue)) * locationIncreaseStep + 3 * locationIncreaseStep + pan.getWidth() / 2 + pLeft);
+		} else if (value <= fourthStageValue && value > thirdStageValeu)
+		{
+			x = (int) (((float) (value - thirdStageValeu) / (float) (fourthStageValue - thirdStageValeu)) * locationIncreaseStep + 2 * locationIncreaseStep + pan.getWidth() / 2 + pLeft);
+		} else if (value <= thirdStageValeu && value > secondStageValue)
+		{
+			x = (int) (((float) (value - secondStageValue) / (float) (thirdStageValeu - secondStageValue)) * locationIncreaseStep + 1 * locationIncreaseStep + pan.getWidth() / 2 + pLeft);
+		} else if (value <= secondStageValue && value > firstStageValue)
+		{
+			x = (int) (((float) (value - firstStageValue) / (float) (secondStageValue - firstStageValue)) * locationIncreaseStep + 0 * locationIncreaseStep + pan.getWidth() / 2 + pLeft);
+		} else
+		{
+			x = 0 + pLeft;
+		}
+
+		result = (int) (x - pan.getWidth() / 2);
+		Log.d(tag, "getXLocationgFromValue()-> x = " + x + " result=" + result);
+		if (result < 0)
+		{
+			result = 0;
+		}
+		return result;
+	}
+	
+	/**
+	 * 通过x坐标获取当前的数字，主要用于触摸滑动大饼显示数字在指针上
+	 * @author ChrisLiu
+	 * @param xLocation
+	 * @return 返回int型的刻度数值
+	 */
 	private int getValueByXLocation(int xLocation)
 	{
 		float value = 0;
@@ -290,17 +452,20 @@ public class DualSlidingView extends View
 
 		if (x <= fifthStageXLocation && x > fourthStageXLocation)
 		{
-			Log.i(tag, "YES1 x="+x);
 			value = (x - fourthStageXLocation) / locationIncreaseStep * amount4to5 + fourthStageValue;
+			value -= value%MOL_STEP4;
 		} else if (x <= fourthStageXLocation && x > thirdStageXLocation)
 		{
 			value = (x - thirdStageXLocation) / locationIncreaseStep * amount3to4 + thirdStageValeu;
+			value -= value%MOL_STEP3;
 		} else if (x <= thirdStageXLocation && x > secondStageXLocation)
 		{
 			value = (x - secondStageXLocation) / locationIncreaseStep * amount2to3 + secondStageValue;
+			value -= value%MOL_STEP2;
 		} else if (x <= secondStageXLocation && x > firstStageXLocation)
 		{
 			value = (x - firstStageXLocation) / locationIncreaseStep * amount1to2 + firstStageValue;
+			value -= value%MOL_STEP1;
 		} else
 		{
 			value = firstStageValue;
@@ -308,104 +473,6 @@ public class DualSlidingView extends View
 
 		Log.d(tag, "getValueByXLocation()-> value =" + (int) value);
 		return (int) value;
-	}
-
-	private Point drawPointer(Canvas canvas, Point panPoint)
-	{
-		int pointerX = panPoint.x + pan.getWidth() / 2 - bg_pointer.getWidth() / 2;
-		int pointerY = panPoint.y + pan.getHeight();
-		int bottom = (int) ((this.getHeight() - DUMMY_BUF_SIZE) / scaleRate) - pBottom;
-		canvas.drawBitmap(bg_pointer, null, new Rect(pointerX, pointerY, pointerX + bg_pointer.getWidth(), bottom), null);
-		Point point = new Point(pointerX, pointerY);
-		return point;
-	}
-
-	private Point drawPan(Canvas canvas, int value, int axisLeft, int axisTop)
-	{
-		int panX = getXLocationgFromValue(value);
-		int panY = axisTop + node_background.getHeight() / 2 - pan.getHeight() / 2;
-		canvas.drawBitmap(pan, panX, panY, null);
-
-		Point point = new Point(panX, panY);
-		return point;
-	}
-
-	private void drawRulerLine(Canvas canvas, int axisLeft, int axisTop)
-	{
-		int textPadding = (int) (STAGE_TEXT_PADDING / scaleRate);
-
-		for (int i = 0; i < stage.length; i++)
-		{
-			//1. 计算出包过字符串的宽度
-			float strWidth = paintRuler.measureText(stage[i]);
-			Log.d(tag, "strWidth = " + strWidth);
-
-			//Rect bounds = new Rect();
-			//mPaint.getTextBounds(stage[i], 0, stage[i].length(), bounds);
-			//Log.d(tag, "x="+x+" y="+y);
-			//Log.d(tag, "bounds.left="+bounds.left+" bounds.top="+bounds.top+" bounds.right="+bounds.right+" bounds.bottom="+bounds.bottom);
-
-			//2. 画出字符串背景图，留好四周余量
-			int picLeft = (int) (axisLeft + node_background.getWidth() / 2 + i * locationIncreaseStep - strWidth / 2 - textPadding);
-			int picTop = (int) (axisTop * 3 / 4 - (paintRuler.descent() - paintRuler.ascent()) - textPadding - DUMMY_BUF_SIZE / scaleRate);
-			int picRight = (int) (picLeft + textPadding + strWidth + textPadding);
-			int picBottom = (int) (picTop + textPadding + (paintRuler.descent() - paintRuler.ascent()) + textPadding);
-			Log.d(tag, "picLeft=" + picLeft + " picTop=" + picTop + " picRight=" + picRight + " picBottom=" + picBottom);
-
-			mRect = new Rect(picLeft, picTop, picRight, picBottom);
-			mNinePatch.draw(canvas, mRect);
-
-			//3. 水平绘制文字字符串
-			float x = picLeft + textPadding;
-			float y = picTop - paintRuler.ascent() + textPadding;
-			canvas.drawText(stage[i], x, y, paintRuler);
-			Log.d(tag, "descent=" + paintRuler.descent() + " ascent=" + paintRuler.ascent());
-		}
-	}
-
-	private int getXLocationgFromValue(int value)
-	{
-		int x;
-		int result;
-		//		Log.i(tag, "firstStageValue=" + firstStageValue + " secondStageValue=" + secondStageValue + " thirdStageValeu=" + thirdStageValeu + " fourthStageValue=" + fourthStageValue + " fifthStageValue=" + fifthStageValue);
-		//		Log.d(tag, "locationIncreaseStep="+locationIncreaseStep);
-		if (value < firstStageValue)
-		{
-			x = 0 + pLeft;
-		}
-		if (value > fifthStageValue)
-		{
-			x = fifthStageValue;
-		}
-
-		if (value <= fifthStageValue && value > fourthStageValue)
-		{
-			//			Log.d(tag, "YES2");
-			//			Log.d(tag, "除法："+((float)(value - fourthStageValue) / (float)(fifthStageValue - fourthStageValue)));
-			x = (int) (((float) (value - fourthStageValue) / (float) (fifthStageValue - fourthStageValue)) * locationIncreaseStep + 3 * locationIncreaseStep + pan.getWidth() / 2 + pLeft);
-		} else if (value <= fourthStageValue && value > thirdStageValeu)
-		{
-			x = (int) (((float) (value - thirdStageValeu) / (float) (fourthStageValue - thirdStageValeu)) * locationIncreaseStep + 2 * locationIncreaseStep + pan.getWidth() / 2 + pLeft);
-		} else if (value <= thirdStageValeu && value > secondStageValue)
-		{
-			x = (int) (((float) (value - secondStageValue) / (float) (thirdStageValeu - secondStageValue)) * locationIncreaseStep + 1 * locationIncreaseStep + pan.getWidth() / 2 + pLeft);
-		} else if (value <= secondStageValue && value > firstStageValue)
-		{
-			//			Log.d(tag, "YES1");
-			//			Log.d(tag, "除法："+((float)(value - firstStageValue) / (float)(secondStageValue - firstStageValue)));
-			x = (int) (((float) (value - firstStageValue) / (float) (secondStageValue - firstStageValue)) * locationIncreaseStep + 0 * locationIncreaseStep + pan.getWidth() / 2 + pLeft);
-		} else
-		{
-			x = 0 + pLeft;
-		}
-
-		result = (int) (x - pan.getWidth() / 2);
-		Log.d(tag, "getXLocationgFromValue()-> x = " + x + " result=" + result);
-		if (result < 0)
-		{
-			result = 0;
-		}
-		return result;
 	}
 
 }
