@@ -2,7 +2,10 @@ package com.decent.slidingbutton.view;
 
 import java.util.HashMap;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -80,11 +83,11 @@ public class SlidingButton extends View {
 	/**
 	 * 上大球对应的价格
 	 */
-	private int price_up = CAR_LEVEL4;
+	private int price_up;
 	/**
 	 * 下面打球对应的价格
 	 */
-	private int price_down = CAR_LEVEL2;
+	private int price_down;
 	/**
 	 * 灰色背景的x坐标
 	 */
@@ -140,6 +143,7 @@ public class SlidingButton extends View {
 	private static final String TOUCHED_INDEX = "TOUCHED_INDEX";
 	private static final String TOUCHED_TYPE = "TOUCHED_TYPE";
 
+	
 	/**
 	 * 两个大球的使用情况 UPBALL_TOUCHED---使用上面大球被
 	 */
@@ -148,7 +152,20 @@ public class SlidingButton extends View {
 	 * DOWNBAL_TOUCHED---使用下面大球
 	 */
 	private static final Integer DOWNBALL_TOUCHED = 2;
+	
+	/**
+	 * 用于存储价格信息的SharedPreferences的名字
+	 */
+	private static final String SP_NAME = "SP";
 
+	/**
+	 * SharedPreferences里面存储上面价格的标签
+	 */
+	private static final String PRICE_TAG_UP = "PRICE_TAG_UP";
+	/**
+	 * SharedPreferences里面存储下面价格的标签
+	 */	
+	private static final String PRICE_TAG_DOWN = "PRICE_TAG_DOWN";
 	/**
 	 * NOT_USED----没有被使用
 	 */
@@ -176,11 +193,18 @@ public class SlidingButton extends View {
 	 * 加载需要的图片和初始化paint
 	 */
 	private void initData() {
+		/*
+		 * load图片
+		 */
 		gray_bg = loadBitmapImage(R.drawable.axis_before);
 		green_bg = loadBitmapImage(R.drawable.axis_after);
 		bg_price_pin = loadBitmapImage(R.drawable.bg_price);
 		btn = loadBitmapImage(R.drawable.btn);
+		//paint
 		paint = new Paint();
+		/*
+		 * 初始化touch坐标信息
+		 */
 		HashMap<String, Integer> touchDetail0 = new HashMap<String, Integer>();
 		touchDetail0.put(TOUCHED_INDEX, -1);
 		touchDetail0.put(TOUCHED_TYPE, NOT_USED);
@@ -189,6 +213,21 @@ public class SlidingButton extends View {
 		touchDetail1.put(TOUCHED_TYPE, NOT_USED);
 		touchDetails[0] = touchDetail0;
 		touchDetails[1] = touchDetail1;
+		/*
+		 * 初始化价格,如果没有获取成功，则直接设置固定值
+		 */
+		int tmp_price = getPriceValue(PRICE_TAG_UP);
+		if(tmp_price!=-1){
+			price_up = tmp_price;
+		}else{
+			price_up = CAR_LEVEL4;
+		}
+		tmp_price = getPriceValue(PRICE_TAG_DOWN);
+		if(tmp_price!=-1){
+			price_down = tmp_price;
+		}else{
+			price_down = CAR_LEVEL2;
+		}		
 	}
 
 	/**
@@ -567,6 +606,7 @@ public class SlidingButton extends View {
 							 * 而onTouchEvent是控件里卖的坐标，自然是缩放之后的
 							 */
 							price_up = getPriceByAxisY(y / scale_h, true);
+							storePriceValue(PRICE_TAG_UP,price_up);
 							isNeedFresh = true;
 						} else if (touchDetail.get(TOUCHED_TYPE) == DOWNBALL_TOUCHED) {
 							y = event.getY(pointerIndex);
@@ -575,6 +615,7 @@ public class SlidingButton extends View {
 							 * 而onTouchEvent是控件里卖的坐标，自然是缩放之后的
 							 */
 							price_down = getPriceByAxisY(y / scale_h, false);
+							storePriceValue(PRICE_TAG_DOWN,price_down);
 							isNeedFresh = true;
 						}
 						if (isNeedFresh) {
@@ -609,4 +650,25 @@ public class SlidingButton extends View {
 		return true;
 	}
 
+	/**
+	 * 存储选择的价格信息到 SharedPreferences
+	 * @param priceTag 价格的标签
+	 * @param value 价格
+	 */
+	private void storePriceValue(String priceTag, int value){
+		SharedPreferences sp = getContext().getSharedPreferences(SP_NAME, Activity.MODE_PRIVATE);
+		Editor editor = sp.edit();
+		editor.putInt(priceTag, value);
+		editor.commit();
+	}
+	
+	/**
+	 * 获取对应价格标签的价格
+	 * @param priceTag 价格标签
+	 * @return 价格
+	 */
+	private int getPriceValue(String priceTag){
+		SharedPreferences sp = getContext().getSharedPreferences(SP_NAME, Activity.MODE_PRIVATE);
+		return sp.getInt(priceTag, -1);
+	}
 }
