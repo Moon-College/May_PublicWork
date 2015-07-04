@@ -194,12 +194,12 @@ public class DualSlidingView extends View
 		case MotionEvent.ACTION_MOVE:
 			if(isLeftTouched)
 			{
-				valueLeft = getValueByXLocation((int) (event.getX()/scaleRate));
+				valueLeft = getValueByXLocation((int) (event.getX()/scaleRate) - pan.getWidth()/2);
 				Log.d(tag, "valueLeft = "+valueLeft);
 			}
 			if(isRightTouched)
 			{
-				valueRight = getValueByXLocation((int) (event.getX()/scaleRate));
+				valueRight = getValueByXLocation((int) (event.getX()/scaleRate) - pan.getWidth()/2);
 				Log.d(tag, "valueRight = "+valueRight);
 			}
 			this.invalidate();
@@ -281,11 +281,11 @@ public class DualSlidingView extends View
 
 		if (x < firstStageXLocation)
 		{
-			value = firstStageXLocation;
+			x = firstStageXLocation;
 		} 
 		if (x > fifthStageXLocation)
 		{
-			value = fifthStageXLocation;
+			x = fifthStageXLocation;
 		}
 
 		if (x <= fifthStageXLocation && x > fourthStageXLocation)
