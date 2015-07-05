@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, MainActivity!</string>
+    <string name="app_name" >Qq_slidingmenu</string>
+    <string name="one">开通会员</string>
+    <string name="twee">QQ钱包</string>
+     <string name="three">网上营业厅</string>
+     <string name="four">个性装扮</string>
+     <string name="five">我的收藏</string>
+
+</resources>

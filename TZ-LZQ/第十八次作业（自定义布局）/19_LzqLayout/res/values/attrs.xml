@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="lzqAbsoluteLayout">
+        <attr name="lzqAbsoluteLayout_px" format="float" />
+        <attr name="lzqAbsoluteLayout_py" format="float" />
+    </declare-styleable>
+</resources>

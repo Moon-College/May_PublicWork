@@ -1,0 +1,93 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <HorizontalScrollView
+        android:id="@+id/hsvMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#5bd2c8c8"
+        android:scrollbars="none">
+
+        <RadioGroup
+            android:id="@+id/rgMenu"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rdTop"
+                style="@style/rd_style"
+                android:text="头条" />
+
+            <RadioButton
+                android:id="@+id/rdNews"
+                style="@style/rd_style"
+                android:text="新闻" />
+
+            <RadioButton
+                android:id="@+id/rdHot"
+                style="@style/rd_style"
+                android:text="热点" />
+
+            <RadioButton
+                android:id="@+id/rdSz"
+                style="@style/rd_style"
+                android:text="深圳" />
+
+            <RadioButton
+                android:id="@+id/rdCar"
+                style="@style/rd_style"
+                android:text="汽车" />
+
+            <RadioButton
+                android:id="@+id/rdLife"
+                style="@style/rd_style"
+                android:text="生活" />
+
+            <RadioButton
+                android:id="@+id/rdPhoto"
+                style="@style/rd_style"
+                android:text="照片" />
+
+            <RadioButton
+                android:id="@+id/rdTrip"
+                style="@style/rd_style"
+                android:text="旅游" />
+
+            <RadioButton
+                android:id="@+id/rdHistory"
+                style="@style/rd_style"
+                android:text="历史" />
+
+            <RadioButton
+                android:id="@+id/rdFashion"
+                style="@style/rd_style"
+                android:text="时尚" />
+
+            <RadioButton
+                android:id="@+id/rdGame"
+                style="@style/rd_style"
+                android:text="游戏" />
+        </RadioGroup>
+    </HorizontalScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-3dp">
+
+        <View
+            android:id="@+id/radioLine"
+            android:layout_width="80dp"
+            android:layout_height="3dp"
+            android:background="@color/menu_color_selected" />
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

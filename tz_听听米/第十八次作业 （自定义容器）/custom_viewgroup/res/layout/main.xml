@@ -1,0 +1,16 @@
+<com.zjm.viewgroup.AbsCustomLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zjm="http://schemas.android.com/apk/res/com.zjm.viewgroup"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffff00">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00ffff"
+        zjm:px="0.5"
+        zjm:py="0.5"
+        android:text="@string/hello_world" />
+
+</com.zjm.viewgroup.AbsCustomLayout>

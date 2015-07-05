@@ -21,44 +21,43 @@ public class MainActivity extends FragmentActivity implements OnCheckedChangeLis
 	private RadioGroup rg;
 	private ViewPager viewPager;
 	private View line;
-	private int[] images;
+	private int[] imagesId;
 	private int fromX;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.main);
 
+		initView();
+		setListener();
+	}
+
+	private void initView() {
 		hsv = (HorizontalScrollView) findViewById(R.id.hsv);
 		rg = (RadioGroup) findViewById(R.id.rg);
 		viewPager = (ViewPager) findViewById(R.id.viewpager);
 		line = findViewById(R.id.line);
 
+		imagesId = new int[] { R.drawable.gaoyuanyuan, R.drawable.fanbingbing, R.drawable.linzhilng,
+				R.drawable.linqingxia, R.drawable.wangzuxain, R.drawable.yangmi, R.drawable.liuyifei,
+				R.drawable.zhouxun };
+	}
+
+	private void setListener() {
+		// ViewPager里面放fragment，此处可以直接在MyAdapter中返回就可以了，Fragment和Activity没关系
+		// List<Fragment> fragments = new ArrayList<Fragment>();
+
 		MyAdapter adapter = new MyAdapter(getSupportFragmentManager());
-		
-		images = new int[] { 
-				R.drawable.china,
-				R.drawable.korea, 
-				R.drawable.nkorea, 
-				R.drawable.japan, 
-				R.drawable.usa, 
-				R.drawable.india,
-				R.drawable.tail 
-			};
-
-		// ViewPager里面放fragmnet
-//		 List<Fragment> fragments = new ArrayList<Fragment>();
-		
 		viewPager.setAdapter(adapter);
-
+		
 		rg.setOnCheckedChangeListener(this);
 		viewPager.setOnPageChangeListener(this);
 	}
-	
 
 	// ViewPager适配器
 	class MyAdapter extends FragmentPagerAdapter {
-		
+
 		public MyAdapter(FragmentManager fm) {
 			super(fm);
 		}
@@ -68,10 +67,10 @@ public class MainActivity extends FragmentActivity implements OnCheckedChangeLis
 		public Fragment getItem(int arg0) {
 			MyFragment fragment = new MyFragment();
 			Bundle bundle = new Bundle();
-			bundle.putInt("path", images[arg0]);
+			bundle.putInt("path", imagesId[arg0]);
 			bundle.putInt("position", arg0);
 			fragment.setArguments(bundle);
-			return fragment;
+			return fragment;  //直接返回fragment，因为fragment有自己的生命周期
 		}
 
 		// 决定有多少页,和rb一样
@@ -80,30 +79,32 @@ public class MainActivity extends FragmentActivity implements OnCheckedChangeLis
 			return rg.getChildCount();
 		}
 	}
-	
-	@Override
+
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
 		switch (checkedId) {
-		case R.id.rb_china:
+		case R.id.rb_gaoyuanyuan:
 			viewPager.setCurrentItem(0);
 			break;
-		case R.id.rb_korea:
+		case R.id.rb_fanbingbing:
 			viewPager.setCurrentItem(1);
 			break;
-		case R.id.rb_japan:
+		case R.id.rb_linzhiling:
 			viewPager.setCurrentItem(2);
 			break;
-		case R.id.rb_usa:
+		case R.id.rb_linqingxia:
 			viewPager.setCurrentItem(3);
 			break;
-		case R.id.rb_north_korea:
+		case R.id.rb_wangzuxian:
 			viewPager.setCurrentItem(4);
 			break;
-		case R.id.rb_india:
+		case R.id.rb_yangmi:
 			viewPager.setCurrentItem(5);
 			break;
-		case R.id.rb_tail:
+		case R.id.rb_liuyifei:
 			viewPager.setCurrentItem(6);
+			break;
+		case R.id.rb_zhouxun:
+			viewPager.setCurrentItem(7);
 			break;
 
 		default:
@@ -112,35 +113,33 @@ public class MainActivity extends FragmentActivity implements OnCheckedChangeLis
 
 	}
 
-	@Override
 	public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-		int total = (int) ((position + positionOffset) * rg.getChildAt(0).getWidth());
-		int left = (viewPager.getWidth() - rg.getChildAt(0).getWidth())/2;
+		int total = (int) ((position+positionOffset)*rg.getChildAt(0).getWidth());
+		int left = (viewPager.getWidth()-rg.getChildAt(0).getWidth())/2;
 		int scrollDx = total - left;
 		hsv.scrollTo(scrollDx, 0);
 		moveLine(position, positionOffset);
 	}
-	
-	private void moveLine(int position, float positionOffset){
-		//position表示将来第几个选项被选中
+
+	private void moveLine(int position, float positionOffset) {
+		// position表示将来第几个选项被选中
 		RadioButton rb = (RadioButton) rg.getChildAt(position);
 		int[] location = new int[2];
 		rb.getLocationInWindow(location);
-		//利用位移动画滑到对应的按钮的位置
-		TranslateAnimation ta = new TranslateAnimation(fromX, location[0]+positionOffset*rb.getWidth(), 0, 0);
-		ta.setDuration(100);	//持续时间
-		ta.setFillAfter(true); //滑动后停下来
-		fromX = (int) (location[0]+positionOffset*rb.getWidth());
-		line.setAnimation(ta);
+		// 利用位移动画滑到对应的按钮的位置
+		TranslateAnimation animation = new TranslateAnimation(fromX, location[0] + positionOffset * rb.getWidth(), 0, 0);
+		animation.setDuration(100); // 持续时间
+		animation.setFillAfter(true); // 滑动后停下来
+		fromX = (int) (location[0] + positionOffset * rb.getWidth());
+//		line.setAnimation(animation);
+		line.startAnimation(animation);  //注意此处要调用startAnimation，而不是设置setAnimation
 	}
-	
-	@Override
+
 	public void onPageScrollStateChanged(int state) {
-		// TODO Auto-generated method stub 
+		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void onPageSelected(int position) {
 		// TODO Auto-generated method stub
 
