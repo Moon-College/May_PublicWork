@@ -3,6 +3,7 @@ package com.dd.dd_high_custom_view.view;
 import com.dd.dd_high_custom_view.R;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -10,6 +11,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -39,6 +41,15 @@ public class SlidingButtons extends View {
 
 	public SlidingButtons(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.slidingView);
+		price_up = a.getInt(R.styleable.slidingView_priceUp, 1500);
+		price_down =  a.getInt(R.styleable.slidingView_priceDown, 500);
+		if (price_up>10000) {
+			price_up=10000;
+		}
+		if (price_down<0) {
+			price_down=0;
+		}
 		// 初始化数据，比如图片
 		gray_bg = iBmp(R.drawable.axis_before);
 		green_bg = iBmp(R.drawable.axis_after);
@@ -46,8 +57,8 @@ public class SlidingButtons extends View {
 		num_price = iBmp(R.drawable.bg_number);
 		paint = new Paint();
 		paint.setColor(Color.GRAY);// 灰色
-		price_up = 1000;
-		price_down = 200;// 尽量自定义属性设置在xml里
+//		price_up = 1000;
+//		price_down = 200;// 尽量自定义属性设置在xml里
 	}
 
 	public Bitmap iBmp(int resId) {
@@ -182,6 +193,7 @@ public class SlidingButtons extends View {
 		case MotionEvent.ACTION_DOWN:
 			float x = event.getX() / scale_h;
 			float y = event.getY() / scale_h;
+			Log.v("home", "x"+x);
 			if (x >= btn_x && x <= btn_x + btn.getWidth()) {
 				if (y >= (y_up - btn.getHeight() / 2)
 						&& y <= (y_up + btn.getHeight() / 2)) {
@@ -201,6 +213,7 @@ public class SlidingButtons extends View {
 			float y2 = event.getY() / scale_h;
 			if (isUpTouched) {
 				price_up = getPriceByY(y2);
+				Log.v("home", "price_up"+price_up);
 				if (price_up <= price_down) {
 					price_up = price_down;
 				}
@@ -225,7 +238,7 @@ public class SlidingButtons extends View {
 		default:
 			break;
 		}
-		return super.onTouchEvent(event);
+		return true;
 	}
 
 	/**
