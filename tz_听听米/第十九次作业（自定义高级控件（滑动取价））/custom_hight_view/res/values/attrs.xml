@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+     <declare-styleable name="slidingbtn">
+        <attr name ="price_up" format="integer" ></attr>
+        <attr name ="price_down" format="integer" ></attr>
+     </declare-styleable>
+</resources>
