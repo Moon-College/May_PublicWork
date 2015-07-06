@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zht.customlayout.CustomLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zht="http://schemas.android.com/apk/res/com.zht.customlayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00ffff" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#ff0000"
+        android:text="控件1"
+        zht:px="0.5"
+        zht:py="0.5" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#ff0000"
+        android:text="控件2"
+        zht:px="0.7"
+        zht:py="0.8" />
+
+</com.zht.customlayout.CustomLayout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+      <EditText
+        android:id="@+id/et_names"
+        android:layout_width="fill_parent"
+        android:layout_height="45.0dip"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/shape_"
+        android:drawableLeft="@drawable/iconfont_shouji"
+        android:drawablePadding="8.0dip"
+        android:hint="账号"
+        android:inputType="number"
+        android:maxLength="11"
+        android:padding="10.0dip"
+        android:textColor="#ff989898"
+        android:textColorHint="#ff333333"
+        android:singleLine="true"
+        android:textSize="18.0sp" />
+    
+   <EditText 
+        android:id="@+id/te_user_adress"
+        android:layout_width="fill_parent" 
+        android:layout_height="45.0dip"
+        android:background="@drawable/shape_"
+        android:drawableLeft="@drawable/iconfont_shouji"
+        android:paddingLeft="5.0sp"
+        android:hint="密码"
+        android:textSize="18.0sp"
+        android:inputType="textPassword"
+        android:textColorHint="#ff989898"
+        android:singleLine="true"
+        android:layout_marginTop="20.0sp"
+        android:maxLength="11"/>
+
+</LinearLayout>

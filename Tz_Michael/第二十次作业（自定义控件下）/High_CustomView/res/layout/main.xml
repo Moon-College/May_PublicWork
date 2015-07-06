@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:twsv="http://schemas.android.com/apk/res/com.tz.michael.activity"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#00f"
+    android:orientation="horizontal" >
+
+    <com.tz.michael.custom.TwoWaySeekView
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:background="#ffffa0"
+        android:id="@+id/twsv"
+        twsv:priceUp="700"
+        twsv:priceDown="190"
+         />
+
+    <Button 
+        android:id="@+id/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="click"/>
+    
+</LinearLayout>

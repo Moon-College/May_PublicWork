@@ -1,0 +1,15 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dd="http://schemas.android.com/apk/res/com.dd.dd_high_custom_view"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <com.dd.dd_high_custom_view.view.SlidingButtons
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        dd:priceUp="1400"
+        dd:priceDown="300"
+        android:text="@string/hello_world" />
+
+</LinearLayout>

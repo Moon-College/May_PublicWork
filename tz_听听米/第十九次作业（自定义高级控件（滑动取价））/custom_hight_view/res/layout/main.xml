@@ -1,0 +1,23 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoujm="http://schemas.android.com/apk/res/com.zjm.activity"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#00ffff"
+    android:orientation="vertical" >
+
+    <com.zjm.activity.view.SlidingButton
+        android:id="@+id/sdBtn"
+        android:layout_width="fill_parent"
+        android:layout_height="450dp"
+        android:background="#ffffff"
+        zoujm:price_down="350"
+        zoujm:price_up="750" >
+    </com.zjm.activity.view.SlidingButton>
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:layout_marginTop="30dp"/>
+
+</LinearLayout>
