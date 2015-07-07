@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="rocyView" >
+        
+        <attr name="first" format="integer"/>
+        <attr name="second" format="integer"/>
+        <attr name="third" format="integer"/>
+        <attr name="fourth" format="integer"/>
+        <attr name="fifth" format="integer"/>
+    </declare-styleable>
+</resources>
