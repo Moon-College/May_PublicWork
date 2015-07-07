@@ -58,11 +58,15 @@ public class FlapyDrawer extends Thread
 						birdBmpIndex = 0;
 					}
 				}
+				else
+				{
+					Log.e(tag, "mBitmaps.length ="+mBitmaps.length);
+					Log.e(tag, "mCanvas =" + mCanvas + " mBird=" + mBird);
+				}
 
 			} catch (Exception e)
 			{
-				Log.e(tag, "mBitmaps.length ="+mBitmaps.length);
-				Log.e(tag, "mCanvas =" + mCanvas + " mBird=" + mBird);
+				
 			} finally
 			{
 				mHolder.unlockCanvasAndPost(mCanvas);

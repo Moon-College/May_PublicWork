@@ -5,71 +5,29 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.util.Log;
 
-public class SpiritBird
+public class SpiritBird extends MySpirit
 {
 	protected static final String tag = "SpiritBird";
 
-	private int width, height;
-	private int left, top; //spirit的绘制坐标
-	private Context mContext;
-	private Canvas mCanvas;
-	private Bitmap[] mBitmaps;
-	
-	public int getWidth()
+	public SpiritBird(Context context, Bitmap[] bitmaps, int x, int y)
 	{
-		return width;
-	}
-
-	public void setWidth(int width)
-	{
-		this.width = width;
-	}
-
-	public int getHeight()
-	{
-		return height;
-	}
-
-	public void setHeight(int height)
-	{
-		this.height = height;
-	}
-
-	public void setBitmaps(Bitmap[] bitmaps)
-	{
-		this.mBitmaps = bitmaps;
-	}
-
-	public SpiritBird(Context context)
-	{
-		this(context, null);
+		super(context, bitmaps, x, y);
 	}
 
 	public SpiritBird(Context context, Bitmap[] bitmaps)
 	{
-		this(context, bitmaps, 0, 0);
+		super(context, bitmaps);
 	}
 
-	public SpiritBird(Context context, Bitmap[] bitmaps, int x, int y)
+	public SpiritBird(Context context)
 	{
-		this.mContext = context;
-		this.left = x;
-		this.top = y;
-		this.mBitmaps = bitmaps;
-		this.width = bitmaps[0].getWidth();
-		this.height = bitmaps[0].getHeight();
+		super(context);
 	}
 
-	/**
-	 * 绘制一帧图像
-	 * @param canvas
-	 * @param startIndex
-	 * @param flushTime
-	 * @return
-	 */
+	@Override
 	public int startDrawFrame(Canvas canvas, int startIndex, int flushTime)
 	{
-		this.mCanvas = canvas;
+		mCanvas = canvas;
 		if (null != mBitmaps[startIndex])
 		{
 			canvas.drawBitmap(mBitmaps[startIndex], left, top, null);

@@ -24,6 +24,7 @@ public class FlapyBirdActivity extends Activity implements SurfaceHolder.Callbac
 	//鸟图片的id数组
 	private int[] birdBmpRes = new int[]
 			{ R.drawable.bird_1, R.drawable.bird_2, R.drawable.bird_3 };
+	private FlapyDrawer birdDrawer2;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -66,9 +67,10 @@ public class FlapyBirdActivity extends Activity implements SurfaceHolder.Callbac
 	{
 		Log.d(tag, "surfaceCreated");
 		//配置绘制鸟图片的画家对象
-		birdDrawer = generateBirdDrawer();
+		birdDrawer = generateBirdDrawer(birdBmps, dispWidth/4, dispHeight/2, 50);
 		
 		//配置绘制背景的画家对象
+		birdDrawer2 = generateBirdDrawer(birdBmps, dispWidth/2, dispHeight/4, 500);
 	}
 
 	@Override
@@ -76,6 +78,7 @@ public class FlapyBirdActivity extends Activity implements SurfaceHolder.Callbac
 	{
 		Log.d(tag, "surfaceChanged");
 		birdDrawer.start();
+		birdDrawer2.start();
 	}
 
 	@Override
@@ -83,19 +86,20 @@ public class FlapyBirdActivity extends Activity implements SurfaceHolder.Callbac
 	{
 		Log.d(tag, "surfaceDestroyed");
 		birdDrawer.stopDraw();
+		birdDrawer2.stopDraw();
 	}
 	
 	/**
 	 * 配置绘制鸟图片的画家对象
 	 * @return
 	 */
-	private FlapyDrawer generateBirdDrawer()
+	private FlapyDrawer generateBirdDrawer(Bitmap[] bmps, int x, int y, int freq)
 	{
 		FlapyDrawer drawer = new FlapyDrawer(this, sv);
 		drawer = new FlapyDrawer(this, sv);
-		drawer.setmBitmaps(birdBmps);
-		drawer.setBirdFlushFreq(50);
-		drawer.setBirdDrawPoint(new Point(dispWidth/4, dispHeight/2));
+		drawer.setmBitmaps(bmps);
+		drawer.setBirdFlushFreq(freq);
+		drawer.setBirdDrawPoint(new Point(x, y));
 		return drawer;
 	}
 
