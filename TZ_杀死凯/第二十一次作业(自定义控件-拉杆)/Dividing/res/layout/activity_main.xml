@@ -1,0 +1,27 @@
+<LinearLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+     xmlns:ssk="http://schemas.android.com/apk/res/com.ssk.dividing"
+   android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".WangYiActivity"
+    android:background="#000000" >
+    
+    <com.ssk.dividing.view.DividingView
+         android:layout_width="wrap_content"
+   		 android:layout_height="300dp"
+   		 android:background="#ffffff"
+   		 ssk:upprice="1000"
+   		 ssk:downprice="200"
+   		 ssk:firstprice="0"
+   		 ssk:secondprice="200"
+   		 ssk:thirdprice="500"
+   		 ssk:fourthprice="1000"
+   		 ssk:fifthprice="10000"
+   		 ssk:firstscale="20"
+   		 ssk:secondscale="50"
+   		 ssk:thirdscale="100"
+   		 ssk:fourthscale="1000"
+        >
+    </com.ssk.dividing.view.DividingView>
+</LinearLayout>
