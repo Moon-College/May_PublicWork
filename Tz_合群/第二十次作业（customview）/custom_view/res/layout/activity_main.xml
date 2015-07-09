@@ -1,0 +1,15 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:slidingButton="http://schemas.android.com/apk/res/com.cn.customview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+   <com.cn.customview.view.SlidingButton 
+       android:layout_width="wrap_content"
+       android:layout_height="600dp"
+       android:background="@android:color/holo_green_dark"
+       slidingButton:price_u="1000"
+       slidingButton:price_d="500"/>
+
+</LinearLayout>

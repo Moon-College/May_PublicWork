@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="TwoWaySeekView">
+        <attr name="priceUp" format="integer"></attr>
+        <attr name="priceDown" format="integer"></attr>
+    </declare-styleable>
+    
+</resources>

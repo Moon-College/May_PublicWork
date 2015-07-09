@@ -1,0 +1,13 @@
+<com.junwen.view.CustomViewGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:junwen="http://schemas.android.com/apk/res/com.example.customattr"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_world"
+        junwen:px="0.5"
+        junwen:py="0.9" />
+
+</com.junwen.view.CustomViewGroup>

@@ -1,0 +1,31 @@
+<com.qq.slidingmenu.view.MyHorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/menu"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@drawable/menu_bg"
+    android:fadingEdge="none"
+    android:scrollbars="none" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal" >
+
+        <!-- 菜单 -->
+
+        <include layout="@layout/menu" />
+
+        <!-- 主界面布局 -->
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/qq" >
+
+            <!-- fragment -->
+
+        </LinearLayout>
+    </LinearLayout>
+
+</com.qq.slidingmenu.view.MyHorizontalScrollView>

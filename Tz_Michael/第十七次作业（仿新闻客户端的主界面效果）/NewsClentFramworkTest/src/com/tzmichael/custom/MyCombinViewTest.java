@@ -57,6 +57,7 @@ public class MyCombinViewTest extends LinearLayout implements OnCheckedChangeLis
 			rb.setTextSize(14);
 			rb.setTextColor(getResources().getColor(R.color.rb_tv_color));
 			rb.setButtonDrawable(null);//这里想动态的把RadioButton的按钮图片去掉，尝试了很多方法，始终去不掉
+			rb.setButtonDrawable(getResources().getDrawable(android.R.color.transparent));//这里想动态的把RadioButton的按钮图片去掉，我帮你试试
 			rb.setGravity(Gravity.CENTER);
 			rb.setBackgroundDrawable(getResources().getDrawable(R.drawable.rb_bg_shap));
 			rg.addView(rb, i);

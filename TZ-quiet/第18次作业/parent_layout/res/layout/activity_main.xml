@@ -1,0 +1,16 @@
+<!-- 自定义命名空间，将末尾的android改成自己的主包名 -->
+<cn.ysh.view.MyAbsolutelayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/apk/res/cn.ysh.parent_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baby"
+        tools:px="0.2"
+        tools:py="0.3"
+         />
+
+</cn.ysh.view.MyAbsolutelayout>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MyViewGroup">
+        <attr name="fromX" format="float" />
+        <attr name="fromY" format="float" />
+    </declare-styleable>
+
+
+</resources>
