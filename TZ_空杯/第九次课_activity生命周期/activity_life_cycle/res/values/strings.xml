@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, Activity_life_cycleActivity!</string>
+    <string name="app_name">Activity_life_cycle</string>
+
+</resources>
