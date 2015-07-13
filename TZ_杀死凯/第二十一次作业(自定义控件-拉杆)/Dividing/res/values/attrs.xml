@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+     <declare-styleable name="DividingView">
+         <!-- 默认价钱 -->
+        <attr name="upprice" format="integer"/>
+         <attr name="downprice" format="integer"/>
+         <!-- 区间最高价格 -->
+          <attr name="firstprice" format="integer"/>
+          <attr name="secondprice" format="integer"/>
+          <attr name="thirdprice" format="integer"/>
+          <attr name="fourthprice" format="integer"/>
+          <attr name="fifthprice" format="integer"/>
+          <!-- 区间刻度-->
+          <attr name="firstscale" format="integer"/>
+          <attr name="secondscale" format="integer"/>
+          <attr name="thirdscale" format="integer"/>
+          <attr name="fourthscale" format="integer"/>
+    </declare-styleable>
+</resources>
