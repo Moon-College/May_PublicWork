@@ -31,7 +31,7 @@ public class DecentSQLiteHelper extends SQLiteOpenHelper {
 			// 运动类型
 			db.execSQL("create table sport_types (_id integer primary key autoincrement,name varchar(20),des varchar(400));");
 			// 运动记录
-			db.execSQL("create table sport_records (_id integer primary key autoincrement,sport_type_id integer,start_time datetime,duration integer);");
+			db.execSQL("create table sport_records (_id integer primary key autoincrement,sport_type_id integer,start_time datetime,duration integer,user_id integer);");
 
 			/*
 			 * 插入基本数据
