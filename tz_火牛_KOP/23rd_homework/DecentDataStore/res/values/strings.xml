@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, DecentDataStoreActivity!</string>
+    <string name="app_name">DecentDataStore</string>
+    <string name="back_to_add_mode">Back to Add Mode</string>
+    <string name="add_mode">Add New</string></resources>

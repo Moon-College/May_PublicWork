@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<car>
+	<example name="jeep">
+	    <color>black</color>
+	    <price>100000</price>
+	</example>
+    <example name="BMW">
+	    <color>white</color>
+	    <price>1000000</price>
+	</example>
+</car>

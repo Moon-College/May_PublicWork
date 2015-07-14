@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:drawable="@drawable/general_loading_flower_01"
+        android:duration="200"/>
+    <item
+        android:drawable="@drawable/general_loading_flower_02"
+        android:duration="200"/>
+    <item
+        android:drawable="@drawable/general_loading_flower_03"
+        android:duration="200"/>
+    <item
+        android:drawable="@drawable/general_loading_flower_04"
+        android:duration="200"/>
+    <item
+        android:drawable="@drawable/general_loading_flower_05"
+        android:duration="200"/>
+    <item
+        android:drawable="@drawable/general_loading_flower_06"
+        android:duration="200"/>
+    <item
+        android:drawable="@drawable/general_loading_flower_07"
+        android:duration="200"/>
+    <item
+        android:drawable="@drawable/general_loading_flower_08"
+        android:duration="200"/>
+
+</animation-list>

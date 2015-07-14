@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/blue700"
+        android:orientation="horizontal" android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/usernameText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:textColor="@color/black" android:textSize="30sp"/>
+
+        <Button
+            android:id="@+id/goToTextCursorAdapterBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="go to test CursorAdapter" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/blue400"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/newRecordType"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="record type"
+            android:text="1" />
+
+        <EditText
+            android:id="@+id/newRecordStartTime"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="record start time"
+            android:text="2015-07-14 12:08:56" />
+
+        <EditText
+            android:id="@+id/newRecordDuration"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="duration"
+            android:text="1" />
+
+        <TextView
+            android:id="@+id/hiddenIdText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/editRecordBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="confirm edit"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/addNewRecordBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_mode" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/recordListView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" >
+    </ListView>
+
+</LinearLayout>
