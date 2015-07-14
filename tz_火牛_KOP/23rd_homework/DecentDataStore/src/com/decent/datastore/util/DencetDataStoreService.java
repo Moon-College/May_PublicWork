@@ -58,8 +58,14 @@ public class DencetDataStoreService {
 							+ field.getName().toLowerCase());
 					int columnIndex = cursor.getColumnIndex(field.getName()
 							.toLowerCase());
-					field.set(t, cursorGetMethod.invoke(cursor, columnIndex));
-					field.setAccessible(false);
+					/*
+					 *  -1说明在cursor取回的字段里面没有和field对应的那个
+					 */
+					if (columnIndex != -1) {
+						field.set(t,
+								cursorGetMethod.invoke(cursor, columnIndex));
+						field.setAccessible(false);
+					}
 				}
 				resultList.add(t);
 			} catch (Exception e) {
