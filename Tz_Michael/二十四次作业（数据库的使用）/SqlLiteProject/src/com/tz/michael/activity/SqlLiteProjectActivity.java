@@ -26,7 +26,7 @@ public class SqlLiteProjectActivity extends Activity {
 //        Log.i("ss--", s.toString());
 //        List<Student> sl=DBHelper.queryStudentsByClassName(db, "班级1");
 //        Log.i("sl--", sl.toString());
-        Student student=new Student("szm", 24, 1);
+        Student student=new Student("ggg", 23, 1);
 //        DBHelper.queryDataTest(student);
 //        DBHelper.insertData(db, student, "students");
         ClassBean classBean=new ClassBean("vip7月", 20);
@@ -42,6 +42,8 @@ public class SqlLiteProjectActivity extends Activity {
         	Student student3=(Student) object;
         	Log.i("llqq--", student3.toString());
         }
+//        DBHelper.updateData(db, "students", student, 10);
+        DBHelper.insertData(db, student, "students");
     }
     
     @Override
