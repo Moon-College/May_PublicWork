@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.cn.test.ViewPagerctivity" 
+    android:orientation="vertical">
+
+    <HorizontalScrollView 
+        android:id="@+id/hsv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:scrollbars="none"
+        android:fadingEdge="horizontal">
+        
+        <RadioGroup 
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            
+            <RadioButton 
+                android:id="@+id/lufei"
+                android:text="路飞"
+                style="@style/radioButtonSytle"/>
+            
+            <RadioButton 
+                android:id="@+id/namei"
+                android:text="娜美"
+                style="@style/radioButtonSytle"/>
+            
+            <RadioButton 
+                android:id="@+id/qiaoba"
+                android:text="乔巴"
+                style="@style/radioButtonSytle"/>
+            
+            <RadioButton 
+                android:id="@+id/luobin"
+                android:text="罗宾"
+                style="@style/radioButtonSytle"/>
+            
+            <RadioButton 
+                android:id="@+id/shenping"
+                android:text="甚平"
+                style="@style/radioButtonSytle"/>
+            
+            <RadioButton 
+                android:id="@+id/simoge"
+                android:text="斯摩格"
+                style="@style/radioButtonSytle"/>
+            
+            <RadioButton 
+                android:id="@+id/hankuke"
+                android:text="汉库克"
+                style="@style/radioButtonSytle"/>
+            
+        </RadioGroup>
+    </HorizontalScrollView>
+    
+    <FrameLayout 
+        android:layout_width="match_parent"
+        android:layout_height="4dp">
+        
+        <TextView 
+            android:id="@+id/tvLine"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:background="@android:color/holo_red_light"
+            />
+    </FrameLayout>
+    
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/viewPager"
+        ></android.support.v4.view.ViewPager>
+
+</LinearLayout>

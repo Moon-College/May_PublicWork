@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<request>
+	<requestHead>
+		<busCode>1003</busCode>
+		<hosCode>1</hosCode>
+		<tradeSrc>01</tradeSrc>
+		<terminalNo>02819222</terminalNo>
+		<operNo>03821</operNo>
+		<tradeDate>20150501</tradeDate>
+		<tradeTime>10:00:00</tradeTime>
+	</requestHead>
+	<data>
+		<schedulingDate>20150501 </schedulingDate>
+		<schedulingType>01</schedulingType>
+		<requestPage>1</requestPage>
+		<pageSize>20</pageSize>
+	</data>
+</request>

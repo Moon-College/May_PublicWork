@@ -1,0 +1,86 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:scrollbars="none"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/sName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入姓名" />
+
+        <EditText
+            android:id="@+id/sAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入年龄"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/sClass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入班级" />
+
+        <EditText
+            android:id="@+id/Professional"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入专业" />
+
+        <Button
+            android:id="@+id/addStudent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onclick"
+            android:text="添加学生" />
+
+        <EditText
+            android:id="@+id/deleteName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入要删除的学生名字" />
+
+        <Button
+            android:id="@+id/deleteStudent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onclick"
+            android:text="删除指定名字学生" />
+
+        <EditText
+            android:id="@+id/updateName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入要更新的学生名字" />
+
+        <Button
+            android:id="@+id/updateStudent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onclick"
+            android:text="更新指定名字学生的信息" />
+
+        <Button
+            android:id="@+id/selectStudent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onclick"
+            android:text="查询出所有学生" />
+
+        <TextView
+            android:id="@+id/showStudent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+</ScrollView>
