@@ -88,9 +88,10 @@ public class MainActivity extends FragmentActivity implements OnCheckedChangeLis
 	}
 	@Override
 	public void onPageScrolled(int arg0, float arg1, int arg2) {
+                //第一个参数为滚动前的页面位置，第二个参数的值为0-1
 		//第arg0个viewpager的位置离第一个viewpager位置的距离
 		int total = (int) ((arg0+arg1)*rg.getChildAt(0).getWidth());
-		//获取Radiogroup的宽度的一半，因为都是match_parent所以直接取viewpager的宽度
+		//获取Scrollview的宽度的一半，因为都是match_parent所以直接取viewpager的宽度
 		int left = (viewPager.getWidth()-rg.getChildAt(0).getWidth())/2;
 		//horizontalsrcollview需要滚动的距离
 		int scrollX = total - left;
