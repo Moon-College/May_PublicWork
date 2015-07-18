@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<stars>
+    <star id = "1">
+        <name>Kobe</name>
+        <age>38</age>
+        <number>24</number>
+    </star>
+    
+    <star id = "2">
+        <name>Jordan</name>
+        <age>51</age>
+        <number>23</number>
+    </star>
+    
+    <star id = "3">
+        <name>yingmu</name>
+        <age>22</age>
+        <number>10</number>
+    </star>
+</stars>
