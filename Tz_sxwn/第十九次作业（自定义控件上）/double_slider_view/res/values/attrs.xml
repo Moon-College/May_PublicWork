@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 自定义属性 -->
+    <declare-styleable name="DoubleSliderView">
+        <attr name="upPrice" format="integer"></attr>
+        <attr name="downPrice" format="integer"></attr>
+    </declare-styleable>
+</resources>
