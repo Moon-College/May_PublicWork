@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tz.michael.activity"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk android:minSdkVersion="8" />
+    <uses-permission android:name="michael.tz.shi"/>
+    <!-- 电话呼叫的权限 -->
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <!-- 接受短信的权限 -->
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <!-- 监听开机启动的权限 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <!-- 杀掉进程的权限 -->
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>
+
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name" >
+        <activity
+            android:label="@string/app_name"
+            android:name=".BroadCastTestActivity" >
+            <intent-filter >
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+            <!-- 广播接受者的注册 -->
+            <receiver 
+                android:name="com.tz.michael.broadcastreceivers.MyFirstReceiver"
+                android:exported="false">
+                <intent-filter 
+                    android:priority="999">
+                    <action android:name="com.tz.michael.receiver"/>
+                </intent-filter>
+            </receiver>
+            <receiver 
+                android:name="com.tz.michael.broadcastreceivers.MySecondReceiver"
+                android:exported="false">
+                <intent-filter 
+                    android:priority="998">
+                    <action android:name="com.tz.michael.receiver"/>
+                </intent-filter>
+            </receiver>
+            <receiver 
+                android:name="com.tz.michael.broadcastreceivers.ScreenOffReceiver">
+                <intent-filter >
+                    <action android:name="android.intent.action.SCREEN_OFF"/>
+                    <action android:name="android.intent.action.SCREEN_ON"/>
+                </intent-filter>
+            </receiver>
+            <!-- 处理拨打电话的广播接受者 -->
+            <receiver 
+                android:name="com.tz.michael.broadcastreceivers.CallHandle">
+                <intent-filter 
+                    android:priority="1000">
+                    <action android:name="android.intent.action.NEW_OUTGOING_CALL"/>
+                </intent-filter>
+            </receiver>
+            <!-- 开机启动广播接受者 -->
+            <receiver 
+                android:name="com.tz.michael.broadcastreceivers.StartupReceiver">
+                <intent-filter 
+                   android:priority="1000">
+                    <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                </intent-filter>
+            </receiver>
+            <!-- 接受短信的广播接受者 -->
+            <receiver 
+                android:name="com.tz.michael.broadcastreceivers.MessageInterceptor">
+                <intent-filter >
+                    <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+                </intent-filter>
+            </receiver>
+    </application>
+
+        <!-- 自定义权限 -->
+        <permission android:name="michael.tz.shi"></permission>
+        
+</manifest>
