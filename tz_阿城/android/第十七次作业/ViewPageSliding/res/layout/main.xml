@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    <HorizontalScrollView 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/hv"
+        
+        >
+        <RadioGroup 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#ffffff"
+            android:id="@+id/rg"
+            >
+            <RadioButton 
+               style="@style/rb_style"
+               android:text="中国"
+               android:id="@+id/china"
+               />
+            <RadioButton 
+               style="@style/rb_style"
+               android:text="韩国"
+               android:id="@+id/korea"/>
+            <RadioButton 
+               style="@style/rb_style"
+               android:text="朝鲜"
+               android:id="@+id/nkorea"/>
+            <RadioButton 
+               style="@style/rb_style"
+               android:text="日本"
+               android:id="@+id/japan"/>
+            <RadioButton 
+               style="@style/rb_style"
+               android:text="美国"
+               android:id="@+id/america"/>
+            <RadioButton 
+               style="@style/rb_style"
+               android:text="印度"
+               android:id="@+id/india"/>
+            <RadioButton 
+               style="@style/rb_style"
+               android:text="泰国"
+               android:id="@+id/tail"/>                                              
+        </RadioGroup>
+    </HorizontalScrollView>
+    <FrameLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="#383838"
+        >
+        <TextView 
+            android:paddingTop="1dp"
+            android:layout_width="100dp"
+            android:layout_height="2dp"
+            android:background="#0000ff"
+            android:paddingBottom="1dp"
+            android:id="@+id/teline"/>
+    </FrameLayout>
+    <android.support.v4.view.ViewPager
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/vp">
+        
+    </android.support.v4.view.ViewPager>
+
+
+</LinearLayout>
