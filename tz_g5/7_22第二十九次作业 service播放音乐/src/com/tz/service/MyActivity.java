@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -32,7 +33,7 @@ public class MyActivity extends Activity implements SeekBar.OnSeekBarChangeListe
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if (msg.what==332) {
-                int progress = (int) msg.obj;
+                int progress = (Integer) msg.obj;
                 sb_progress.setProgress(progress);
             }
         }
@@ -136,6 +137,10 @@ public class MyActivity extends Activity implements SeekBar.OnSeekBarChangeListe
     public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
         MusicService.MyBinder myBinder = (MusicService.MyBinder) iBinder;
         service = (MusicService) myBinder.getService();
+        if (service.isPrepare()) {
+            sb_progress.setMax(service.getMusicDuration());
+            startSeek();
+        }
     }
 
     @Override
