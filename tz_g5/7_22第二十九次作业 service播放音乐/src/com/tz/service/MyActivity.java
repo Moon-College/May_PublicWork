@@ -11,7 +11,6 @@ import android.os.IBinder;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.Toast;
@@ -19,14 +18,13 @@ import android.widget.Toast;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MyActivity extends Activity implements SeekBar.OnSeekBarChangeListener {
+public class MyActivity extends Activity implements SeekBar.OnSeekBarChangeListener, ServiceConnection {
 
     private SeekBar sb_progress;
 
     private Button btn_play,btn_resume,btn_pause, btn_stop;
 
     private MusicService service;
-    private MyServiceConnection connection;
     private Timer timer;
 
     private TimerTask task;
@@ -35,7 +33,7 @@ public class MyActivity extends Activity implements SeekBar.OnSeekBarChangeListe
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if (msg.what==332) {
-                int progress = (int) msg.obj;
+                int progress = (Integer) msg.obj;
                 sb_progress.setProgress(progress);
             }
         }
@@ -47,9 +45,7 @@ public class MyActivity extends Activity implements SeekBar.OnSeekBarChangeListe
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        Toast.makeText(this, "create", Toast.LENGTH_LONG).show();
         sb_progress = (SeekBar) findViewById(R.id.sb_progress);
         sb_progress.setOnSeekBarChangeListener(this);
 
@@ -60,9 +56,8 @@ public class MyActivity extends Activity implements SeekBar.OnSeekBarChangeListe
 
         Intent service = new Intent(this, MusicService.class);
         startService(service);
-        connection = new MyServiceConnection();
 
-        bindService(service, connection, Context.BIND_AUTO_CREATE);
+        bindService(service, this, Context.BIND_AUTO_CREATE);
 
     }
 
@@ -87,7 +82,7 @@ public class MyActivity extends Activity implements SeekBar.OnSeekBarChangeListe
 
     @Override
     protected void onDestroy() {
-        unbindService(connection);
+        unbindService(this);
         if (timer != null) {
             timer.cancel();
 
@@ -102,10 +97,6 @@ public class MyActivity extends Activity implements SeekBar.OnSeekBarChangeListe
                 service.pauseMusic();
                 break;
             case R.id.btn_play:
-                Toast toast = new Toast(this);
-                toast.setText("play");
-                toast.setDuration(Toast.LENGTH_LONG);
-                toast.show();
                 try {
                     service.playMusic();
                     startSeek();
@@ -125,6 +116,8 @@ public class MyActivity extends Activity implements SeekBar.OnSeekBarChangeListe
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+        Log.v("boolean", b + "");
+        Log.v("i",i + "");
         if (b) {
             service.setProgress(i);
         }
@@ -140,26 +133,19 @@ public class MyActivity extends Activity implements SeekBar.OnSeekBarChangeListe
 
     }
 
-    private class MyServiceConnection implements ServiceConnection {
-
-        @Override
-        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            Toast.makeText(MyActivity.this, "connected!!!!!!!!!!!!!!!!!!!!!222", Toast.LENGTH_LONG).show();
-            MusicService.MyBinder myBinder = (MusicService.MyBinder) iBinder;
-            service = (MusicService) myBinder.getService();
-            Log.d("connect", "success");
-            if (service.isPlaying()) {
-                startSeek();
-                sb_progress.setMax(service.getMusicDuration());
-            }
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName componentName) {
-
+    @Override
+    public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+        MusicService.MyBinder myBinder = (MusicService.MyBinder) iBinder;
+        service = (MusicService) myBinder.getService();
+        if (service.isPrepare()) {
+            sb_progress.setMax(service.getMusicDuration());
+            startSeek();
         }
     }
 
+    @Override
+    public void onServiceDisconnected(ComponentName componentName) {
 
+    }
 }
 
