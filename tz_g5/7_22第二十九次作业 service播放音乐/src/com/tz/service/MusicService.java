@@ -15,14 +15,13 @@ import java.io.IOException;
  * Created by Administrator on 2015/7/23 0023.
  */
 public class MusicService extends Service {
-    private MyBinder mMyBinder;
     private MediaPlayer mediaPlayer;
 
     @Override
     public IBinder onBind(Intent intent) {
-        mMyBinder = new MyBinder();
 
-        return mMyBinder;
+
+        return new  MyBinder();
     }
 
     @Override
@@ -72,6 +71,11 @@ public class MusicService extends Service {
         if(mediaPlayer.isPlaying()){
             mediaPlayer.pause();
         }
+    }
+
+    public boolean isPlaying() {
+        if (mediaPlayer==null) return false;
+        return mediaPlayer.isPlaying();
     }
 
 
