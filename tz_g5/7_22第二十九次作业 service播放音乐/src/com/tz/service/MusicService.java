@@ -16,6 +16,7 @@ import java.io.IOException;
  */
 public class MusicService extends Service {
     private MediaPlayer mediaPlayer;
+    private boolean isPrepare =false;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -40,15 +41,16 @@ public class MusicService extends Service {
 
     }
 
-    //“Ù¿÷≤•∑≈
+
     public void playMusic() throws Exception, IllegalStateException, IOException {
         Log.i("INFO", "play music");
-        mediaPlayer.reset();//÷ÿ÷√æÕ «»√≤•∑≈∆˜¥¶”⁄ø’œ–◊¥Ã¨
+        mediaPlayer.reset();
         mediaPlayer.setDataSource(this, Uri.parse(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Lights.mp3"));
-        mediaPlayer.prepare();//ª∫≥Â
+        mediaPlayer.prepare();
         mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
 
             public void onPrepared(MediaPlayer mp) {
+                isPrepare = true;
                 mp.start();
             }
         });
@@ -63,12 +65,15 @@ public class MusicService extends Service {
     }
 
     public void setProgress(int progress) {
-        int duration = getMusicDuration();
         mediaPlayer.seekTo(progress);
     }
 
-    public void pauseMusic(){
-        if(mediaPlayer.isPlaying()){
+    public boolean isPlayIng() {
+        return mediaPlayer.isPlaying();
+    }
+
+    public void pauseMusic() {
+        if (mediaPlayer.isPlaying()) {
             mediaPlayer.pause();
         }
     }
@@ -79,12 +84,17 @@ public class MusicService extends Service {
     }
 
 
-    public void continuMusic(){
+    public void continuMusic() {
         mediaPlayer.start();
     }
 
-    public void stopMusic(){
+    public void stopMusic() {
+        isPrepare = false;
         mediaPlayer.stop();
+    }
+
+    public boolean isPrepare() {
+        return isPrepare;
     }
     @Override
     public boolean onUnbind(Intent intent) {

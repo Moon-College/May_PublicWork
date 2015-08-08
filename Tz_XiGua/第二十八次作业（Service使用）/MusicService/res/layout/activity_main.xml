@@ -1,0 +1,52 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.xigua.musicservice.MainActivity"
+    tools:ignore="MergeRootFrame"
+    android:orientation="vertical" >
+    
+        <Button android:id="@+id/bt1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="StartService"/>
+    
+        <Button android:id="@+id/bt2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="BindService"/>
+        
+        <Button android:id="@+id/bt3"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="UnbindService"/>
+            
+        <Button android:id="@+id/bt4"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="StopService"/>
+                
+        <Button android:id="@+id/bt5"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="StartMusic"/>
+                    
+        <Button android:id="@+id/bt6"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="PauseMusic"/>
+                        
+        <Button android:id="@+id/bt7"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="ContinueMusic"/>
+                            
+        <Button android:id="@+id/bt8"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="StopMusic"/>
+    
+    
+</LinearLayout>
+
