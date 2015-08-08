@@ -1,0 +1,22 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_world" />
+    <Button 
+        android:id="@+id/orderbroadcast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="发送有序广播"
+        android:onClick="send"/>
+    <Button 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="绑定锁屏kill进程广播"
+        android:onClick="killbackgroundprocess"
+        android:layout_below="@id/orderbroadcast"/>
+
+</RelativeLayout>
