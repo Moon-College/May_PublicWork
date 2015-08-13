@@ -12,7 +12,7 @@ import com.decent.courier.bean.result.HttpBaseResult;
  */
 public class AsyResponse {
 	private Exception exception;
-	private HttpBaseResult httpBaseResult;
+	private String result;
 	private Header[] headers;
 
 	public Exception getException() {
@@ -23,12 +23,12 @@ public class AsyResponse {
 		this.exception = exception;
 	}
 
-	public HttpBaseResult getHttpBaseResult() {
-		return httpBaseResult;
+	public String getResult() {
+		return result;
 	}
 
-	public void setHttpBaseResult(HttpBaseResult httpBaseResult) {
-		this.httpBaseResult = httpBaseResult;
+	public void setResult(String result) {
+		this.result = result;
 	}
 
 	public Header[] getHeaders() {

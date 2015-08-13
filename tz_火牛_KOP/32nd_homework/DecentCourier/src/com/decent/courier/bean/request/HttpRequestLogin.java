@@ -26,4 +26,11 @@ public class HttpRequestLogin implements HttpParams {
 		this.password = password;
 	}
 
+	public HttpRequestLogin(String userName, String password) {
+		super();
+		this.userName = userName;
+		this.password = password;
+	}
+
+	
 }
