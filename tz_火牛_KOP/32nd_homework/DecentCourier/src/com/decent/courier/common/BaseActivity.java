@@ -1,7 +1,7 @@
 package com.decent.courier.common;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 
 import com.decent.courier.http.HttpRequest;
 
@@ -12,7 +12,7 @@ import com.decent.courier.http.HttpRequest;
  * @author K450J
  *
  */
-public abstract class BaseActivity extends Activity {
+public abstract class BaseActivity extends FragmentActivity {
 	/**
 	 * 为每一个Activity增加字段DecentApplication，用来Activity之间共享数据，缓存数据
 	 */

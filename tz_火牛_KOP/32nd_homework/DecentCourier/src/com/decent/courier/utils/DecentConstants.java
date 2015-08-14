@@ -1,14 +1,28 @@
 package com.decent.courier.utils;
 
+import android.os.Environment;
+
 public class DecentConstants {
 	/**
 	 * cookie在http头里面的键名字
 	 */
-	public static String SETCOOKIE = "Set-Cookie";
+	public static final String SETCOOKIE = "Set-Cookie";
 	/**
 	 * 保存cookie的xml文件名
 	 */
-	public static String COOKIE = "cookie";	
+	public static final String COOKIE = "cookie";
+	/**
+	 * sharedPreference里面用户名的字段
+	 */
+	public static final String USERNAME = "userName";
+	/**
+	 * sharedPreference里面password的字段
+	 */
+	public static final String PASSWORD = "password";
+	/**
+	 * 保存用户名密码的xml文件名
+	 */
+	public static final String USER = "user";
 	/**
 	 * get方式提交请求
 	 */
@@ -17,6 +31,10 @@ public class DecentConstants {
 	 * post方式提交请求
 	 */
 	public static final String POST_METHOD = "POST";
+	/**
+	 * 复杂内容post提交
+	 */
+	public static final Object MULTI_POST_METHOD = "MULTI_POST";
 	/**
 	 * 提交方式的数组
 	 */
@@ -40,5 +58,30 @@ public class DecentConstants {
 	/**
 	 * 登陆url
 	 */
-	public static final String LOGIN_URL = HOST+"/user/courierLogin.do";	
+	public static final String LOGIN_URL = HOST+"/user/courierLogin.do";
+
+	
+	/**
+	 * 注册url
+	 */
+	public static String REGISTER_URL = HOST+"/user/courierRegister.do";
+	
+	/**
+	 * 数据库的路径
+	 */
+	public static final String LOCATION_DB_PATH = Environment.getExternalStorageDirectory().getAbsolutePath()+"/location.db";
+	
+	/**
+	 * 服务器返回的ok标志
+	 */
+	public static final int RET_OK = 0;
+	
+	//开启图库的3个文本框的requestcode
+	public static final int PHOTO_CDRD_FRONT_DATA = 167;
+    public static final int PHOTO_CDRD_REAR_DATA = 168;
+    public static final int PHOTO_CDRD_WITH_DATA = 169;
+    
+    //设置图片缩放的标准宽
+    public static final int BITMAP_STANDRD_WIDTH = 50;
+
 }

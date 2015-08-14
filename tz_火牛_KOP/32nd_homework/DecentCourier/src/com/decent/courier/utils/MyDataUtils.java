@@ -44,19 +44,21 @@ public class MyDataUtils {
 	/**
 	 * ��ȡsharedpreference
 	 */
-	public static Object getData(Context context,String fileName,String key,Class clazz){
+	public static <T> T getData(Context context,String fileName,String key,Class T){
 		SharedPreferences sharedPreferences = context.getSharedPreferences(fileName, Context.MODE_PRIVATE);
-		if(clazz.getName().equals(String.class.getName())){
-			return sharedPreferences.getString(key, "");
-		}else if(clazz.getName().equals(Integer.class.getName())){
-			return sharedPreferences.getInt(key, 0);
-		}else if(clazz.getName().equals(Float.class.getName())){
-			return sharedPreferences.getFloat(key, 0);
-		}else if(clazz.getName().equals(Long.class.getName())){
-			return sharedPreferences.getLong(key, 0);
+		T result;
+		if(String.class.isAssignableFrom(T)){
+			result = (T) sharedPreferences.getString(key, "");
+		}else if(Integer.class.isAssignableFrom(T)){
+			result = (T) Integer.valueOf(sharedPreferences.getInt(key, 0));
+		}else if(Float.class.isAssignableFrom(T)){
+			result = (T) Float.valueOf(sharedPreferences.getFloat(key, 0));
+		}else if(Long.class.isAssignableFrom(T)){
+			result = (T)Long.valueOf(sharedPreferences.getLong(key, 0));
 		}else{
-			return sharedPreferences.getBoolean(key, false);
+			result = (T)Boolean.valueOf(sharedPreferences.getBoolean(key, false));
 		}
+		return result;
 	}
 	
 	/**

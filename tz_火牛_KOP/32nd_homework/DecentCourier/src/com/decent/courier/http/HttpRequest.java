@@ -1,5 +1,6 @@
 package com.decent.courier.http;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
@@ -14,6 +15,9 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.util.EntityUtils;
@@ -36,7 +40,7 @@ import com.decent.courier.utils.MyDataUtils;
 public class HttpRequest implements IHttpRequest {
 	private Context context;
 	private HttpClient client;
-	
+
 	public HttpRequest(Context context) {
 		this.context = context;
 		client = DecentHttpClient.getInstance();
@@ -45,7 +49,9 @@ public class HttpRequest implements IHttpRequest {
 	@Override
 	public void doMultiQuestByPostMethod(String url, HttpParams httpParams,
 			boolean isUseCookie, IHttpRequestCallback httpRequestCallback) {
-
+		HttpRequestAsyncTask requestTask = new HttpRequestAsyncTask();
+		requestTask.execute(url, httpParams, Boolean.valueOf(isUseCookie),
+				httpRequestCallback, DecentConstants.MULTI_POST_METHOD);
 	}
 
 	@Override
@@ -53,7 +59,7 @@ public class HttpRequest implements IHttpRequest {
 			boolean isUseCookie, IHttpRequestCallback httpRequestCallback) {
 		HttpRequestAsyncTask requestTask = new HttpRequestAsyncTask();
 		requestTask.execute(url, httpParams, Boolean.valueOf(isUseCookie),
-				httpRequestCallback,DecentConstants.POST_METHOD);
+				httpRequestCallback, DecentConstants.POST_METHOD);
 	}
 
 	@Override
@@ -75,7 +81,7 @@ public class HttpRequest implements IHttpRequest {
 			boolean isUseCookie, IHttpRequestCallback httpRequestCallback) {
 		HttpRequestAsyncTask requestTask = new HttpRequestAsyncTask();
 		requestTask.execute(url, httpParams, Boolean.valueOf(isUseCookie),
-				httpRequestCallback,DecentConstants.GET_METHOD);
+				httpRequestCallback, DecentConstants.GET_METHOD);
 	}
 
 	@Override
@@ -94,7 +100,128 @@ public class HttpRequest implements IHttpRequest {
 
 	private String getExceptionMessage(Exception exception) {
 		// TODO Auto-generated method stub
-		return exception.toString()+":"+exception.getMessage();
+		return exception.toString() + ":" + exception.getMessage();
+	}
+
+	public AsyResponse doRequestHttpConnectionByMultiPostMethod(String url,
+			HttpParams httpParams, Boolean isUseCookie) {
+
+		AsyResponse asyResponse = new AsyResponse();
+		HttpPost httpPost = new HttpPost(url);
+		MultipartEntity formEntity = new MultipartEntity();// 多媒体文件传输需要使用的entity
+		/*
+		 * 参数httpParams处理
+		 */
+		if (httpParams != null) {
+			// 使用反射来构建BasicNameValuePair
+			Class<? extends HttpParams> clazz = httpParams.getClass();
+			Field[] fields = clazz.getDeclaredFields();
+			for (Field field : fields) {
+				field.setAccessible(true);
+				String fieldName = field.getName();
+				// 如果是文本类型的
+				if (String.class.isAssignableFrom(field.getType())) {
+					Object fieldValue = null;
+					try {
+						fieldValue = field.get(httpParams);
+					} catch (IllegalArgumentException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						asyResponse.setException(e);
+						return asyResponse;
+					} catch (IllegalAccessException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						asyResponse.setException(e);
+						return asyResponse;
+					}
+					String strValue = null;
+					if (fieldValue != null) {
+						strValue = String.valueOf(fieldValue);
+					}
+					try {
+						formEntity.addPart(fieldName, new StringBody(strValue));
+						DecentLogUtil.d("add StringBody fieldName="+fieldName+",strValue="+strValue);
+					} catch (UnsupportedEncodingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						asyResponse.setException(e);
+						return asyResponse;
+					}
+				} else if (File.class.isAssignableFrom(field.getType())) {
+					File fieldValue = null;
+					try {
+						fieldValue = (File) field.get(httpParams);
+					} catch (IllegalArgumentException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						asyResponse.setException(e);
+						return asyResponse;
+					} catch (IllegalAccessException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						asyResponse.setException(e);
+						return asyResponse;
+					}
+					if (fieldValue != null) {
+						formEntity.addPart(fieldName, new FileBody(fieldValue));
+						DecentLogUtil.d("add FileBody fieldName="+fieldName);
+					}
+				}
+
+				field.setAccessible(false);
+			}
+		}
+
+		/*
+		 * 如果parameters有值，设置form内容到httpPost里面
+		 */
+		if (formEntity.getContentLength() != 0) {
+			httpPost.setEntity(formEntity);
+		}
+		DecentLogUtil.d("formEntity.getContentLength()="+formEntity.getContentLength());
+		/*
+		 * 如果使用cookie，设置header的DecentConstants.SETCOOKIE
+		 */
+		if (isUseCookie) {
+			httpPost.addHeader(DecentConstants.SETCOOKIE, (String) MyDataUtils
+					.getData(context, DecentConstants.COOKIE,
+							DecentConstants.SETCOOKIE, String.class));
+		}
+		try {
+			HttpResponse httpResponse = client.execute(httpPost);
+			int statusCode = httpResponse.getStatusLine().getStatusCode();
+			DecentLogUtil.d("statusCode=" + statusCode);
+			// 如果http返回成功200
+			if (statusCode == DecentConstants.HTTP_OK) {
+				// 处理header，保存cookie
+				Header[] headers = httpResponse.getAllHeaders();
+				if (headers != null) {
+					MyDataUtils.savaHead(context, headers);
+				}
+				// 处理body
+				HttpEntity httpEntity = httpResponse.getEntity();
+				if (httpEntity != null) {
+					String content = EntityUtils.toString(httpEntity,
+							EntityUtils.getContentCharSet(httpEntity));
+					asyResponse.setResult(content);
+				}
+			} else {
+				asyResponse.setException(new IllegalAccessException());
+				return asyResponse;
+			}
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			asyResponse.setException(e);
+			return asyResponse;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			asyResponse.setException(e);
+			return asyResponse;
+		}
+		return asyResponse;
 	}
 
 	public AsyResponse doRequestHttpConnectionByPostMethod(String url,
@@ -165,7 +292,7 @@ public class HttpRequest implements IHttpRequest {
 		try {
 			HttpResponse httpResponse = client.execute(httpPost);
 			int statusCode = httpResponse.getStatusLine().getStatusCode();
-			DecentLogUtil.d("statusCode="+statusCode);
+			DecentLogUtil.d("statusCode=" + statusCode);
 			// 如果http返回成功200
 			if (statusCode == DecentConstants.HTTP_OK) {
 				// 处理header，保存cookie
@@ -205,12 +332,12 @@ public class HttpRequest implements IHttpRequest {
 		// 1、遍历parameters，构造参数列表，拼接到url后面
 		StringBuffer sb = new StringBuffer();
 		sb.append("?");
-		//反射遍历httpParams,填充sb
-		
+		// 反射遍历httpParams,填充sb
+
 		if (httpParams != null) {
 			Class<? extends HttpParams> clazz = HttpParams.class;
 			Field[] fileds = clazz.getDeclaredFields();
-			for(Field field:fileds){
+			for (Field field : fileds) {
 				field.setAccessible(true);
 				String fieldName = field.getName();
 				Object fieldValue = null;
@@ -220,27 +347,27 @@ public class HttpRequest implements IHttpRequest {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 					asyResponse.setException(e);
-					return asyResponse;					
+					return asyResponse;
 				} catch (IllegalAccessException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 					asyResponse.setException(e);
-					return asyResponse;					
+					return asyResponse;
 				}
-		        if(fieldValue!=null){
+				if (fieldValue != null) {
 					sb.append(fieldName);
 					sb.append("=");
 					sb.append(String.valueOf(fieldValue));
-					sb.append("&");		        	
-		        }
+					sb.append("&");
+				}
 			}
 		}
 		// 删除掉最后的那个字符(可能是多余的那个?或者&)，位置是从0开始计算的
 		sb.deleteCharAt(sb.length() - 1);
 
-		//拼接url，初始化HttpGet
+		// 拼接url，初始化HttpGet
 		HttpGet httpGet = new HttpGet(url + sb.toString());
-		
+
 		/*
 		 * 如果使用cookie，设置header的DecentConstants.SETCOOKIE
 		 */
@@ -252,17 +379,17 @@ public class HttpRequest implements IHttpRequest {
 		try {
 			client.getParams().setParameter(
 					CoreConnectionPNames.CONNECTION_TIMEOUT, 5000);
-			client.getParams().setParameter(
-					CoreConnectionPNames.SO_TIMEOUT, 5000);
+			client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,
+					5000);
 			HttpResponse httpResponse = client.execute(httpGet);
 			int statusCode = httpResponse.getStatusLine().getStatusCode();
-			DecentLogUtil.d("statusCode="+statusCode);
+			DecentLogUtil.d("statusCode=" + statusCode);
 			if (statusCode == DecentConstants.HTTP_OK) {
 				HttpEntity httpEntity = httpResponse.getEntity();
 				String content = EntityUtils.toString(httpEntity,
 						EntityUtils.getContentCharSet(httpEntity));
 				asyResponse.setResult(content);
-			}else{
+			} else {
 				asyResponse.setException(new IllegalArgumentException());
 			}
 		} catch (Exception e) {
@@ -271,7 +398,7 @@ public class HttpRequest implements IHttpRequest {
 			asyResponse.setException(e);
 			return asyResponse;
 		}
-				
+
 		// TODO Auto-generated method stub
 		return asyResponse;
 	}
@@ -298,6 +425,9 @@ public class HttpRequest implements IHttpRequest {
 			} else if (DecentConstants.GET_METHOD.equals(method)) {
 				asyResponse = doRequestHttpConnectionByGetMethod(url,
 						httpParams, isUseCookie);
+			} else if (DecentConstants.MULTI_POST_METHOD.equals(method)) {
+				asyResponse = doRequestHttpConnectionByMultiPostMethod(url,
+						httpParams, isUseCookie);
 			} else {
 				asyResponse = new AsyResponse();
 				asyResponse.setException(new IllegalArgumentException(
@@ -317,4 +447,5 @@ public class HttpRequest implements IHttpRequest {
 			}
 		}
 	}
+
 }

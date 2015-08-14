@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_content_bg"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/title_bg"
+        android:paddingBottom="5.0dip"
+        android:paddingTop="5.0dip" >
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10.0dip"
+            android:padding="10.0dip"
+            android:src="@drawable/icon_back" />
+
+        <TextView
+            android:id="@+id/tv_regist_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/regist"
+            android:textColor="@color/white"
+            android:textSize="20.0sp" />
+    </RelativeLayout>
+
+        <!-- 用来装两个fragment的 -->
+    <FrameLayout
+        android:id="@+id/register_frame"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/btn_next"
+        android:layout_width="fill_parent"
+        android:layout_height="48.0dip"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="21.0dip"
+        android:background="@drawable/selector_shape_orange"
+        android:padding="10.0dip"
+        android:singleLine="true"
+        android:text="@string/next"
+        android:textColor="@color/white"
+        android:textSize="18.0sp" />
+
+</LinearLayout>

@@ -1,0 +1,83 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_horizontal"
+    android:paddingBottom="15.0dip"
+    android:paddingLeft="15.0dip"
+    android:paddingRight="15.0dip"
+    android:paddingTop="21.0dip" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:scrollbars="none" >
+
+            <EditText
+                android:id="@+id/et_regist_mobile"
+                android:layout_width="fill_parent"
+                android:layout_height="45.0dip"
+                android:background="@drawable/shape_white"
+                android:drawableLeft="@drawable/iconfont_shouji"
+                android:drawablePadding="8.0dip"
+                android:hint="@string/phone_tip"
+                android:inputType="number"
+                android:maxLength="11"
+                android:padding="10.0dip"
+                android:singleLine="true"
+                android:textColor="@color/text_black"
+                android:textColorHint="@color/text_hint"
+                android:textSize="18.0sp" />
+
+            <TextView
+                android:id="@+id/tv_mobile_error_tip"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/et_regist_mobile"
+                android:padding="10.0dip"
+                android:text="@string/mobile_tip"
+                android:textColor="@color/guid_2"
+                android:textSize="14.0sp" />
+
+            <EditText
+                android:id="@+id/et_regist_name"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_below="@id/tv_mobile_error_tip"
+                android:background="@drawable/shape_white"
+                android:drawableLeft="@drawable/iconfont_yonghu"
+                android:drawablePadding="8.0dip"
+                android:hint="@string/user_tip"
+                android:inputType="text"
+                android:padding="10.0dip"
+                android:singleLine="true"
+                android:textColor="@color/text_black"
+                android:textColorHint="@color/text_hint"
+                android:textSize="18.0sp" />
+
+            <EditText
+                android:id="@+id/et_pwd"
+                android:layout_width="fill_parent"
+                android:layout_height="45.0dip"
+                android:layout_below="@id/et_regist_name"
+                android:layout_marginTop="21.0dip"
+                android:background="@drawable/shape_white"
+                android:drawableLeft="@drawable/iconfont_mima"
+                android:drawablePadding="8.0dip"
+                android:hint="@string/pwd_tip"
+                android:inputType="textPassword"
+                android:maxEms="16"
+                android:padding="10.0dip"
+                android:singleLine="true"
+                android:textColor="@color/text_black"
+                android:textColorHint="@color/text_hint"
+                android:textSize="18.0sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</ScrollView>

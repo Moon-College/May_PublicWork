@@ -1,0 +1,226 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18.0dip"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/rl_card_front"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/selector_morebg_top" >
+
+            <ImageView
+                android:id="@+id/imv_card_front"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10.0dip"
+                android:scaleType="centerInside"
+                android:src="@drawable/iconfont_shenfenyanzheng" />
+
+            <TextView
+                android:id="@+id/tv_card_front"
+                android:layout_width="wrap_content"
+                android:layout_height="45.0dip"
+                android:layout_marginRight="10.0dip"
+                android:layout_toRightOf="@id/imv_card_front"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="@string/card_front_tip"
+                android:paddingLeft="15.0dip"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="16.0sp" />
+
+            <ImageView
+                android:id="@+id/imv_card_front_jiantou"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10.0dip"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_jiant" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_choose_card_rear"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_morebg_center" >
+
+            <ImageView
+                android:id="@+id/imv_card_rear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10.0dip"
+                android:scaleType="centerInside"
+                android:src="@drawable/iconfont_shenfenyanzheng" />
+
+            <TextView
+                android:id="@+id/tv_card_rear"
+                android:layout_width="wrap_content"
+                android:layout_height="45.0dip"
+                android:layout_marginRight="10.0dip"
+                android:layout_toRightOf="@id/imv_card_rear"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="@string/card_rear_tip"
+                android:paddingLeft="15.0dip"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="16.0sp" />
+
+            <ImageView
+                android:id="@+id/imv_card_rear_jiantou"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10.0dip"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_jiant" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_choose_card"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_morebg_bottom" >
+
+            <ImageView
+                android:id="@+id/imv_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10.0dip"
+                android:scaleType="centerInside"
+                android:src="@drawable/iconfont_zhengjianhao" />
+
+            <TextView
+                android:id="@+id/tv_card"
+                android:layout_width="wrap_content"
+                android:layout_height="45.0dip"
+                android:layout_marginRight="10.0dip"
+                android:layout_toRightOf="@id/imv_card"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="@string/card_tip"
+                android:paddingLeft="15.0dip"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="16.0sp" />
+
+            <ImageView
+                android:id="@+id/imv_card_jiantou"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10.0dip"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_jiant" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_age"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15.0dip"
+            android:background="@drawable/selector_morebg_top" >
+
+            <ImageView
+                android:id="@+id/imv_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10.0dip"
+                android:scaleType="centerInside"
+                android:src="@drawable/iconfont_gerenxinxi" />
+
+            <EditText
+                android:id="@+id/et_age"
+                android:layout_width="fill_parent"
+                android:layout_height="45.0dip"
+                android:layout_marginRight="10.0dip"
+                android:layout_toRightOf="@id/imv_age"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="@string/age_tip"
+                android:inputType="number"
+                android:maxLength="10"
+                android:paddingLeft="15.0dip"
+                android:singleLine="true"
+                android:textSize="16.0sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_morebg_bottom" >
+
+            <ImageView
+                android:id="@+id/imv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10.0dip"
+                android:scaleType="centerInside"
+                android:src="@drawable/iconfont_name" />
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="fill_parent"
+                android:layout_height="45.0dip"
+                android:layout_marginRight="10.0dip"
+                android:layout_toRightOf="@id/imv_name"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="@string/name_tip"
+                android:maxLength="10"
+                android:paddingLeft="15.0dip"
+                android:singleLine="true"
+                android:textSize="16.0sp" />
+        </RelativeLayout>
+
+        <!-- 3张图片 -->
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" >
+
+            <ImageView
+                android:id="@+id/front_photo"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp" />
+
+            <ImageView
+                android:id="@+id/back_photo"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_centerInParent="true" />
+
+            <ImageView
+                android:id="@+id/cert_photo"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="20dp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</ScrollView>
