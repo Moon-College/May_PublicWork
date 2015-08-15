@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="title_bg">#ff0cbaa0</color>
+    <color name="title_bg_light">#cc0cbaa0</color>
+    <color name="white">#ffffffff</color>
+    <color name="text_hint">#ff989898</color>
+    <color name="text_black">#ff333333</color>
+    <color name="text_green_three">#ff45c8b4</color>
+    <color name="theme_content_bg">#fff2f2f2</color>
+    <color name="btn_bg_orange_default">#fff6a869</color>
+    <color name="guid_2">#fff39800</color>
+    <color name="black">#ff000000</color>
+    <color name="btn_bg_orange">#ffff9e40</color>
+    <color name="btn_bg_orange_hover">#fff77e42</color>
+    <color name="orange_default">#fff7462a</color>
+    <color name="gray_line">#ffd3d3d3</color>
+    <color name="information_business_tv">#444444</color>
+    <color name="gray">#ffaaaaaa</color>
+    <color name="light_blue">#6593cb</color>
+    <color name="gold">#ffcc33</color>
+</resources>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">安又顺物流</string>
+    <string name="version_info">Version 1.0 版权所有</string>
+    <string name="user_tip">请输入用户名</string>
+    <string name="pwd_tip">请设置您的登录密码</string>
+    <string name="phone_tip">请输入公司业务手机号</string>
+    <string name="name_tip">请输入真实姓名</string>
+    <string name="age_tip">请输入年龄</string>
+    <string name="card_front_tip">请选择身份证正面图片</string>
+    <string name="card_rear_tip">请选择身份证背面图片</string>
+    <string name="card_tip">请选择证件照片</string>
+    <string name="addr_tip">请输入网点地址</string>
+    <string name="company_tip">请输入公司名称</string>
+    <string name="login">登录</string>
+    <string name="regist">注册</string>
+    <string name="fast_regist">马上注册~</string>
+    <string name="next">下一步</string>
+    <string name="mobile_tip">注册时，使用公司业务手机号更容易通过审核，订单也可以直接下达</string>
+    <string name="finish_regist">完成注册</string>
+    <string name="public_order">广场订单</string>
+    <string name="history_order">历史订单</string>
+    <string name="business_order">订单业务</string>
+    <string name="network_error">世界上最遥远的距离就是没有网络</string>
+    <string name="data_error">无相关数据</string>
+    <string name="service_error">无法访问或网络不稳定</string>
+    <string name="data_excption">数据异常，请重试。</string>
+    <string name = "timeout_excepiton">连接超时，请重试</string>
+    <string name="login_msg">正在为您登陆&#8230;</string>
+    <string name="load_msg">正在加载数据&#8230;</string>
+
+    <string name="pull_to_refresh">下拉刷新</string>
+    <string name="release_to_refresh">释放立即刷新</string>
+    <string name="refreshing">正在刷新&#8230; </string>
+    <string name="refresh_succeed">刷新成功</string>
+    <string name="refresh_fail">刷新失败</string>
+    <string name="pullup_to_load">上拉加载更多</string>
+    <string name="release_to_load">释放立即加载</string>
+    <string name="loading">正在加载&#8230;</string>
+    <string name="load_succeed">加载成功</string>
+    <string name="load_fail">加载失败</string>
+    <string name="order_detail">订单详情</string>
+    <string name="goods">物品名</string>
+    <string name="price">价格</string>
+    <string name="start_point">发货地址</string>
+    <string name="end_point">收货地址</string>
+    <string name="order_type">订单类型</string>
+    <string name="create_time">发货时间</string>
+    <string name="receive_time">收货时间</string>
+    
+    <string name = "new_order">新的订单</string>
+    <string name = "get_order">抢单</string>
+    <string name = "get_order_loading">疯狂抢单中...</string>
+    <string name = "get_order_success">抢单成功，请速度联系客户</string>
+    <string name = "user_order_cell">完成抢单，获取客户电话</string>
+    <string name="receiver_order_cell">完成抢单，获取收货人电话</string>
+    <string name="settings">设置</string>
+    <string name="logout">注销</string>
+    <string name="success_logout">注销成功，请重新登录</string>
+    <string name="fail_logout">请先登录</string>
+    
+    <string name="push_start">早上开始通知时间</string>
+    <string name="push_end">晚上停止通知时间</string>
+    <string-array name="start_array">
+        <item >早上6点</item>
+        <item >早上7点</item>
+        <item >早上8点</item>
+        <item >早上9点</item>
+    </string-array>
+    
+    <string-array name="end_array">
+        <item >晚上9点</item>
+        <item >晚上10点</item>
+        <item >晚上11点</item>
+        <item >晚上12点</item>
+    </string-array>
+</resources>
