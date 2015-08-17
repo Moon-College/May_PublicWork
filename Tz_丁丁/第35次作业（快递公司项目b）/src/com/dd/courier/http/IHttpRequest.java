@@ -3,10 +3,9 @@ package com.dd.courier.http;
 import com.dd.courier.bean.request.HttpParams;
 import com.dd.courier.listener.HttpCallback;
 
-
 public interface IHttpRequest {
 	//复杂请求
-	void doMultiQuestByPostMethod(String url,HttpParams params,boolean isCookie,HttpCallback callback);
+	void doQuestByMultiPostMethod(String url,HttpParams params,boolean isCookie,HttpCallback callback);
 	
 	//post
 	void doQuestByPostMethod(String url,HttpParams params,boolean isCookie,HttpCallback callback);

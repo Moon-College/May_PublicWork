@@ -11,9 +11,8 @@ public class MyApplication extends Application {
 	public static MyApplication app;
 	@Override
 	public void onCreate() {
-		// TODO Auto-generated method stub
 		super.onCreate();
-		Log.i("INFO", "app oncreate");
+		Log.e("home", "app oncreate");
 		app = this;
 	}
 	
@@ -22,10 +21,12 @@ public class MyApplication extends Application {
 	public void onTerminate() {
 		// TODO Auto-generated method stub
 		super.onTerminate();
+		Log.e("home", "app onTerminate");
 	}
 	
 	//获取单例的application对象
 	public static MyApplication getInstance(){
+		Log.e("home", "getInstance");
 		if(app == null){
 			app = new MyApplication();
 		}
@@ -33,6 +34,7 @@ public class MyApplication extends Application {
 	}
 	//单例静态
 	public static HttpRequest getHttpRequestInstance(){
+		Log.e("home", "getHttpRequestInstance");
 		if(request == null){
 			request = new HttpRequest(app.getApplicationContext());
 		}

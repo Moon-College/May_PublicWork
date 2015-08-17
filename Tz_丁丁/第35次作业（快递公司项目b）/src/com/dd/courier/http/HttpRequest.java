@@ -1,8 +1,10 @@
 package com.dd.courier.http;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,9 +15,15 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.util.EntityUtils;
+
+import android.content.Context;
+import android.os.AsyncTask;
 
 import com.alibaba.fastjson.JSON;
 import com.dd.courier.bean.request.HttpParams;
@@ -25,23 +33,138 @@ import com.dd.courier.listener.HttpCallback;
 import com.dd.courier.utils.MyDataUtils;
 import com.dd.courier.utils.MyLog;
 
-import android.content.Context;
-import android.os.AsyncTask;
-
-
 public class HttpRequest implements IHttpRequest{
 	private Context context;
 	private HttpClient client;
+//	private ProgressDialog dialog;
+//	private boolean isShowDialog;
 	public HttpRequest(Context context){
 		this.context = context;
 		client = MyHttpClient.getInstance();
 	}
+	
+	
+	
+//	/**
+//	 * 设置该请求是否有进度条
+//	 */
+//	public void showDialog(Context context,boolean showDialog,String title,String msg){
+//		this.isShowDialog = showDialog;//是否需要显示
+//		if(showDialog){
+//			if(dialog == null){
+//				dialog = new ProgressDialog(context);
+//			}
+//			dialog.setTitle(title);
+//			dialog.setMessage(msg);
+//		}
+//	}
+	
+	/**
+	 * 多文件请求的请求方法
+	 */
+	/**
+	 * post请求，需要传递url，参数，cookie
+	 */
+	public void doQuestByMultiPostMethod(String url, HttpParams params,
+			boolean isCookie,HttpCallback callback) {
+//		AysResponse resp = new AysResponse();
+		MyHttpTask httpTask = new MyHttpTask();
+		httpTask.execute(url,params,isCookie,"POST_MULTI",callback);
+	}
+	
 	/**
 	 * @author 复杂的多文件和文本请求，用post
 	 */
-	public void doMultiQuestByPostMethod(String url, HttpParams params,
+	private AysResponse doMultiQuestByPostMethod(String url, HttpParams params,
 			boolean isCookie,HttpCallback callback) {
-		// TODO Auto-generated method stub
+		AysResponse response = new AysResponse();
+		HttpPost post = new HttpPost(url);
+		MyLog.d("post quest url:"+url);
+		MultipartEntity entity = new MultipartEntity();//多文件传输的实体
+//		List<NameValuePair> parameters = new ArrayList<NameValuePair>();
+		if(params != null){
+			Class<? extends HttpParams> class1 = params.getClass();
+			Field[] declaredFields = class1.getDeclaredFields();
+			for(Field field: declaredFields){
+				field.setAccessible(true);
+				//反射获取对象的变量及变量值
+				String name = field.getName();//变量名
+				if(field.getType().getSimpleName().equals("File")){
+					//说明这个变量是一个文件
+					try {
+						Object value = field.get(params);
+						if(value!=null){
+							FileBody body = new FileBody((File) field.get(params));
+							entity.addPart(name,body);
+						}
+					} catch (IllegalArgumentException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						response.setException(e);
+					} catch (IllegalAccessException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						response.setException(e);
+					}
+				}else{
+					//这个不是文件变量是普通的基本数据类型
+					Object value = null;
+					try {
+						value = field.get(params);
+						if(value!=null){
+							StringBody body = null;
+							try {
+								body = new StringBody(String.valueOf(value),Charset.forName("utf-8"));
+							} catch (UnsupportedEncodingException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							entity.addPart(name,body);
+						}
+					} catch (IllegalArgumentException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IllegalAccessException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+		//正文，body
+		if(isCookie){
+			//经常用来登陆验证
+			String value = (String) MyDataUtils.getData(context, MyConstants.COOKIE, MyConstants.SETCOOKIE, String.class);
+			post.addHeader(MyConstants.SETCOOKIE, value);//把cookie带到服务端
+		}
+		//超时异常
+		setTimeOutException();
+		post.setEntity(entity);
+		HttpResponse resp = null;
+		try {
+			resp = client.execute(post);
+			int statusCode = resp.getStatusLine().getStatusCode();
+			MyLog.d("post request statuCode:"+statusCode);
+			if(statusCode == 200){
+				String content = EntityUtils.toString(resp.getEntity(), "utf-8");
+				MyLog.d("post request content:"+content);
+				response.setResult(content);
+				//请求成功
+				Header[] headers = resp.getAllHeaders();//获取服务端的响应头
+				MyDataUtils.savaHead(context, headers);//保存服务端返回的cookie
+			}else{
+				response.setException(new IllegalArgumentException());
+			}
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			response.setException(e);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			response.setException(e);
+		}
+		return response;
 	}
 
 	/**
@@ -124,6 +247,7 @@ public class HttpRequest implements IHttpRequest{
 	
 	
 	
+	
 	/**
 	 * post请求，需要传递url，参数，cookie
 	 */
@@ -185,7 +309,6 @@ public class HttpRequest implements IHttpRequest{
 	
 	private class MyHttpTask extends AsyncTask<Object, Void, AysResponse>{
 		private HttpCallback callback;
-		
 		@Override
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
@@ -204,9 +327,13 @@ public class HttpRequest implements IHttpRequest{
 			if(method.equals("POST")){
 				//post
 				aysResponse = doQuestByPost(url,param,isCookie,callback);
+			}else if(method.equals("POST_MULTI")){
+				//多文件的复杂请求
+				aysResponse = doMultiQuestByPostMethod(url,param,isCookie,callback);
 			}else{
 				//get
 //				aysResponse = doQuestByGet(url,param,isCookie,callback);
+				
 			}
 			return aysResponse;
 		}
@@ -222,10 +349,12 @@ public class HttpRequest implements IHttpRequest{
 			if(result.getException() == null){
 				//没有异常
 				String content = result.getResult();
+				if(callback!=null)
 				callback.success(content);
 			}else{
 				//把异常转为字符串提示用户、
 				String exception = parseException(result.getException());
+				if(callback!=null)
 				callback.fail(exception);
 			}
 		}
