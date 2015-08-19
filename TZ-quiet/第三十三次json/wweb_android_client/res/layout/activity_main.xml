@@ -1,0 +1,18 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <Button 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="doGet"
+        android:text="GET请求服务器"/>
+    
+    <Button 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="doPost"
+        android:text="POST请求服务器"/>
+    
+
+</LinearLayout>
