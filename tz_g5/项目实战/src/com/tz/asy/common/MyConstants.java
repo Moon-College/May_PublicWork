@@ -33,17 +33,21 @@ public class MyConstants {
 	public static String REGISTER = HOST+"/user/courierRegister.do";
 	//经纬度更新
 	public static String LOCATION = HOST+"/courier/location.do";
+	//订单列表
+	public static String ORDERLIST = HOST+"/order/courierOrders.do";
+	//评论列表
+	public static String COMMENTLIST = HOST+"/comment/viewCourierComments.do";
 	//数据库的路径
 	public static final String DB_PATH = Environment.getExternalStorageDirectory().getAbsolutePath()+"/location.db";
-	
+
 	//开启图库的3个文本框的requestcode
 	public static final int PHOTO_CDRD_FRONT_DATA = 167;
-    public static final int PHOTO_CDRD_REAR_DATA = 168;
-    public static final int PHOTO_CDRD_WITH_DATA = 169;
-    
-    //设置图片缩放的标准宽
-    public static final int BITMAP_STANDRD_WIDTH = 50;
-    
-    //上传坐标的事件间隔
-    public static final int LOCATION_PERIOD = 60*1000*5;
-}
+	public static final int PHOTO_CDRD_REAR_DATA = 168;
+	public static final int PHOTO_CDRD_WITH_DATA = 169;
+
+	//设置图片缩放的标准宽
+	public static final int BITMAP_STANDRD_WIDTH = 50;
+	//每页数目
+	public static final int PERPAGES = 10;
+	//上传坐标的事件间隔
+	public static final int LOCATION_PERIOD = 60*1000*5;}

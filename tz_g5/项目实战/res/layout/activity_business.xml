@@ -3,10 +3,69 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
-	<TextView 
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:text="businesss"
-	    />
+
+	<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="48dp"
+			android:background="@color/title_bg" >
+
+		<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerInParent="true"
+				android:text="@string/business_order"
+				android:textColor="#ffffffff"
+				android:textSize="22sp" />
+
+		<ImageView
+				android:id="@+id/setting_iv"
+				android:layout_width="32dp"
+				android:layout_height="32dp"
+				android:layout_alignParentRight="true"
+				android:layout_centerVertical="true"
+				android:layout_marginRight="8dp"
+				android:background="@drawable/set"
+				android:onClick="setting"
+				android:contentDescription="@null" />
+	</RelativeLayout>
+
+	<LinearLayout
+			android:id="@+id/comment_radio"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="@color/title_bg"
+			android:orientation="horizontal" >
+
+
+		<Button
+				android:id="@+id/history_order"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:background="@drawable/selector_order"
+				android:button="@null"
+				android:drawableTop="@drawable/iconfont_finish"
+				android:gravity="center_horizontal"
+				android:padding="16dp"
+				android:text="@string/order_list"
+				android:textColor="@color/white" />
+
+		<Button
+				android:id="@+id/comment_order"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:background="@drawable/selector_order"
+				android:button="@null"
+				android:drawableTop="@drawable/iconfont_finish"
+				android:gravity="center_horizontal"
+				android:padding="16dp"
+				android:text="@string/comment_order"
+				android:textColor="@color/white" />
+	</LinearLayout>
+
+	<FrameLayout android:layout_width="match_parent" android:layout_height="match_parent">
+		<include layout="@layout/list_content_view" />
+		<include layout="@layout/list_state"/>
+	</FrameLayout>
 </LinearLayout>
