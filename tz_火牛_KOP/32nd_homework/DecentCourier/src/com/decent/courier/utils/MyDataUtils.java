@@ -25,6 +25,10 @@ public class MyDataUtils {
 		for(Entry<String,Object> set :map.entrySet()){
 			String key = set.getKey();
 			Object value = set.getValue();
+			if(value == null){
+				DecentLogUtil.d("into putData must continue with key="+key+" and edit="+value);
+				continue;
+			}
 			if(value instanceof String){
 				edit.putString(key, (String)value);
 			}else if(value instanceof Boolean){

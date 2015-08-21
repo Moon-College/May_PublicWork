@@ -15,6 +15,7 @@ import com.alibaba.fastjson.JSON;
 import com.decent.courier.bean.request.HttpRequestLogin;
 import com.decent.courier.bean.result.HttpResultLogin;
 import com.decent.courier.common.BaseActivity;
+import com.decent.courier.common.LocationReportService;
 import com.decent.courier.listener.IHttpRequestCallback;
 import com.decent.courier.utils.DecentConstants;
 import com.decent.courier.utils.DecentLogUtil;
@@ -30,6 +31,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 	private Button loginBtn;
 	private ProgressDialog mPd;
     private Button bt_register;
+	private String codedPassword;
 	
 	@Override
 	public void initContentView() {
@@ -66,6 +68,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 		if(!RegExUtil.isStringEmpty(storedUserName)&&!RegExUtil.isStringEmpty(storedPassword)){
 			mPd = ProgressDialog.show(this, "自动登陆", "登陆进行中");
 			doHttpLogin(storedUserName, storedPassword, true);
+			DecentLogUtil.d("auto login with storedUserName="+storedUserName+",storedPassword="+storedPassword);
 		}
 	}
 
@@ -101,7 +104,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 
 	private void doHttpLogin(String strUsername, String strPassword,
 			boolean isPasswordMd5) {
-		String codedPassword = strPassword;
+		codedPassword = strPassword;
 		if (!isPasswordMd5) {
 			codedPassword = MD5.GetMD5Code(strPassword);
 		}
@@ -131,8 +134,9 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 		// 如果ret是ok的话,记录password的md5格式到sharedpreference,跳转到主界面
 		if (httpResultLogin.getRet() == DecentConstants.RET_OK) {
 			String strUsername = username.getText().toString().trim();
-			String strPassword = MD5.GetMD5Code(password.getText().toString()
-					.trim());
+			//这里已经就直接使用全局变量codedPassword，这个codedPassword在doHttpLogin里面修改的
+			//这里只是为了保持到sharedpreference里面
+			String strPassword = codedPassword;
 
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put(DecentConstants.USERNAME, strUsername);
@@ -140,6 +144,18 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 			map.put(DecentConstants.PASSWORD, strPassword);
 			MyDataUtils.putData(this, DecentConstants.USER, map);
 			// MainActivity
+			
+			//如果登录成功，则开始上报坐标地址的service
+			DecentLogUtil.d("begin start LocationReportService");
+			Intent service = new Intent();
+			service.setClass(this, LocationReportService.class);
+			startService(service);
+			
+			//并且跳转bussiness
+			Intent bussiness = new Intent();
+			bussiness.setClass(this, BusinessActivity.class);
+			startActivity(bussiness);
+			finish();
 		}
 		// 如果不是ok，一般就是用户名密码错了(前面的toast会提醒)，就停在这个界面
 	}

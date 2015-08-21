@@ -65,6 +65,14 @@ public class DecentConstants {
 	 * 注册url
 	 */
 	public static String REGISTER_URL = HOST+"/user/courierRegister.do";
+	/**
+	 * 经度的键值
+	 */
+	public static String LONGTITUDE = "longtitude";
+	/**
+	 * 维度的键值
+	 */
+	public static String LATITUDE = "latitude";
 	
 	/**
 	 * 数据库的路径
@@ -83,5 +91,34 @@ public class DecentConstants {
     
     //设置图片缩放的标准宽
     public static final int BITMAP_STANDRD_WIDTH = 50;
+    
+    /**
+     * 坐标位置上报时间,暂时设置1分钟一次
+     */
+	public static final long LOCATION_REP_PERIOD = 1*60*1000;
+	/**
+	 * 存放上报或者推送信息的xml文件名
+	 */
+	public static final String PUSH = "push";
+	/**
+	 * 内容上报时候Android 设备的设备TYPE
+	 */
+	public static final int ANDROID_DEVICE_TYPE = 3;
+	/**
+	 * 存放在里面存的的token键
+	 */
+	public static final String TOKEN = "token";
+	/**
+	 * 上报坐标的url
+	 */
+	public static final String LOCATION_URL = HOST+"/courier/location.do";
+	/**
+	 * 保存地址信息的键
+	 */
+	public static final String ADDR = "addr";
+	/**
+	 * 保存地点坐标信息的xml文件名字
+	 */
+	public static final String LOC = "loc";
 
 }

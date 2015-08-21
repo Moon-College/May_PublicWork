@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 
 import com.decent.courier.common.BaseActivity;
 import com.decent.courier.utils.DecentConstants;
+import com.decent.courier.utils.DecentLogUtil;
 import com.decent.courier.utils.DecentToast;
 
 /**
@@ -31,6 +32,7 @@ public class SplashActivity extends BaseActivity {
 	public void initContentView() {
 		// œ‘ æsplash∆¡ƒª
 		setContentView(R.layout.activity_splash);
+		DecentLogUtil.setNowDebugFlag(true);
 	}
 
 	@Override

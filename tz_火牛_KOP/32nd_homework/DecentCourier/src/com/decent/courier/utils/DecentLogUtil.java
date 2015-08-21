@@ -97,4 +97,12 @@ public class DecentLogUtil
     	}
     	return 0;
     }
+
+	public static int e(String msg) {
+    	if(mNowDebugFlag)
+    	{
+    		return Log.e("error", msg);
+    	}
+    	return 0;		
+	}
 }

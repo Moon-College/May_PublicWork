@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.decent.courier.activity.R;
 import com.decent.courier.utils.BitmapUtils;
 import com.decent.courier.utils.DecentToast;
+import com.decent.courier.utils.RegExUtil;
 
 public class Register2ndFragment extends Fragment implements OnClickListener {
 	private static final int FRONT_IMAGE_REQUEST = 0;
@@ -48,6 +49,21 @@ public class Register2ndFragment extends Fragment implements OnClickListener {
 		back_photo = (ImageView) view.findViewById(R.id.back_photo);
 		cert_photo = (ImageView) view.findViewById(R.id.cert_photo);
 
+		if(!RegExUtil.isStringEmpty(front_photo_path)){
+			front_photo.setImageBitmap(BitmapUtils.getScaleBitmapByPath(front_photo_path,
+				this.getActivity()));
+		}
+
+		if(!RegExUtil.isStringEmpty(rear_photo_path)){
+			back_photo.setImageBitmap(BitmapUtils.getScaleBitmapByPath(rear_photo_path,
+				this.getActivity()));
+		}
+		
+		if(!RegExUtil.isStringEmpty(cert_photo_path)){
+			cert_photo.setImageBitmap(BitmapUtils.getScaleBitmapByPath(cert_photo_path,
+				this.getActivity()));
+		}		
+		
 		tv_card_front = (TextView) view.findViewById(R.id.tv_card_front);
 		tv_card_rear = (TextView) view.findViewById(R.id.tv_card_rear);
 		tv_card = (TextView) view.findViewById(R.id.tv_card);

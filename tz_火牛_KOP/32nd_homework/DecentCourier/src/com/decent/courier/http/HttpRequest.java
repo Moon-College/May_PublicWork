@@ -141,7 +141,8 @@ public class HttpRequest implements IHttpRequest {
 					}
 					try {
 						formEntity.addPart(fieldName, new StringBody(strValue));
-						DecentLogUtil.d("add StringBody fieldName="+fieldName+",strValue="+strValue);
+						DecentLogUtil.d("add StringBody fieldName=" + fieldName
+								+ ",strValue=" + strValue);
 					} catch (UnsupportedEncodingException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -165,7 +166,7 @@ public class HttpRequest implements IHttpRequest {
 					}
 					if (fieldValue != null) {
 						formEntity.addPart(fieldName, new FileBody(fieldValue));
-						DecentLogUtil.d("add FileBody fieldName="+fieldName);
+						DecentLogUtil.d("add FileBody fieldName=" + fieldName);
 					}
 				}
 
@@ -179,7 +180,8 @@ public class HttpRequest implements IHttpRequest {
 		if (formEntity.getContentLength() != 0) {
 			httpPost.setEntity(formEntity);
 		}
-		DecentLogUtil.d("formEntity.getContentLength()="+formEntity.getContentLength());
+		DecentLogUtil.d("formEntity.getContentLength()="
+				+ formEntity.getContentLength());
 		/*
 		 * 如果使用cookie，设置header的DecentConstants.SETCOOKIE
 		 */
@@ -440,10 +442,12 @@ public class HttpRequest implements IHttpRequest {
 		@Override
 		protected void onPostExecute(AsyResponse result) {
 			Exception e = result.getException();
-			if (e == null) {
-				requestCallback.onRequestSuccess(result.getResult());
-			} else {
-				requestCallback.onRequestFail(getExceptionMessage(e));
+			if (requestCallback != null) {
+				if (e == null) {
+					requestCallback.onRequestSuccess(result.getResult());
+				} else {
+					requestCallback.onRequestFail(getExceptionMessage(e));
+				}
 			}
 		}
 	}
