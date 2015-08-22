@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Environment;
 import android.view.animation.Animation;
@@ -16,6 +17,11 @@ import com.decent.courier.common.BaseActivity;
 import com.decent.courier.utils.DecentConstants;
 import com.decent.courier.utils.DecentLogUtil;
 import com.decent.courier.utils.DecentToast;
+import com.decent.courier.utils.MyDataUtils;
+import com.decent.courier.utils.RegExUtil;
+import com.tencent.android.tpush.XGIOperateCallback;
+import com.tencent.android.tpush.XGPushManager;
+import com.tencent.android.tpush.service.XGPushService;
 
 /**
  * 溅射屏幕，就是打开应用时候的第一屏幕
@@ -33,6 +39,29 @@ public class SplashActivity extends BaseActivity {
 		// 显示splash屏幕
 		setContentView(R.layout.activity_splash);
 		DecentLogUtil.setNowDebugFlag(true);
+
+		String token = MyDataUtils.getData(this, DecentConstants.PUSH,
+				DecentConstants.TOKEN, String.class);
+		//如果TOKEN是空的话，需要重新注册XG push
+		if (RegExUtil.isStringEmpty(token)) {
+			final Context context = getApplicationContext();
+			XGPushManager.registerPush(context, new XGIOperateCallback() {
+
+				@Override
+				public void onSuccess(Object arg0, int arg1) {
+					// TODO Auto-generated method stub
+					DecentToast.showToastShort(context, "XG push已经注册成功");
+				}
+
+				@Override
+				public void onFail(Object arg0, int arg1, String arg2) {
+					// TODO Auto-generated method stub
+					DecentToast.showToastShort(context, "XG push注册失败");
+				}
+			});
+			Intent service = new Intent(context, XGPushService.class);
+			context.startService(service);
+		}
 	}
 
 	@Override
@@ -73,11 +102,11 @@ public class SplashActivity extends BaseActivity {
 							"初始化数据失败，请检查SD");
 					return;
 				}
-				
+
 				Intent intent = new Intent();
 				intent.setClass(SplashActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
+				startActivity(intent);
+				finish();
 			}
 		});
 

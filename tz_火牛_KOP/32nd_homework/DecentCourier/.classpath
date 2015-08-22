@@ -8,6 +8,10 @@
 	<classpathentry kind="lib" path="libs/android-support-v4.jar"/>
 	<classpathentry kind="lib" path="libs/httpmime-4.1.3.jar"/>
 	<classpathentry kind="lib" path="libs/BaiduLBS_Android.jar"/>
+	<classpathentry kind="lib" path="libs/jg_filter_sdk_1.1.jar"/>
+	<classpathentry kind="lib" path="libs/mid-sdk-2.20.jar"/>
+	<classpathentry kind="lib" path="libs/wup-1.0.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="libs/Xg_sdk_v2.38_20150616_1057.jar"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -30,7 +33,7 @@ import com.decent.courier.view.PullToRefreshLayout.OnRefreshListener;
 import com.decent.courier.view.PullableListView;
 
 public class BusinessActivity extends BaseActivity implements OnClickListener,
-		OnRefreshListener {
+		OnRefreshListener, OnItemClickListener {
 
 	/**
 	 * 查看历史订单菜单的btn，此activity默认也是显示历史订单
@@ -91,6 +94,7 @@ public class BusinessActivity extends BaseActivity implements OnClickListener,
 		history_order_btn.setOnClickListener(this);
 		comment_order_btn.setOnClickListener(this);
 		refresh_view.setOnRefreshListener(this);
+		content_view.setOnItemClickListener(this);
 	}
 
 	@Override
@@ -108,7 +112,7 @@ public class BusinessActivity extends BaseActivity implements OnClickListener,
 
 	private void getCommentListFromServer(final boolean isLoadMore,
 			boolean isRefresh, HttpRequestCommentList request) {
-		if (!isRefresh&&!isLoadMore) {
+		if (!isRefresh && !isLoadMore) {
 			if (!dialog.isShowing()) {
 				dialog.show();
 			}
@@ -327,6 +331,24 @@ public class BusinessActivity extends BaseActivity implements OnClickListener,
 					mDecentCommentPagination.getCurrentPage() + 1,
 					DecentConstants.ITEM_PER_PAGE);
 			getCommentListFromServer(true, false, commentListRequest);
+		}
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
+		// TODO Auto-generated method stub
+		// 获取到点击的orderItem然后
+		if (isShowOrder) {
+			Intent orderInfoIntent = new Intent();
+			orderInfoIntent.setClass(this, OrderItemActivity.class);
+			//获取点击对应的orderItem，放到putExtra里面然后开启OrderInfoActivity
+			OrderItem orderItem = orderList.get(position);
+			orderInfoIntent.putExtra(DecentConstants.ORDER_ITEM, orderItem);
+			orderInfoIntent.putExtra(DecentConstants.IS_GRAP_ORDER, false);
+			startActivity(orderInfoIntent);
+		}else{
+			
 		}
 	}
 

@@ -132,5 +132,17 @@ public class DecentConstants {
 	 * 查询业务员所有评论的url
 	 */
 	public static final String ALL_COMMENTS_URL = HOST+"/comment/viewCourierComments.do";
+	/**
+	 * 传递单个orderItem的key
+	 */
+	public static final String ORDER_ITEM = "orderItem";
+	/**
+	 * 是否是抢单的order在intent中对应的key
+	 */
+	public static final String IS_GRAP_ORDER = "isGrapOrder";
+	/**
+	 * 抢单的url
+	 */
+	public static final String GRAP_ORDER_URL = HOST+"/courier/grabOrder.do";
 
 }
