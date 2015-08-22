@@ -120,5 +120,17 @@ public class DecentConstants {
 	 * 保存地点坐标信息的xml文件名字
 	 */
 	public static final String LOC = "loc";
+	/**
+	 * 默认每页显示数目
+	 */
+	public static final Integer ITEM_PER_PAGE = 10;
+	/**
+	 * 查询业务员查看所有订单的url
+	 */
+	public static final String ORDERLIST_URL = HOST+"/order/courierOrders.do";
+	/**
+	 * 查询业务员所有评论的url
+	 */
+	public static final String ALL_COMMENTS_URL = HOST+"/comment/viewCourierComments.do";
 
 }
